@@ -9,17 +9,17 @@
             <span class="fs-5">B<span class="d-none d-sm-inline">rand</span></span>
         </a>
         <ul class="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start"
-            id="menu menu-color">
-            <li class="nav-item">
+            id="menu">
+            <li class="nav-item" id="menu-color">
                 <a href="#" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
                 </a>
             </li>
-            <li>
+            <li id="menu-color">
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
             </li>
-            <li>
+            <li id="menu-color">
                 <a href="#" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-table"></i><span class="ms-1 d-none d-sm-inline">Orders</span></a>
             </li>
@@ -27,7 +27,7 @@
             <!-- Mie Modifiche -->
 
             <!-- Nascondo questo li della sidebar solo per i dispositivi mobile -->
-            <li class="d-none d-sm-block">
+            <li class="d-none d-sm-block" id="menu-color">
                 <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                     <i class="fs-4 bi-bootstrap"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle">Bootstrap</span></a>
@@ -42,7 +42,7 @@
             </li>
 
             <!-- Mostro questo <li> solo per i dispositivi mobili (va a sostituire quello di sopra in mobile) -->
-            <li class="dropdown d-block d-sm-none">
+            <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
                 <a href="#" class="nav-link dropdown-toggle px-sm-0 px-2" id="dropdown" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Bootstrap</span>
@@ -59,16 +59,16 @@
             </li>
             <!-- Fine mie modifiche -->
 
-            <li>
+            <li id="menu-color">
                 <a href="#" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-grid"></i><span class="ms-1 d-none d-sm-inline">Products</span></a>
             </li>
-            <li>
+            <li id="menu-color">
                 <a href="#" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Customers</span> </a>
             </li>
         </ul>
-
+        
         <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

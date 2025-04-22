@@ -39,3 +39,20 @@ img {
     display: block;
     object-fit: cover;
 }
+
+/* ---------------------------- Impostazioni della sidebar ---------------------------- */
+
+// Colore del testo della sidebar nella visualizzazione desktop e tablet:
+#menu-color a {
+    color: red !important;
+}
+
+// Colore del testo della sidebar nella visualizzazione mobile:
+#menu-color-mobile a i {
+    color: red;
+}
+
+#menu-color-mobile a#dropdown {
+    color: red;
+}
+/* ---------------------------- Fine impostazioni della sidebar ---------------------------- */
