@@ -1,0 +1,41 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+
+// CSS personalizzato generico RESET RULES
+
+/* variabili di root */
+:root {
+    --header-footer-backgroud: #344C36;
+    --strip-and-text: #FAAD1B;
+    --cards-content: #F5F5F5;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    // font-family: 'Nunito', sans-serif;
+    // font-weight: bold;
+}
+
+/* Classe di debug */
+.debug {
+    // border: 1px solid var(--prova1);
+    border: 1px solid red;
+}
+
+/* Classe fluida per le immagini */
+img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
