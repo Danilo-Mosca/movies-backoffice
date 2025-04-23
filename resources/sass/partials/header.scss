@@ -8,6 +8,13 @@ header {
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.a-link-header:hover {
+    opacity: 1;
+    transition: all 0.5s;
+    transform: scale(1.1);
 }
 
 a.a-link-header img {
