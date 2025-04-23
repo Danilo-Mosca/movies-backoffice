@@ -13,23 +13,36 @@
 </head>
 
 <body>
-
-    {{-- Includo il "partials" dell'header con la barra di navigazione: --}}
-    {{-- @include('partials.header') --}}
-
     {{-- Includo la sidebar che sarà contenuta su tutte le pagine: --}}
-
     <div class="container-fluid overflow-hidden">
         <div class="row vh-100 overflow-auto">
             @include('partials.sidebar')
 
             <div class="col d-flex flex-column h-100">
+
+                {{---------------------- Visualizzo l'header qui SOLO PER I DISPOSITIVI DESKTOP E TABLET, escludo i dispositivi mobili: ---------------- --}}
+                <div class="d-none d-sm-block">
+                    {{-- Includo il "partials" dell'header con la barra di navigazione: --}}
+                    @include('partials.header')
+                </div>
+                {{------------------- End Visualizzo l'header qui SOLO PER I DISPOSITIVI DESKTOP E TABLET, escludo i dispositivi mobili: ------------------}}
+
+
+
                 <main class="row">
+
+                    {{-- ---------------- Visualizzo l'header qui SOLO PER I DISPOSITIVI MOBILI escludo i tablet e pc: ------------------}}
+                    <div class="d-block d-sm-none">
+                        {{-- Includo il "partials" dell'header con la barra di navigazione: --}}
+                        @include('partials.header')
+                    </div>
+                    {{-- ------------------ End visualizzo l'header qui SOLO PER I DISPOSITIVI MOBILI escludo i tablet e pc: ----------------}}
+
                     <div class="col pt-4">
                         @yield('content')
                     </div>
                 </main>
-                
+
                 {{-- Includo il "partials" footer con la barra di navigazione: --}}
                 @include('partials.footer')
             </div>

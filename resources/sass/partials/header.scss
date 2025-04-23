@@ -1,0 +1,53 @@
+header {
+    background-color: #F8FAFC;
+}
+
+.a-link-header {
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+a.a-link-header img {
+    max-width: 50px;
+}
+
+a:link .header-text-menu {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a:visited .header-text-menu {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a:hover .header-text-menu {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a:active .header-text-menu {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+p.header-text-menu {
+    padding-top: 5px;
+}
+
+
+/* ---------------------------- Media query per ridurre la grandezza del testo visualizzato nei dispositivi mobile ------------------------ */
+@media (max-width: 576px) {
+    .a-link-header {
+        font-size: 0.45rem;
+    }
+}
+
+/* ---------------------------- Media query per ridurre la grandezza del testo visualizzato nei dispositivi mobile ------------------------ */

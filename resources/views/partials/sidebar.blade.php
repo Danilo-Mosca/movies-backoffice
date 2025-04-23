@@ -1,3 +1,13 @@
+{{-- Styles: istruzione che permette a Laravel di cercare le risorse per Bootstrap ed SCSS: 
+      In questo caso oltre ad importare il file "app.scss" c'è il CSS personalizzato generico, importo
+      anche il file "sidebar.scss" (nella cartella "partials") che contiene il CSS specifico per la sidebar: --}}
+ @vite(['resources/sass/app.scss', 'resources/sass/partials/sidebar.scss', 'resources/js/app.js'])
+
+
+
+
+
+
 {{-- <div class="container-fluid overflow-hidden">
     <div class="row vh-100 overflow-auto"> --}}
 
@@ -72,9 +82,9 @@
         <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="hugenerd" width="28" height="28"
+                <img src="{{ Vite::asset('resources/img/icons/admin-approval.webp') }}" alt="hugenerd" width="28" height="28"
                     class="rounded-circle">
-                <span class="d-none d-sm-inline mx-1">Joe</span>
+                <span class="d-none d-sm-inline mx-1" id="menu-color">Joe</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="#">New project...</a></li>

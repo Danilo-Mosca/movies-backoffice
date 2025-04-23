@@ -26,6 +26,19 @@
     // font-weight: bold;
 }
 
+main {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 17px;
+    line-height: 28px;
+    font-weight: 300;
+    background-color: #fff;
+    overflow-x: hidden !important;
+    -webkit-font-smoothing: antialiased;
+}
+p {
+    color: #737373;
+}
+
 /* Classe di debug */
 .debug {
     // border: 1px solid var(--prova1);
@@ -39,20 +52,3 @@ img {
     display: block;
     object-fit: cover;
 }
-
-/* ---------------------------- Impostazioni della sidebar ---------------------------- */
-
-// Colore del testo della sidebar nella visualizzazione desktop e tablet:
-#menu-color a {
-    color: red !important;
-}
-
-// Colore del testo della sidebar nella visualizzazione mobile:
-#menu-color-mobile a i {
-    color: red;
-}
-
-#menu-color-mobile a#dropdown {
-    color: red;
-}
-/* ---------------------------- Fine impostazioni della sidebar ---------------------------- */

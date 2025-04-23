@@ -33,6 +33,7 @@ $cards = config('comics');
                     Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony,
                     street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby chic lomo
                     plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.
+                    <a href="#">Ciao</a>
                 </p>
                 <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
                     Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan
@@ -40,6 +41,25 @@ $cards = config('comics');
                     cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade.
                     Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck
                     occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+                    <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
+                    Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan
+                    farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics,
+                    cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade.
+                    Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck
+                    occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+                    <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
+                    Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan
+                    farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics,
+                    cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade.
+                    Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck
+                    occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+                    <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free
+                    Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan
+                    farm-to-table Williamsburg slow-carb readymade disrupt deep v. Meggings seitan Wes Anderson semiotics,
+                    cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade.
+                    Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache food truck
+                    occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque error vitae, illum natus temporibus consequuntur cumque rerum quod tempore debitis perspiciatis? Impedit accusantium architecto ipsam autem velit inventore cupiditate aperiam ratione, doloribus, provident magnam, laboriosam odit voluptatibus quam omnis quis sit facilis nulla at quo non? Tempora adipisci, harum obcaecati quisquam est minus doloremque repellat nam nobis, at molestias omnis iure. Eos dolore similique voluptas totam aliquid sequi atque fuga doloribus natus praesentium, enim, nesciunt provident aliquam illo commodi sapiente fugit nobis harum consequatur autem! Necessitatibus numquam officiis animi voluptatibus voluptatem omnis! Cumque minima nostrum neque. Ex sint nostrum reprehenderit quibusdam labore officiis soluta illo. Repellat iure eaque iste et accusantium nostrum nihil vitae impedit obcaecati dolore, pariatur, iusto harum consectetur autem, saepe animi nam ea dolor. Distinctio ad ut non atque nisi ducimus inventore consequuntur nam quae nesciunt exercitationem est, similique cum consectetur quibusdam. Non exercitationem ex magni distinctio.</p>
             {{-- </div>
         </main> --}}
         {{-- <footer class="row bg-light py-4 mt-auto">
