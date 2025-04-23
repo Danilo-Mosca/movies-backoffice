@@ -84,7 +84,7 @@
                 id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ Vite::asset('resources/img/icons/admin-approval.webp') }}" alt="hugenerd" width="28" height="28"
                     class="rounded-circle">
-                <span class="d-none d-sm-inline mx-1" id="menu-color">Joe</span>
+                <span class="d-none d-sm-inline mx-1" id="menu-color">Admin</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="#">New project...</a></li>

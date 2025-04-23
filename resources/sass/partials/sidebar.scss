@@ -29,4 +29,11 @@ div {
     font-weight: 300;
 }
 
+// Configurazione del colore sui menu a comparsa in modalità mobile e sul menu impostazioni amministratore:
+a.dropdown-item.active, a.dropdown-item:active {
+    color: var(--bs-dropdown-link-active-color);
+    text-decoration: none;
+    background-color: red;
+}
+
 /* ---------------------------- Fine impostazioni della sidebar ---------------------------- */
