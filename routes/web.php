@@ -5,7 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');      // Con l'url di root reindirizzo automaticamente alla pagina di login
 });
 
 Route::get('/dashboard', function () {

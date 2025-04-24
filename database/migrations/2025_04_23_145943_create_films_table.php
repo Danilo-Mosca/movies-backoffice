@@ -19,11 +19,12 @@ return new class extends Migration
             // $table->string('release_year', 4);      //creo una colonna di tipo varchar che può contenere massimo 4 caratteri. Ottima per il formato YYYY dell'anno
             $table->year('release_year');       // creo una colonna di tipo year
             $table->tinyInteger('duration')->unsigned();    //creo una colonna di tipo tinyInteger senza segno che conterrò un numero compreso tra 0 e 255
-            $table->tinyInteger('rating')->unsigned();
+            $table->tinyInteger('rating')->unsigned()->nullable();
             $table->string('poster')->nullable();
             $table->string('nationality', 90)->nullable();
             $table->integer('director_id')->unsigned()->nullable();
-            
+            $table->string('slug')->unique(); // slug unico
+
             $table->timestamps();
         });
     }
