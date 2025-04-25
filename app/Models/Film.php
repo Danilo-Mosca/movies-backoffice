@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Support\Str;     // Importo la classe "Str" perchè la richiamao nel metodo booted()
+use Illuminate\Support\Str;     // Importo la classe "Str" perchè la richiamo nel metodo booted()
 
 class Film extends Model
 {

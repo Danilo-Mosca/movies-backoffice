@@ -7,10 +7,15 @@
     <!-- Knowing is not enough; we must apply. Being willing is not enough; we must do. - Leonardo da Vinci -->
 
     <div class="card">
-        <a href="{{ route('movies.show', $slug) }}"><img src="{{ $image }}" class="card-img-top" alt="{{ $title }}"></a>
+        <a href="{{ route('movies.show', $slug) }}"><img src="{{ $image }}" class="card-img-top"
+                alt="{{ $title }}"></a>
         <div class="card-body">
             {{-- Il metodo strtoupper() restituisce tutti i caratteri convertiti in uppercase (maiuscolo): --}}
-            <h5 class="card-title">{{ substr(strtoupper($title), 0,150) . "..." }}</h5>
+            @php
+                $titolo = substr(strtoupper($title), 0, 70);    // Il metodo substr() restituisce una parte di una stringa, in questo caso restituisce la la stringa dal carattere 0 di partenza fino al carattere 69
+            @endphp
+            {{-- Controllo con un operatore ternario se $titolo contiene 70 caratteri, cioè il numero massimo, in questo caso aggiungo i puntini sospensivi, altrimenti stampo solo la stringa contenuta nella variabile --}}
+            <h5 class="card-title">{{ strlen($titolo) == 70 ? $titolo . '...' : $titolo }}</h5>
             <h4 class="card-title"><a class="card-title" href="{{ route('movies.show', $slug) }}">Visualizza...</a></h4>
         </div>
     </div>

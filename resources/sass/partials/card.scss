@@ -37,7 +37,19 @@
 }
 
 h5.card-title {
-    height: 40px;
+    height: 75px;
+}
+
+h5.card-title:hover {
+    height: 75px;
+    font-weight: 670;
+    // transform: scale(1.05);
+    // transition: transform 0.3s ease;
+    cursor: auto;
+}
+
+h4.card-title:hover {
+    color: var(--color-red-text-sidebar);
 }
 
 .card-button {
@@ -55,3 +67,47 @@ h5.card-title {
 }
 
 /* ---------- Fine sezione personalizzazione card dei film ---------- */
+
+
+/* ---------------------------- Media query per ridurre l'altezza della sezione del titolo della card per i dispositivi sotto i 1400px ... px ------------------------ */
+@media (max-width: 1400px) {
+    h5.card-title {
+        height: 80px;
+    }
+
+    h5.card-title:hover {
+        height: 80px;
+    }
+}
+
+@media (max-width: 992px) {
+    h5.card-title {
+        height: 78px;
+    }
+
+    h5.card-title:hover {
+        height: 78px;
+    }
+}
+
+@media (max-width: 768px) {
+    h5.card-title {
+        height: 70px;
+    }
+
+    h5.card-title:hover {
+        height: 70px;
+    }
+}
+
+@media (max-width: 576px) {
+    h5.card-title {
+        height: 45px;
+    }
+
+    h5.card-title:hover {
+        height: 45px;
+    }
+}
+
+/* ---------------------------- Media query per ridurre la grandezza del testo visualizzato nei dispositivi mobile ------------------------ */

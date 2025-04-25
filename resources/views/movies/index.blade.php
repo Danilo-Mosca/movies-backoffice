@@ -13,7 +13,6 @@
 
     // Salvo l'array letterale contenente i comics (dal file di configurazione "comics.php" nella directory: config/comics.php) in una variabile cards
 // $cards = config('comics');
-
 @endphp
 {{-- --------------------------------------------------------------------------------------------------------------- --}}
 
@@ -21,11 +20,17 @@
 @section('content')
     {{-- @dump($movies) --}}
 
+    <h3>Vertical Sidebar that switches to Horizontal Navbar</h3>
+    <p class="lead">An example multi-level sidebar with collasible menu items. The menu functions like an
+        "accordion" where only a single menu is be open at a time.</p>
+    <hr />
+
     <div class="container-fluid mt-5 mb-3">
 
         <div class="row g-3"> <!-- Spazio tra le card dei film -->
             @foreach ($movies as $movie)
-                <div class="col-lg-2 col-md-4 col-12"> <!-- 6 per riga su desktop, 3 su tablet, 1 su mobile -->
+                <div class="col-xl-2 col-lg-3 col-md-4 col-12">
+                    <!-- 6 colonne per riga su desktop ≥ 1200px, 4 per riga su desktop ≥ 992px, 3 su tablet, 1 su mobile -->
 
                     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-card> </x-card>): --}}
                     <x-card>
@@ -48,10 +53,6 @@
     {{-- <div class="col d-flex flex-column h-100">
         <main class="row">
             <div class="col pt-4"> --}}
-    <h3>Vertical Sidebar that switches to Horizontal Navbar</h3>
-    <p class="lead">An example multi-level sidebar with collasible menu items. The menu functions like an
-        "accordion" where only a single menu is be open at a time.</p>
-    <hr />
     <h3>More content...</h3>
     <p>Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing
         brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag

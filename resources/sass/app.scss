@@ -13,6 +13,7 @@
 /* variabili di root */
 :root {
     --color-red-text-sidebar: #DB2B39;
+    --color-paragraph: #737373;
 }
 
 /* Reset */
@@ -34,7 +35,7 @@ main {
     -webkit-font-smoothing: antialiased;
 }
 p {
-    color: #737373;
+    color: var(--color-paragraph);
 }
 
 /* Classe di debug */

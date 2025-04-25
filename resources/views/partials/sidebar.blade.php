@@ -31,7 +31,7 @@
             <!-- Nascondo questo li della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block" id="menu-color">
                 <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                    <i class="fs-4 bi-bootstrap"></i> <span
+                    <i class="fs-4 bi bi-film"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle">Bootstrap</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                     <li class="w-100">
@@ -47,7 +47,7 @@
             <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile px-sm-0 px-2" id="dropdown" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <i class="fs-5 bi-bootstrap"></i><span class="ms-1 d-none d-sm-inline">Bootstrap</span>
+                    <i class="fs-5 bi bi-film"></i><span class="ms-1 d-none d-sm-inline">Bootstrap</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
