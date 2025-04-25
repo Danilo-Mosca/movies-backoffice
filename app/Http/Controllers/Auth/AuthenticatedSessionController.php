@@ -28,7 +28,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Invece di reindirizzare alla dashboard non appena effettuo il login con successo:
+        // return redirect()->intended(route('dashboard', absolute: false));
+
+        // Reindirizzo alla pagina principale di movies:
+        return redirect()->intended(route('movies.index', absolute: false));
     }
 
     /**

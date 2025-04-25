@@ -1,0 +1,53 @@
+/* ---------- Sezione personalizzazione card dei film ---------- */
+
+.card {
+    border-radius: 0px;
+    border: none;
+    overflow: hidden;
+    background-color: var(--body-background);
+    /* Nasconde qualsiasi parte dell'immagine che esce dai limiti della card */
+}
+
+.card-img-top {
+    border-radius: 0px;
+    width: 100%;
+    height: 200px;
+    /* Altezza fissa per uniformare le immagini */
+    object-fit: cover;
+    /* Garantisce che l'immagine copra tutta la zona senza distorsioni */
+    object-position: top;
+    /* L'immagine parte dall'alto se ha bisogno di essere ritagliata */
+    cursor: pointer;
+}
+
+.card-img-top:hover {
+    opacity: 0.5;
+}
+
+.card-body {
+    background-color: var(--body-background);
+    padding: 20 0;
+}
+
+.card-title {
+    color: var(--cards-text);
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.card-button {
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 50px;
+    background-color: var(--button-item-color);
+    border: none;
+}
+
+.card-button:hover {
+    opacity: 0.5;
+}
+
+/* ---------- Fine sezione personalizzazione card dei film ---------- */
