@@ -31,7 +31,8 @@
                     <x-card>
                         <div class="single-card">
                             <x-slot:image>{{ $movie['poster'] }}</x-slot:image>
-                            <x-slot:title>{{ $movie['title'] }}</x-slot:title>
+                            <x-slot:title>{{ $movie->title }}</x-slot:title>
+                            <x-slot:slug>{{ $movie->slug }}</x-slot:slug>
                         </div>
                     </x-card>
 

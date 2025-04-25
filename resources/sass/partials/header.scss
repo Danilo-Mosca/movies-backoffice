@@ -34,7 +34,7 @@ a:visited .header-text-menu {
 }
 
 a:hover .header-text-menu {
-    color: black;
+    color: var(--color-red-text-sidebar);
     font-weight: 700;
     text-decoration: none;
 }

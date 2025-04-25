@@ -39,7 +39,7 @@ class FilmController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return "Pagina " .$id;
     }
 
     /**

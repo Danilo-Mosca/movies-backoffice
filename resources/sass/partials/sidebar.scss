@@ -2,24 +2,24 @@
 
 // Colore del testo della sidebar nella visualizzazione desktop e tablet:
 #menu-color a {
-    color: red;
+    color: var(--color-red-text-sidebar);
 }
 
 // Colore del testo della sidebar nella visualizzazione mobile:
 #menu-color-mobile a i {
-    color: red;
+    color: var(--color-red-text-sidebar);
 }
 
 #menu-color-mobile a#dropdown {
-    color: red;
+    color: var(--color-red-text-sidebar);
 }
 
 span#menu-color {
-    color: red;
+    color: var(--color-red-text-sidebar);
 }
 
 .dropdown-toggle::after {
-    color: red;
+    color: var(--color-red-text-sidebar);
 }
 
 div {
@@ -30,10 +30,56 @@ div {
 }
 
 // Configurazione del colore sui menu a comparsa in modalità mobile e sul menu impostazioni amministratore:
-a.dropdown-item.active, a.dropdown-item:active {
+a.dropdown-item.active,
+a.dropdown-item:active {
     color: var(--bs-dropdown-link-active-color);
     text-decoration: none;
-    background-color: red;
+    background-color: var(--color-red-text-sidebar);
 }
+
+/* ---------------------------- CONFIGURAZIONE ANIMAZIONE DI ROTAZIONE PER LA FRECCETTA DELLA SIDEBAR, SIA QUELLA DEL MENU' (SIA IN DESKTOP CHE MOBILE) CHE QUELLA DEL MENU UTENTE CONNESSO ---------------------------- */
+
+// Classe di default con la rotazione a zero gradi (PER VISUALIZZAZIONE DESKTOP):
+.dropdown-toggle::after {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+    vertical-align: 0.1em !important;    // allineo la freccia verticalmente in maniera più
+}
+
+// Classe che si attiva al click sull'icona freccia e ruota di 180 gradi (PER VISUALIZZAZIONE DESKTOP):
+.dropdown-toggle.rotated::after {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+// Classe di default con la rotazione a zero gradi (PER VISUALIZZAZIONE MOBILE):
+.dropdown-toggle-mobile::after {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+    vertical-align: 0.235em !important;    // allineo la freccia verticalmente in maniera più
+}
+
+// Classe che si attiva al click sull'icona freccia e ruota di 180 gradi (PER VISUALIZZAZIONE MOBILE):
+.dropdown-toggle-mobile.rotated::after {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+// CLASSE PERSONALIZZATA "dropdown-toggle-admin" che si riferisce all'icona di freccia dropdown dell'utente amministratore (SIA IN DESKTOP CHE MOBILE):
+.dropdown-toggle-admin::after {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+    // vertical-align: 0.1em !important;    // allineo la freccia verticalmente in maniera più
+}
+
+.dropdown-toggle-admin.rotated::after {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+/* ---------------------------- FINE CONFIGURAZIONE ANIMAZIONE DI ROTAZIONE PER LA FRECCETTA DELLA SIDEBAR, SIA QUELLA DEL MENU' (SIA IN DESKTOP CHE MOBILE) CHE QUELLA DEL MENU UTENTE CONNESSO ---------------------------- */
 
 /* ---------------------------- Fine impostazioni della sidebar ---------------------------- */
