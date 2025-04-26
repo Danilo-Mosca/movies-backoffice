@@ -51,3 +51,15 @@ img {
     display: block;
     object-fit: cover;
 }
+
+/* Scheda tecnica dei singoli film: pagina "show" dei movies (cartella movies.show) */
+.show-movies {
+    color: var(--color-red-text-sidebar);
+    font-weight: normal;
+}
+
+// Con questa selezione assegno una larghezza fissa tra le icone (<i></i>) di 45 pixel ad eccezione delle icone che hanno la classe "" ovvero le icone stelle del rating:
+.film-details i:not(.no-space-rating){
+    width: 45px;
+}
+/* Fine scheda tecnica dei singoli film: pagina "show" dei movies (cartella movies.show) */

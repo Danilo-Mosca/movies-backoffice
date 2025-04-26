@@ -3,7 +3,7 @@
 
 {{-- Sezione del titolo della pagina --}}
 @section('title')
-    home
+    Tutti i film
 @endsection
 
 {{-- --------------------------------------------------------------------------------------------------------------- --}}
@@ -20,7 +20,7 @@
 @section('content')
     {{-- @dump($movies) --}}
 
-    <h3>Vertical Sidebar that switches to Horizontal Navbar</h3>
+    <h3>Lista dei film</h3>
     <p class="lead">An example multi-level sidebar with collasible menu items. The menu functions like an
         "accordion" where only a single menu is be open at a time.</p>
     <hr />
