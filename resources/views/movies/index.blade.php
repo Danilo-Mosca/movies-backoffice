@@ -21,8 +21,7 @@
     {{-- @dump($movies) --}}
 
     <h3>Lista dei film</h3>
-    <p class="lead">An example multi-level sidebar with collasible menu items. The menu functions like an
-        "accordion" where only a single menu is be open at a time.</p>
+    <p>Sezione lista dei film dove è possibile selezionare il singolo film per visualizzarne la scheda tecnica, ma anche modificarla o eliminare l'intero film</p>
     <hr />
 
     <div class="container-fluid mt-5 mb-3">

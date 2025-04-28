@@ -8,6 +8,7 @@ use Illuminate\Support\Str;     // Importo la classe "Str" perchè la richiamo n
 
 class Film extends Model
 {
+    /* --------------------------------------------- INSERIMENTO SLUG --------------------------------------------- */
     // Metodo specifico di Laravel che usa lo slug al posto dell'id nelle rotte
     public function getRouteKeyName()
     {
@@ -41,4 +42,5 @@ class Film extends Model
 
         return $slug;
     }
+    /* --------------------------------------------- FINE INSERIMENTO SLUG --------------------------------------------- */
 }

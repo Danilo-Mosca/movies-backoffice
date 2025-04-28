@@ -21,6 +21,7 @@
     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-jumbotron> </x-jumbotron>): --}}
     <x-jumbotron>
         <x-slot:image>{{ $movie->poster }}</x-slot:image>
+        <x-slot:title>{{ $movie->title }}</x-slot:title>
     </x-jumbotron>
 
 
@@ -84,8 +85,8 @@
 
             <h3><i class="fa-solid fa-pencil"></i> Descrizione:</h3>
             <p>{{ $movie->description }}</p>
-            
-            <hr class="mt-5"/>
+
+            <hr class="mt-5" />
         </div>
         {{-- ------------------- Fine sezione dettagli del film: ------------------- --}}
 

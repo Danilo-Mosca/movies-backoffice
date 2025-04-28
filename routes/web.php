@@ -46,13 +46,17 @@ Route::middleware('auth', 'verified')
 
 // In questo caso voglio rendere l'accesso a tutte le rotte di "movies" solo agli utenti registrati:
 Route::resource('movies', FilmController::class)->middleware('auth', 'verified');
-
 /* Mentre se volessi rendere pubblico a tutti gli utenti l'accesso sotanto alle rotte "index" (visualizzazione di tutti i movies) e "show" (visualizzazione del singolo film) di "movies", mentre le altre rotte devono essere accessibili esclusivamente agli utenti registrati avrei dovuto inserire le seguenti direttive:
 */
 // Rotte pubbliche (senza middleware):
 // Route::resource('movies', ProjectController::class)->only(['index', 'show']);
 // Rotte protette (con middleware auth):
 // Route::resource('movies', ProjectController::class)->except(['index', 'show'])->middleware('auth', 'verified');
+
+
+
+
+
 
 
 require __DIR__ . '/auth.php';

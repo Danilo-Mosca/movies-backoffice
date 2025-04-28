@@ -24,7 +24,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+        return "Metodo create";
     }
 
     /**

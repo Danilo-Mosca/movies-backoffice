@@ -9,9 +9,22 @@
     $jumbotronImage = [
         0 => 'resources/img/jumbotron/jumbotron-cinema-1.webp',
         1 => 'resources/img/jumbotron/jumbotron-cinema-2.webp',
+        2 => 'resources/img/jumbotron/jumbotron-cinema-3.webp',
+        3 => 'resources/img/jumbotron/jumbotron-cinema-4.webp',
+        4 => 'resources/img/jumbotron/jumbotron-cinema-5.webp',
+        5 => 'resources/img/jumbotron/jumbotron-cinema-6.webp',
+        6 => 'resources/img/jumbotron/jumbotron-cinema-7.webp',
+        7 => 'resources/img/jumbotron/jumbotron-cinema-8.webp',
+        8 => 'resources/img/jumbotron/jumbotron-cinema-9.webp',
+        9 => 'resources/img/jumbotron/jumbotron-cinema-10.webp',
+        10 => 'resources/img/jumbotron/jumbotron-cinema-11.webp',
+        11 => 'resources/img/jumbotron/jumbotron-cinema-12.webp',
+        12 => 'resources/img/jumbotron/jumbotron-cinema-13.webp',
+        13 => 'resources/img/jumbotron/jumbotron-cinema-14.webp',
+        14 => 'resources/img/jumbotron/jumbotron-cinema-15.webp',
     ];
     // Genero un numero randomico e lo assegno alla variabile $randomIndex per far si che venga visualizzata ogni volta un'immagine casuale tra quelle disponibili. Infatti con l'istruzione: $jumbotronImage[$randomIndex] verrà visualizzata ogni volta un immagine casuale generata dal metodo rand()
-    $randomIndex = rand(0, 1);
+    $randomIndex = rand(0, 14);
 @endphp
 
 <div>
@@ -36,7 +49,7 @@
             @endphp
         @endif
         <section class="overlay-image-container">
-            <img src="{{ $image }}" alt="Overlay" class="overlay-img">
+            <img src="{{ $image }}" alt="{{ $title }}" class="overlay-img">
         </section>
     @endif
 
