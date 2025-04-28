@@ -24,7 +24,12 @@ class FilmController extends Controller
      */
     public function create()
     {
-        return "Metodo create";
+        // Recupero tutti i registi dalla sua tabella:
+        // $director = Director::all();
+
+        return view('movies.create');
+        // Potevo scriverlo anche così:
+        // return view('movies/create', ['director' => $director]);
     }
 
     /**

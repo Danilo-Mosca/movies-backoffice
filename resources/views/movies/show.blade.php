@@ -4,21 +4,11 @@
 {{-- Restituisco il titolo della pagina con il metodo abbreviato: --}}
 @section('title', $movie->title)
 
-{{-- --------------------------------------------------------------------------------------------------------------- --}}
-@php
-
-    // dd(config('comics'));   // prelevo le informazioni dal file di configurazione "comics.php.php"
-
-    // Salvo l'array letterale contenente i comics (dal file di configurazione "comics.php" nella directory: config/comics.php) in una variabile cards
-// $cards = config('comics');
-@endphp
-{{-- --------------------------------------------------------------------------------------------------------------- --}}
-
 {{-- Sezione della pagina personalizzata chiamata "content" nel layout: --}}
 @section('content')
     {{-- @dump($movie) --}}
 
-    {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-jumbotron> </x-jumbotron>): --}}
+    {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà il jumbotron e nel caso, se ci troviamo nella pagina show dei film, anche l'immagine poster del film selezionato (<x-jumbotron> </x-jumbotron>): --}}
     <x-jumbotron>
         <x-slot:image>{{ $movie->poster }}</x-slot:image>
         <x-slot:title>{{ $movie->title }}</x-slot:title>
