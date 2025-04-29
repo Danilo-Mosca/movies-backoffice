@@ -1,0 +1,44 @@
+.input-wrapper {
+    // display: flex;
+    // flex-direction: column;
+    // width: 200px;
+    margin: 20px 0;
+}
+
+input.input-layout {
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+// Colore al hover col mouse su tutte le input box:
+input.input-layout:hover {
+    border-color: var(--color-red-text-sidebar);
+}
+
+// Ombre e colori al focus su tutte le imput box:
+input.input-layout:focus {
+    border-color: var(--color-red-text-sidebar);
+    box-shadow: 0 0 8px rgba(0, 95, 204, 0.3);
+    outline: none;
+}
+
+// Larghezza input box anno di uscita film per desktop:
+input#release_year.input-layout {
+    width: 300px;
+}
+
+// Spessore font delle label
+label {
+    font-weight: 600;
+}
+
+// Media query larghezza input box anno di uscita film:
+@media (max-width: 992px) {
+    input#release_year.input-layout {
+        width: auto; // imposto la larghezza massima orizzontale dai tablet a scendere
+    }
+}

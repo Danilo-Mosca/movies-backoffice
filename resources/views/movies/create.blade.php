@@ -1,3 +1,6 @@
+{{-- Importo la risorse create.js contentente le funzioni javascript da usare per questa pagina e il CSS personalizzato contenuto nel file "create.scss" --}}
+@vite(['resources/js/create.js', 'resources/sass/partials/create.scss'])
+
 {{-- per indicare che questa pagina utilizza il layout master dobbiamo usare la parola extends: --}}
 @extends('layouts.movies')
 
@@ -24,10 +27,24 @@
                 {{-- Inserisco il token che verifica che la chiamata avviene tramite un form del sito: --}}
                 @csrf
 
-                <div class="form-control mb-3 d-flex flex-column">
+                <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="title">* Titolo del film:</label>
-                    <input type="text" name="title" id="title" required>
+                    <input type="text" name="title" id="title" class="input-layout" required>
                 </div>
+
+                <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                    <label for="description">* Descrizione:</label>
+                    <input type="text" name="description" id="description" class="input-layout" required>
+                </div>
+
+                {{-- Input anno di rilascio film --}}
+                <div class="form-control mb-3 input-wrapper d-flex flex-column">
+                    <label for="release_year">* Anno di uscita:</label>
+                    <input type="number" id="release_year" min="1900" name="release_year" placeholder="Esempio: 2025" min="1900"
+                        class="input-layout" />
+                </div>
+
+
 
                 <input type="submit" value="Salva">
                 {{-- Oppure:
