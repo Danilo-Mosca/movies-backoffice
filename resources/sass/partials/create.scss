@@ -1,13 +1,27 @@
-.input-wrapper {
+// Colore di sfondo dei vari form di input:
+.form-control {
+    background-color: #F8FAFC !important;
+}
+
+// Spessore font delle label.
+// Con la pseudo-classe :not() escludo da queste istruzioni la <label> che ha la classe ".custom-star-label" (ovvero quella del rating):
+label:not(.custom-star-label) {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.input-wrapper,
+textarea.input-wrapper {
     // display: flex;
     // flex-direction: column;
     // width: 200px;
     margin: 20px 0;
 }
 
-input.input-layout {
+input.input-layout,
+textarea.input-layout {
     padding: 10px 12px;
-    font-size: 16px;
+    font-size: 18px;
     border-radius: 8px;
     border: 1px solid #ccc;
     background-color: #fff;
@@ -15,30 +29,77 @@ input.input-layout {
 }
 
 // Colore al hover col mouse su tutte le input box:
-input.input-layout:hover {
+input.input-layout:hover,
+textarea.input-layout:hover {
     border-color: var(--color-red-text-sidebar);
 }
 
 // Ombre e colori al focus su tutte le imput box:
-input.input-layout:focus {
+input.input-layout:focus,
+textarea.input-layout:focus {
     border-color: var(--color-red-text-sidebar);
     box-shadow: 0 0 8px rgba(0, 95, 204, 0.3);
-    outline: none;
+    outline: none; // bordo no
 }
 
-// Larghezza input box anno di uscita film per desktop:
-input#release_year.input-layout {
-    width: 300px;
-}
-
-// Spessore font delle label
-label {
+// Pulsante submit:
+input[type="submit"] {
+    color: black;
+    border: 2px solid black;
+    background-color: white;
+    text-transform: uppercase;
     font-weight: 600;
+    padding: 10px 30px;
+}
+
+input[type="submit"]:hover {
+    color: white;
+    border: 2px solid black;
+    background-color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 30px;
+}
+
+// Larghezza delle input box anno di uscita film e durata film per desktop:
+input#release_year.input-layout,
+input#duration.input-layout {
+    width: 300px;
 }
 
 // Media query larghezza input box anno di uscita film:
 @media (max-width: 992px) {
-    input#release_year.input-layout {
+
+    input#release_year.input-layout,
+    input#duration.input-layout {
         width: auto; // imposto la larghezza massima orizzontale dai tablet a scendere
     }
 }
+
+
+/* ---------------------------------------- Css Personalizzato rating ---------------------------------------- */
+.star-rating {
+    direction: rtl;
+    font-size: 2rem;
+    display: inline-block;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    padding: 0 0.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.star-rating label:hover,
+.star-rating label:hover~label,
+.star-rating input[type="radio"]:checked~label {
+    color: #ffc107;
+    /* colore giallo delle stelle attive */
+}
+
+/* ---------------------------------------- Fine CSS Personalizzato rating ---------------------------------------- */
