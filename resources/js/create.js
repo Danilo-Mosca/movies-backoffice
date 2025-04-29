@@ -60,3 +60,25 @@ document.querySelectorAll('.star-rating input[type="radio"]').forEach(radio => {
         }
     });
 });
+
+/* -------------------------------- Codice pulsante reset del form Create Film: -------------------------------- */
+const resetButton = document.getElementById('button-id-reset');
+resetButton.addEventListener('click', () => {
+    const title = document.getElementById('title');
+    const description = document.getElementById('description');
+    const release_year = document.getElementById('release_year');
+    const duration = document.getElementById('duration');
+    const nationality = document.getElementById('nationality');
+    title.value = ""
+    description.value = "";
+    release_year.value = "";
+    duration.value = "";
+    nationality.value = "";
+
+    // Resetta i radio button del rating
+    const starRating = document.querySelectorAll('input[name="rating"]');     // oppure anche: 'input[type="radio"]'
+    starRating.forEach(radio => {
+        radio.checked = false;
+    });
+});
+/* -------------------------------- Fine codice pulsante reset del form Create Film: -------------------------------- */

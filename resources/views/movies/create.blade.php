@@ -19,7 +19,7 @@
 
         <h3>AGGIUNGI UN FILM</h3>
         <p>* I dati riportati con l'asterisco sono obbligatori</p>
-        <hr class="mb-5"/>
+        <hr class="mb-5" />
 
         {{-- ------------------- Sezione form aggiungi un film: ------------------- --}}
         <section>
@@ -29,13 +29,15 @@
 
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="title">* Titolo del film:</label>
-                    <input type="text" name="title" id="title" class="input-layout" required>
+                    <input type="text" name="title" id="title" class="input-layout"
+                        placeholder="Inserisci il titolo del film" required>
                 </div>
 
 
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="description">* Descrizione:</label>
-                    <textarea name="description" id="description" id="description" rows="5" class="input-layout" required></textarea>
+                    <textarea name="description" id="description" id="description" rows="5" class="input-layout"
+                        placeholder="Inserisci la descrizione del film" required></textarea>
                 </div>
 
 
@@ -51,8 +53,8 @@
                 {{-- Input number durata film --}}
                 <div class="form-control mb-3 input-wrapper d-flex flex-column">
                     <label for="duration">* Durata (in minuti):</label>
-                    <input type="number" id="duration" name="duration" placeholder="Es: 120" min="1" max="255"
-                        class="input-layout" required>
+                    <input type="number" id="duration" name="duration" min="1" max="255" class="input-layout"
+                        placeholder="Esempio: 120" required>
                 </div>
                 {{-- Fine input number durata film --}}
 
@@ -81,7 +83,8 @@
 
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="nationality">Nazionalità del film:</label>
-                    <input type="text" name="nationality" id="nationality" class="input-layout" required>
+                    <input type="text" name="nationality" id="nationality" class="input-layout"
+                        placeholder="Inserisci la nazionalità del film" required>
                 </div>
 
                 {{-- Input radio per il regista --}}
@@ -97,14 +100,17 @@
                 {{-- Fine Input radio per il regista --}}
 
 
-                <input type="submit" value="Salva" class="mt-3">
-                {{-- Oppure:
-                <button>Salva</button> --}}
+                <div class="d-flex justify-content-between">
+                    <input type="submit" value="Salva" class="mt-3">
+                    {{-- Oppure:
+                    <button>Salva</button> --}}
+
+                    <button class="mt-3 mx-3" id="button-id-reset">RESET</button>
+                </div>
             </form>
             <hr class="mt-5" />
         </section>
         {{-- ------------------- Fine sezione form aggiungi un film: ------------------- --}}
-
 
         <p class="d-flex justify-content-center"><i class="fa fa-film" style="font-size: 20px; color: black;"></i></p>
     </div>

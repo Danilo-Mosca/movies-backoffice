@@ -37,7 +37,40 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $newMovie = new Film();
+        /*
+        METODO ALTERNATIVO:
+        $newMovie->request['title'];
+        $newMovie->request['description'];
+        $newMovie->request['release_year'];
+        $newMovie->request['duration'];
+        $newMovie->request['rating'];
+        $newMovie->request['poster'];
+        $newMovie->request['nationality'];
+        $newMovie->request['director_id'];
+
+        $newMovie->save();      //salvo i nuovi dati nella tabella films del database movies_db
+        */
+
+        // Assegno alla variabile $data tutti i valori ricevuto dal form
+        $data = $request->all();    // assegno alla variabile $data tutti i valori inseriti nel form
+        // dd($data);
+        $newMovie->title = $data['title'];
+        $newMovie->description = $data['description'];
+        $newMovie->release_year = $data['release_year'];
+        $newMovie->duration = $data['duration'];
+        $newMovie->rating = $data['rating'];
+        // $newMovie->poster = $data['poster'];
+        $newMovie->nationality = $data['nationality'];
+        // $newMovie->director_id = $data['director_id'];
+
+        $newMovie->save();      //salvo i nuovi dati nella tabella films del database movies_db
+
+        /* DOPO AVER SALVATO IL PROGETTO, E SOLTANTO DOPO PERCHE' A NOI CI SERVE IL DATO DEL FILM SALVATO */
+
+        // Reindirizzo l'utente alla pagina show per vedere il film che ha salvato ($newMovie->id è equivalente a $newMovie))
+        return redirect()->route("movies.show", $newMovie);
     }
 
     /**
