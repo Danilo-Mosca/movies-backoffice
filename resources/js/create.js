@@ -1,3 +1,4 @@
+/* VECCHIO CODICE, USATO PRIMA DELLA VALIDAZIONE E DEI CONTROLLI DEL FORM CON LARAVEL
 // Quando la pagina carica(DOMContentLoaded), JavaScript imposta il max dell'input sull'anno corrente(es. 2025).
 // Se un utente scrive manualmente un valore superiore(tipo "3000"), glielo corregge subito e lo porta a 2025.
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+*/
 
 // Impostazioni al caricamento del DOMContentLoaded per la input number della durata del film:
 document.addEventListener('DOMContentLoaded', function () {

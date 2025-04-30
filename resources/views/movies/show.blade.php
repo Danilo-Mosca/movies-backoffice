@@ -15,6 +15,15 @@
     </x-jumbotron>
 
 
+    {{-- ---------- Sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene inserito con successo ----------  --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    {{-- ---------- Fine sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene inserito con successo ----------  --}}
+
+
     <div class="container-fluid mt-5 mb-3">
 
         <h3>FILM</h3>
@@ -47,30 +56,56 @@
             {{-- Sezione stelle per voto inserito --}}
             <div class="pb-4" style="font-size: 22px; font-weight: 400; color: black;">
                 <i class="fa-solid fa-star" style="font-size: 20px;"></i> Voto:
-                <!-- Ciclo che controlla il voto inserito e stampa a schermo le stelle piene, mezze o vuote in base ad esso -->
-                @for ($i = 1; $i <= 5; $i++)
-                    @if ($movie->rating >= $i)
-                        <i class="fas fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella piena -->
-                    @elseif ($movie->rating >= $i - 0.5)
-                        <i class="fas fa-star-half-alt no-space-rating" style="color: #DB2B39;"></i> <!-- Mezza stella -->
-                    @else
-                        <i class="far fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella vuota -->
-                    @endif
-                @endfor
-                <span class="ms-2" style="color: #DB2B39;">({{ $movie->rating }})</span>
+
+                {{-- Prima controllo se il campo facoltativo rating è stato inserito oppure risulta null: --}}
+                @if ($movie->rating == null)
+                    {{-- Se è null allora stampo la stringa "campo non inserito" --}}
+                    <span class="show-movies" style="color: #DB2B39;">Campo non inserito</span>
+
+                {{-- Altrimenti stampo le stelle con il voto: --}}
+                @else
+                    <!-- Ciclo che controlla il voto inserito e stampa a schermo le stelle piene, mezze o vuote in base ad esso -->
+                    @for ($i = 1; $i <= 5; $i++)
+                        @if ($movie->rating >= $i)
+                            <i class="fas fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella piena -->
+                        @elseif ($movie->rating >= $i - 0.5)
+                            <i class="fas fa-star-half-alt no-space-rating" style="color: #DB2B39;"></i>
+                            <!-- Mezza stella -->
+                        @else
+                            <i class="far fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella vuota -->
+                        @endif
+                    @endfor
+                    <span class="ms-2" style="color: #DB2B39;">({{ $movie->rating }})</span>
+                @endif
             </div>
             {{-- Fine sezione stelle per voto inserito --}}
 
             <p class="pb-3">
                 <i class="fa-solid fa-location-dot" style="color: black;"></i>
                 <span style="font-size: 22px; font-weight: 400; color: black;">Nazionalità:</span>
-                <span class="show-movies">{{ $movie->nationality }}</span>
+                {{-- Prima controllo se il campo facoltativo nationality è stato inserito oppure risulta null: --}}
+                @if ($movie->rating == null)
+                    {{-- Se è null allora stampo la stringa "Nazionalità non inserita" --}}
+                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Nazionalità non inserita</span>
+
+                {{-- Altrimenti stampo il valore del campo: --}}
+                @else
+                    <span class="show-movies" style="font-size: 22px; font-weight: 400;">{{ $movie->nationality }}</span>
+                @endif
             </p>
 
             <p class="pb-3">
                 <i class="fa-solid fa-video" style="color: black;"></i>
                 <span style="font-size: 22px; font-weight: 400; color: black;">Regista:</span>
-                <span class="show-movies">{{ $movie->director_id }}</span>
+                {{-- Prima controllo se il campo facoltativo director_id (regista) è stato inserito oppure risulta null: --}}
+                @if ($movie->rating == null)
+                    {{-- Se è null allora stampo la stringa "Regista non inserito" --}}
+                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Regista non inserito</span>
+
+                {{-- Altrimenti stampo il valore del campo: --}}
+                @else
+                    <span class="show-movies">{{ $movie->director_id }}</span>
+                @endif
             </p>
 
             <h3><i class="fa-solid fa-pencil"></i> Descrizione:</h3>

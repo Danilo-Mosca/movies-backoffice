@@ -30,22 +30,37 @@
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="title">* Titolo del film:</label>
                     <input type="text" name="title" id="title" class="input-layout"
-                        placeholder="Inserisci il titolo del film" required>
+                        placeholder="Inserisci il titolo del film" value="{{ old('title') }}">
+
+                    {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                    @error('title')
+                        <div class="text-danger pt-2">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="description">* Descrizione:</label>
                     <textarea name="description" id="description" id="description" rows="5" class="input-layout"
-                        placeholder="Inserisci la descrizione del film" required></textarea>
+                        placeholder="Inserisci la descrizione del film">{{ old('description') }}</textarea>
+
+                    {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                    @error('description')
+                        <div class="text-danger pt-2">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
                 {{-- Input number anno di rilascio film --}}
                 <div class="form-control mb-3 input-wrapper d-flex flex-column">
                     <label for="release_year">* Anno di uscita:</label>
-                    <input type="number" id="release_year" min="1900" name="release_year" placeholder="Esempio: 2025"
-                        min="1900" class="input-layout" required />
+                    <input type="number" id="release_year" name="release_year" placeholder="Esempio: 2025"
+                        class="input-layout" value="{{ old('release_year') }}"/>
+
+                    {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                    @error('release_year')
+                        <div class="text-danger pt-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 {{-- Fine input number anno di rilascio film --}}
 
@@ -54,7 +69,12 @@
                 <div class="form-control mb-3 input-wrapper d-flex flex-column">
                     <label for="duration">* Durata (in minuti):</label>
                     <input type="number" id="duration" name="duration" min="1" max="255" class="input-layout"
-                        placeholder="Esempio: 120" required>
+                        placeholder="Esempio: 120" value="{{ old('duration') }}">
+
+                    {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                    @error('duration')
+                        <div class="text-danger pt-2">{{ $message }}</div>
+                    @enderror
                 </div>
                 {{-- Fine input number durata film --}}
 
@@ -84,7 +104,12 @@
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="nationality">Nazionalità del film:</label>
                     <input type="text" name="nationality" id="nationality" class="input-layout"
-                        placeholder="Inserisci la nazionalità del film" required>
+                        placeholder="Inserisci la nazionalità del film" value="{{ old('nationality') }}">
+
+                    {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                    @error('nationality')
+                        <div class="text-danger pt-2">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Input radio per il regista --}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreFilmRequest;
 use App\Models\Film;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFilmRequest $request)
     {
         // dd($request);
         $newMovie = new Film();
@@ -54,23 +55,31 @@ class FilmController extends Controller
         */
 
         // Assegno alla variabile $data tutti i valori ricevuto dal form
-        $data = $request->all();    // assegno alla variabile $data tutti i valori inseriti nel form
+        $data = $request->validated();       //Assegno alla variabile $data i dati validati così se passano posso creare il nuovo film
         // dd($data);
         $newMovie->title = $data['title'];
         $newMovie->description = $data['description'];
         $newMovie->release_year = $data['release_year'];
         $newMovie->duration = $data['duration'];
-        $newMovie->rating = $data['rating'];
-        // $newMovie->poster = $data['poster'];
+        $newMovie->rating = $data['rating'] ?? null;    // Se $data['rating'] esiste, cioè l'ho inserito nel form allora gli assegno un valore, altrimenti gli assegno null.
+        
+        
+        /* ALTERNATIVA A: $newMovie->rating = $data['rating'] ?? null;
+        $newMovie->rating = $request->input('rating');  // in questo modo se non ricevo un valore dal form me lo inizializza direttamente a null
+        */
+
+        
+        // $newMovie->poster = $data['poster'];         PER ORA NON UTILIZZARE
         $newMovie->nationality = $data['nationality'];
-        // $newMovie->director_id = $data['director_id'];
+        // $newMovie->director_id = $data['director_id'];   PER ORA NON UTILIZZARE
 
         $newMovie->save();      //salvo i nuovi dati nella tabella films del database movies_db
 
         /* DOPO AVER SALVATO IL PROGETTO, E SOLTANTO DOPO PERCHE' A NOI CI SERVE IL DATO DEL FILM SALVATO */
 
         // Reindirizzo l'utente alla pagina show per vedere il film che ha salvato ($newMovie->id è equivalente a $newMovie))
-        return redirect()->route("movies.show", $newMovie);
+        // Oltre a reindirizzarli nella show, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
+        return redirect()->route("movies.show", $newMovie)->with('success', 'Film salvato con successo');
     }
 
     /**
