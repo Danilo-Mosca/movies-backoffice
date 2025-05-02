@@ -30,6 +30,16 @@
         <p>Scheda tecnica del film</p>
         <hr />
 
+        
+        {{-- --------- Sezione Pulsanti modifica ed elimina --------- --}}
+        <div class="d-flex flex-wrap justify-content-start pt-3 gap-3">
+            <button><a href="{{ route('movies.edit', $movie) }}">Modifica</a></button>
+            {{-- Per il DELETE non possiamo usare un link perchè i link chiamano sempre un metodo get, questo invece deve essere un metodo delete, allora lo facciamo tramite un form nascosto nel pulsante di conferma: --}}
+            <button type="button" id="delete" data-bs-toggle="modal" data-bs-target="#exampleModal">Elimina</button>
+        </div>
+        {{-- --------- End sezione Pulsanti modifica ed elimina --------- --}}
+
+
         {{-- ------------------- Sezione dettagli del film: ------------------- --}}
         <div class="mt-5 film-details">
             <h3 class="pb-3">
@@ -62,7 +72,7 @@
                     {{-- Se è null allora stampo la stringa "campo non inserito" --}}
                     <span class="show-movies" style="color: #DB2B39;">Campo non inserito</span>
 
-                {{-- Altrimenti stampo le stelle con il voto: --}}
+                    {{-- Altrimenti stampo le stelle con il voto: --}}
                 @else
                     <!-- Ciclo che controlla il voto inserito e stampa a schermo le stelle piene, mezze o vuote in base ad esso -->
                     @for ($i = 1; $i <= 5; $i++)
@@ -86,9 +96,10 @@
                 {{-- Prima controllo se il campo facoltativo nationality è stato inserito oppure risulta null: --}}
                 @if ($movie->rating == null)
                     {{-- Se è null allora stampo la stringa "Nazionalità non inserita" --}}
-                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Nazionalità non inserita</span>
+                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Nazionalità non
+                        inserita</span>
 
-                {{-- Altrimenti stampo il valore del campo: --}}
+                    {{-- Altrimenti stampo il valore del campo: --}}
                 @else
                     <span class="show-movies" style="font-size: 22px; font-weight: 400;">{{ $movie->nationality }}</span>
                 @endif
@@ -100,9 +111,10 @@
                 {{-- Prima controllo se il campo facoltativo director_id (regista) è stato inserito oppure risulta null: --}}
                 @if ($movie->rating == null)
                     {{-- Se è null allora stampo la stringa "Regista non inserito" --}}
-                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Regista non inserito</span>
+                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Regista non
+                        inserito</span>
 
-                {{-- Altrimenti stampo il valore del campo: --}}
+                    {{-- Altrimenti stampo il valore del campo: --}}
                 @else
                     <span class="show-movies">{{ $movie->director_id }}</span>
                 @endif
@@ -120,5 +132,36 @@
     </div>
 
 @endsection
+
+
+
+
+
+<!-- Modale richiamato dal pulsante "Elimina" -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Informazione</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Vuoi davvero eliminare il film?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">Annulla</button>
+                {{-- Per il DELETE non possiamo usare un link perchè i link chiamano sempre un metodo get, questo invece deve essere un metodo delete, allora lo facciamo tramite un form nascosto nel pulsante di conferma: --}}
+                <form action="{{ route('movies.destroy', $movie) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="modal-delete" value="Elimina">
+                    {{-- Ma anche questa è equivalente: 
+                            <button class="btn btn-outline-danger">Elimina</button>
+                        --}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>

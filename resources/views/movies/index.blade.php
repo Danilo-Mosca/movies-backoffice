@@ -21,9 +21,24 @@
     {{-- @dump($movies) --}}
 
     <h3>Lista dei film</h3>
-    <p>Sezione lista dei film dove è possibile selezionare il singolo film per visualizzarne la scheda tecnica, ma anche modificarla o eliminare l'intero film</p>
+    <p>Sezione lista dei film dove è possibile selezionare il singolo film per visualizzarne la scheda tecnica, ma anche
+        modificarla o eliminare l'intero film</p>
     <hr />
 
+    
+    
+    
+    {{-- ---------- Sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene cancellato con successo ----------  --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    {{-- ---------- Fine sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene cancellato con successo ----------  --}}
+
+    
+    
+    
     <div class="container-fluid mt-5 mb-3">
 
         <div class="row g-3"> <!-- Spazio tra le card dei film -->

@@ -159,8 +159,12 @@ class FilmController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Film $movie)
     {
-        //
+        // dd($movie);
+        $movie->delete();   // cancello il film
+
+        // Reindirizzo l'utente alla pagina index che restituisce tutti i $movie contenuti nella tabella $films. Oltre a reindirizzarli nella index, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
+        return redirect()->route('movies.index')->with('success', 'Film cancellato con successo');
     }
 }
