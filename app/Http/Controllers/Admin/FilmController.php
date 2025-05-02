@@ -62,13 +62,13 @@ class FilmController extends Controller
         $newMovie->release_year = $data['release_year'];
         $newMovie->duration = $data['duration'];
         $newMovie->rating = $data['rating'] ?? null;    // Se $data['rating'] esiste, cioè l'ho inserito nel form allora gli assegno un valore, altrimenti gli assegno null.
-        
-        
+
+
         /* ALTERNATIVA A: $newMovie->rating = $data['rating'] ?? null;
         $newMovie->rating = $request->input('rating');  // in questo modo se non ricevo un valore dal form me lo inizializza direttamente a null
         */
 
-        
+
         // $newMovie->poster = $data['poster'];         PER ORA NON UTILIZZARE
         $newMovie->nationality = $data['nationality'];
         // $newMovie->director_id = $data['director_id'];   PER ORA NON UTILIZZARE
@@ -95,7 +95,7 @@ class FilmController extends Controller
         // $movie = Film::where('slug', $slug)->firstOrFail();     // invece di inserire: $movie = Film::where('slug', $slug)->get();
         // Oppure:
         // $movie = Film::where('slug', $slug)->first();        // ma in questo caso non verrebbe lanciato l'errore 404 se non lo trova
-        
+
         // dd($movie);
         // Passo il film alla view movies.show:
         return view('movies.show', compact('movie'));
@@ -104,17 +104,56 @@ class FilmController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Film $movie)
     {
-        //
+        // dd($slug);
+
+        // Alternativa se come argomento del metodo avessi passato:  public function edit(string $slug)
+        // Così:
+        // $movie = Film::where("slug", $slug)->get();
+        // dd($movie);
+
+        return view("movies.edit", compact('movie'));
+        // Se invece non avessi voluto usare la funzione compact avrei dovuto passare i parametri così:
+        // return view('movies.edit', ['movie' => $movie]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreFilmRequest $request, Film $movie)
     {
-        //
+        // dd($request);
+
+        /*
+        ANCHE QUI AVREI POTUTO UTILIZZARE:
+        public function update(Request $request, string $slug)
+        {
+        Modifichiamo le informazioni contenute nel post:
+        $movie = Film::where('slug', $slug)->firstOrFail();
+        $movie->title = $request['title'];
+        $movie->description = $request['description'];
+        $movie->release_year = $request['release_year'];
+        $movie->duration = $request['duration'];
+        $movie->rating = $request['rating'];
+        $movie->update();     //aggiorno il progetto nel database
+        }
+         */
+
+        /* Ma avendo passato come argomento della funzione "Film $movie", e siccome utilizzo la Form Request "StoreFilmRequest $request" per il controllo della validazione del form, utilizzo questo modo: */
+        // Prima prendiamo le richieste e le salviamo su un array letterale:
+        $data = $request->all();
+
+        $movie->title = $data['title'];
+        $movie->description = $data['description'];
+        $movie->release_year = $data['release_year'];
+        $movie->duration = $data['duration'];
+        $movie->rating = $data['rating'];
+        $movie->update();     //aggiorno il progetto nel database
+
+
+        // Reindirizzo l'utente alla pagina show per vedere il film che ha modificato ($movie->id è equivalente a $movie))
+        return redirect()->route("movies.show", $movie);
     }
 
     /**

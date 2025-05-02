@@ -5,7 +5,7 @@
 @extends('layouts.movies')
 
 {{-- Restituisco il titolo della pagina con il metodo abbreviato: --}}
-@section('title', 'Aggiungi un film');
+@section('title', 'Modifica ' . $movie->title);
 
 {{-- Sezione della pagina personalizzata chiamata "content" nel layout: --}}
 @section('content')
@@ -13,24 +13,28 @@
 
     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà il jumbotron e nel caso, se ci troviamo nella pagina show dei film, anche l'immagine poster del film selezionato (<x-jumbotron> </x-jumbotron>): --}}
     <x-jumbotron>
+        <x-slot:image>{{ $movie->poster }}</x-slot:image>
+        <x-slot:title>{{ $movie->title }}</x-slot:title>
     </x-jumbotron>
 
     <div class="container-fluid mt-5 mb-3">
 
-        <h3>AGGIUNGI UN FILM</h3>
+        <h3>MODIFICA IL FILM</h3>
         <p>* I dati riportati con l'asterisco sono obbligatori</p>
         <hr class="mb-5" />
 
-        {{-- ------------------- Sezione form aggiungi un film: ------------------- --}}
+        {{-- ------------------- Sezione form modifica un film: ------------------- --}}
         <section>
-            <form action="{{ route('movies.store') }}" method="POST">
+            <form action="{{ route('movies.update', $movie->slug) }}" method="POST">
                 {{-- Inserisco il token che verifica che la chiamata avviene tramite un form del sito: --}}
                 @csrf
+                {{-- Aggiungiamo all'interno del form il metodo http da passare (PUT o PATCH), perchè di default dal form possiamo passare solo get e post: --}}
+                @method('PUT')
 
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="title">* Titolo del film:</label>
                     <input type="text" name="title" id="title" class="input-layout"
-                        placeholder="Inserisci il titolo del film" value="{{ old('title') }}">
+                        placeholder="Inserisci il titolo del film" value="{{ old('title', $movie->title) }}">
 
                     {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                     @error('title')
@@ -42,7 +46,7 @@
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="description">* Descrizione:</label>
                     <textarea name="description" id="description" id="description" rows="5" class="input-layout"
-                        placeholder="Inserisci la descrizione del film">{{ old('description') }}</textarea>
+                        placeholder="Inserisci la descrizione del film">{{ old('description', $movie->description) }}</textarea>
 
                     {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                     @error('description')
@@ -55,7 +59,7 @@
                 <div class="form-control mb-3 input-wrapper d-flex flex-column">
                     <label for="release_year">* Anno di uscita:</label>
                     <input type="number" id="release_year" name="release_year" placeholder="Esempio: 2025"
-                        class="input-layout" value="{{ old('release_year') }}"/>
+                        class="input-layout" value="{{ old('release_year', $movie->release_year) }}" />
 
                     {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                     @error('release_year')
@@ -69,7 +73,7 @@
                 <div class="form-control mb-3 input-wrapper d-flex flex-column">
                     <label for="duration">* Durata (in minuti):</label>
                     <input type="number" id="duration" name="duration" min="1" max="255" class="input-layout"
-                        placeholder="Esempio: 120" value="{{ old('duration') }}">
+                        placeholder="Esempio: 120" value="{{ old('duration', $movie->duration) }}">
 
                     {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                     @error('duration')
@@ -85,7 +89,7 @@
                     <div class="star-rating mt-3 mb-3">
                         @for ($i = 5; $i >= 1; $i--)
                             <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}"
-                                {{ old('rating') == $i ? 'checked' : '' }} data-stato-selezionato="false">
+                                {{ old('rating', $movie->rating) == $i ? 'checked' : '' }} data-stato-selezionato="false">
                             <label for="star{{ $i }}" title="{{ $i }} stelle"
                                 class="bi bi-star-fill custom-star-label"></label>
                         @endfor
@@ -104,7 +108,7 @@
                 <div class="form-control mb-3 d-flex flex-column input-wrapper">
                     <label for="nationality">Nazionalità del film:</label>
                     <input type="text" name="nationality" id="nationality" class="input-layout"
-                        placeholder="Inserisci la nazionalità del film" value="{{ old('nationality') }}">
+                        placeholder="Inserisci la nazionalità del film" value="{{ old('nationality', $movie->nationality) }}">
 
                     {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                     @error('nationality')
