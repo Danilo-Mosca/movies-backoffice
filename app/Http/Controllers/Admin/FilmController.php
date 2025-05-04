@@ -148,7 +148,8 @@ class FilmController extends Controller
         $movie->description = $data['description'];
         $movie->release_year = $data['release_year'];
         $movie->duration = $data['duration'];
-        $movie->rating = $data['rating'];
+        $movie->rating = $data['rating'] ?? null;       // o anche l'equivalente:   $movie->rating = $data['rating'];
+        $movie->nationality = $data['nationality'];
         $movie->update();     //aggiorno il progetto nel database
 
 

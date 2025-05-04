@@ -33,7 +33,7 @@
         
         {{-- --------- Sezione Pulsanti modifica ed elimina --------- --}}
         <div class="d-flex flex-wrap justify-content-start pt-3 gap-3">
-            <button><a href="{{ route('movies.edit', $movie) }}">Modifica</a></button>
+            <button class="btn-modifica"><a href="{{ route('movies.edit', $movie) }}">Modifica</a></button>
             {{-- Per il DELETE non possiamo usare un link perchè i link chiamano sempre un metodo get, questo invece deve essere un metodo delete, allora lo facciamo tramite un form nascosto nel pulsante di conferma: --}}
             <button type="button" id="delete" data-bs-toggle="modal" data-bs-target="#exampleModal">Elimina</button>
         </div>
@@ -94,7 +94,7 @@
                 <i class="fa-solid fa-location-dot" style="color: black;"></i>
                 <span style="font-size: 22px; font-weight: 400; color: black;">Nazionalità:</span>
                 {{-- Prima controllo se il campo facoltativo nationality è stato inserito oppure risulta null: --}}
-                @if ($movie->rating == null)
+                @if ($movie->nationality == null)
                     {{-- Se è null allora stampo la stringa "Nazionalità non inserita" --}}
                     <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Nazionalità non
                         inserita</span>
@@ -109,7 +109,7 @@
                 <i class="fa-solid fa-video" style="color: black;"></i>
                 <span style="font-size: 22px; font-weight: 400; color: black;">Regista:</span>
                 {{-- Prima controllo se il campo facoltativo director_id (regista) è stato inserito oppure risulta null: --}}
-                @if ($movie->rating == null)
+                @if ($movie->director_id == null)
                     {{-- Se è null allora stampo la stringa "Regista non inserito" --}}
                     <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Regista non
                         inserito</span>

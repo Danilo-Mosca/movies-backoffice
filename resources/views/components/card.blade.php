@@ -31,7 +31,7 @@
 
             {{-- --------- Sezione Pulsanti modifica ed elimina --------- --}}
             <div class="d-flex flex-wrap justify-content-around pt-3 row-gap-3">
-                <button><a href="{{ route('movies.edit', $slug) }}">Modifica</a></button>
+                <button class="btn-modifica"><a href="{{ route('movies.edit', $slug) }}">Modifica</a></button>
                 {{-- Per il DELETE non possiamo usare un link perchè i link chiamano sempre un metodo get, questo invece deve essere un metodo delete, allora lo facciamo tramite un form nascosto nel pulsante di conferma: --}}
                 <button type="button" id="delete" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">Elimina</button>
