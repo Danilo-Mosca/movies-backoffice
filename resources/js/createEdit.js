@@ -104,3 +104,23 @@ resetButton.addEventListener('click', () => {
     nationality.value = "";
 });
 /* -------------------------------- Fine codice pulsante reset del form Create/Edit Director (registi): -------------------------------- */
+
+
+
+
+
+
+/* -------------------------------- Codice pulsante reset del form Create/Edit Actor (attori): -------------------------------- */
+const resetButtonActor = document.getElementById('button-id-reset');
+resetButton.addEventListener('click', () => {
+
+    const firstName = document.getElementById('first_name');
+    const lastName = document.getElementById('last_name');
+    const birthDate = document.getElementById('birth_date');
+    const nationality = document.getElementById('actor_nationality');
+    firstName.value = "";
+    lastName.value = "";
+    birthDate.value = "";
+    nationality.value = "";
+});
+/* -------------------------------- Fine codice pulsante reset del form Create/Edit Actor (attori): -------------------------------- */

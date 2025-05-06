@@ -4,16 +4,23 @@
     'method' => 'POST',
     'buttonText' => 'Salva',
     //Props per mostrare i campi dinamici:
+    // Props della tabella films:
     'showTitle' => false,
     'showDescription' => false,
     'showReleaseYear' => false,
     'showDuration' => false,
     'showRating' => false,
     'showNationality' => false,
+    // Props della tabella directors:
     'showDirectorFirstName' => false,
     'showDirectorLastName' => false,
     'showDirectorBirthDate' => false,
     'showDirectorNationality' => false,
+    // Props della tabella actors:
+    'showActorFirstName' => false,
+    'showActorLastName' => false,
+    'showActorBirthDate' => false,
+    'showActorNationality' => false,
 ])
 
 {{-- ------------------- Sezione form: ------------------- --}}
@@ -208,7 +215,7 @@
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
                 <label for="last_name">* Cognome del regista:</label>
                 <input type="text" name="last_name" id="last_name" class="input-layout"
-                    placeholder="Inserisci il nome del regista"
+                    placeholder="Inserisci il cognome del regista"
                     value="{{ old('last_name', isset($model->last_name) ? $model->last_name : '') }}">
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
@@ -222,9 +229,8 @@
         {{-- Verifico se $showDirectorBirthDate risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showDirectorBirthDate)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
-                <label for="birth_date">* Cognome del regista:</label>
+                <label for="birth_date">* Data di nascita del regista:</label>
                 <input type="date" name="birth_date" id="birth_date" class="input-layout"
-                    placeholder="Inserisci la data di nascita"
                     value="{{ old('birth_date', isset($model->birth_date) ? $model->birth_date : '') }}">
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
@@ -235,12 +241,12 @@
         @endif
 
 
-        {{-- Verifico se $showNationality risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        {{-- Verifico se $showDirectorNationality risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showDirectorNationality)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
                 <label for="director_nationality">Nazionalità del regista:</label>
                 <input type="text" name="director_nationality" id="director_nationality" class="input-layout"
-                    placeholder="Inserisci la nazionalità del film"
+                    placeholder="Inserisci la nazionalità del regista"
                     value="{{ old('director_nationality', isset($model->director_nationality) ? $model->director_nationality : '') }}">
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
@@ -251,6 +257,76 @@
         @endif
 
         {{-- ------------------------------------- FINE SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEI REGISTI: ------------------------------------- --}}
+
+
+
+
+
+        {{-- ------------------------------------- SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEGLI ATTORI: ------------------------------------- --}}
+
+        {{-- Verifico se $showActorFirstName risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showActorFirstName)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="first_name">* Nome dell'attore:</label>
+                <input type="text" name="first_name" id="first_name" class="input-layout"
+                    placeholder="Inserisci il nome dell'attore"
+                    value="{{ old('first_name', isset($model->first_name) ? $model->first_name : '') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('first_name')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+
+        {{-- Verifico se $showActorLastName risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showActorLastName)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="last_name">* Cognome dell'attore:</label>
+                <input type="text" name="last_name" id="last_name" class="input-layout"
+                    placeholder="Inserisci il cognome dell'attore"
+                    value="{{ old('last_name', isset($model->last_name) ? $model->last_name : '') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('last_name')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+
+        {{-- Verifico se $showActorBirthDate risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showActorBirthDate)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="birth_date">* Data di nascita dell'attore:</label>
+                <input type="date" name="birth_date" id="birth_date" class="input-layout"
+                    value="{{ old('birth_date', isset($model->birth_date) ? $model->birth_date : '') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('birth_date')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+
+        {{-- Verifico se $showActorNationality risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showActorNationality)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="actor_nationality">Nazionalità del regista:</label>
+                <input type="text" name="actor_nationality" id="actor_nationality" class="input-layout"
+                    placeholder="Inserisci la nazionalità dell'attore"
+                    value="{{ old('actor_nationality', isset($model->actor_nationality) ? $model->actor_nationality : '') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('actor_nationality')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+        {{-- ------------------------------------- FINE SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEGLI ATTORI: ------------------------------------- --}}
 
 
 

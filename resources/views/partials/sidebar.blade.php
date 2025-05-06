@@ -84,6 +84,40 @@
             </li>
             <!-- Fine sezione Registi -->
 
+            <!-- Sezione Attori -->
+            <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
+            <li class="d-none d-sm-block" id="menu-color">
+                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi bi-camera-reels"></i> <span
+                        class="ms-1 d-none d-sm-inline dropdown-toggle Attori">Attori</span></a>
+                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="{{ route('actors.index') }}" class="nav-link px-0"> <span
+                                class="d-none d-sm-inline">Lista degli</span> attori</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('actors.create') }}" class="nav-link px-0"> <span
+                                class="d-none d-sm-inline">Aggiungi un</span> attore</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- MOBILE Mostro questo <li> solo per i dispositivi mobili (va a sostituire quello di sopra in mobile) -->
+            <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
+                <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile Attori px-sm-0 px-2" id="dropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi bi-camera-reels"></i><span class="ms-1 d-none d-sm-inline">Attori</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                    <li><a class="dropdown-item" href="{{ route('actors.index') }}">Lista degli attori</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('actors.create') }}">Aggiungi un attore</a></li>
+                </ul>
+            </li>
+            <!-- Fine sezione Attori -->
+
             
             
             

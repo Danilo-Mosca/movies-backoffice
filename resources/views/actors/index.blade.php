@@ -3,7 +3,7 @@
 
 {{-- Sezione del titolo della pagina --}}
 @section('title')
-    Tutti i registi
+    Tutti gli attori
 @endsection
 
 {{-- --------------------------------------------------------------------------------------------------------------- --}}
@@ -20,10 +20,10 @@
 @section('content')
     {{-- @dump($movies) --}}
 
-    <h3>Lista dei registi</h3>
-    <p>Sezione lista dei registi dove è possibile visualizzare i dati anagrafici di tutti i registi ma anche visualizzarne
+    <h3>Lista degli attori</h3>
+    <p>Sezione lista degli attori dove è possibile visualizzare i dati anagrafici di tutti gli attori ma anche visualizzarne
         la singola scheda anagrafica. In questa sezione è possibile anche aggiungere, modificare o cancellare i singoli
-        registi</p>
+        attori</p>
     <hr />
 
 
@@ -42,19 +42,19 @@
     <div class="container-fluid mt-5 mb-3">
 
         <div class="row g-3"> <!-- Spazio tra le card dei registi -->
-            @foreach ($directors as $director)
+            @foreach ($actors as $actor)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                     <!-- 3 colonne per riga su desktop ≥ 1200px, 3 per riga su desktop ≥ 992px, 2 su tablet, 1 su mobile -->
 
-                    {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-director-card> </x-director-card>): --}}
-                    <x-director-card>
-                        <x-slot:fullName>{{ $director->getFullNameAttribute() }}</x-slot:fullName>
-                        <x-slot:firstName>{{ $director->first_name }}</x-slot:fullName>
-                        <x-slot:lastName>{{ $director->last_name }}</x-slot:lastName>
-                        <x-slot:birthDate>{{ $director->birth_date }}</x-slot:birthDate>
-                        <x-slot:nationality>{{ $director->director_nationality }}</x-slot:nationality>
-                        <x-slot:directorID>{{ $director->id }}</x-slot:directorID>
-                    </x-director-card>
+                    {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-actor-card> </x-actor-card>): --}}
+                    <x-actor-card>
+                        <x-slot:fullName>{{ $actor->getFullNameAttribute() }}</x-slot:fullName>
+                        <x-slot:firstName>{{ $actor->first_name }}</x-slot:fullName>
+                        <x-slot:lastName>{{ $actor->last_name }}</x-slot:lastName>
+                        <x-slot:birthDate>{{ $actor->birth_date }}</x-slot:birthDate>
+                        <x-slot:nationality>{{ $actor->actor_nationality }}</x-slot:nationality>
+                        <x-slot:actorID>{{ $actor->id }}</x-slot:actorID>
+                    </x-actor-card>
                 </div>
             @endforeach
         </div>

@@ -9,7 +9,6 @@
 
 {{-- Sezione della pagina personalizzata chiamata "content" nel layout: --}}
 @section('content')
-    {{-- @dump($movies) --}}
 
     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà il jumbotron e nel caso, se ci troviamo nella pagina show dei film, anche l'immagine poster del film selezionato (<x-jumbotron> </x-jumbotron>): --}}
     <x-jumbotron>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\FilmController;
@@ -58,6 +59,9 @@ Route::resource('movies', FilmController::class)->middleware('auth', 'verified')
 
 // Rendo l'accesso a tutte le rotte di "directors" solo agli utenti registrati:
 Route::resource('directors', DirectorController::class)->middleware('auth', 'verified');
+// Rendo l'accesso a tutte le rotte di "actors" solo agli utenti registrati:
+Route::resource('actors', ActorController::class)->middleware('auth', 'verified');
+
 
 
 

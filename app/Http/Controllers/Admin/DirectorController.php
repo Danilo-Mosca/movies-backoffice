@@ -14,7 +14,7 @@ class DirectorController extends Controller
      */
     public function index()
     {
-        // Prendo tutti i registi:
+        // Prendo tutti gli attori:
         $directors = Director::all();   // Uso il metodo statico all() dal Model Director per restituire a $directors tutti i dati contenuti 
         return view('directors.index', compact('directors'));
     }
@@ -63,7 +63,7 @@ class DirectorController extends Controller
     {
         // Alternativa se come argomento del metodo avessi passato:  public function edit(string $slug)
         // Così:
-        // $director = Film::where("slug", $slug)->get();
+        // $director = Director::where("slug", $slug)->get();
         // dd($director);
 
         return view("directors.edit", compact('director'));

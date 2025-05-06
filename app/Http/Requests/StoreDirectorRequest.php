@@ -24,10 +24,10 @@ class StoreDirectorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string', 'min:2','max:255'],
-            'last_name' => ['required', 'string', 'min:2','max:255'],
+            'first_name' => ['required', 'string', 'min:2', 'max:255'],
+            'last_name' => ['required', 'string', 'min:2', 'max:255'],
             'birth_date' => ['nullable', 'date', 'before_or_equal:' . now()->subYears(18)->format('Y-m-d'), 'after:1900-01-01'],
-            'director_nationality' => ['nullable', 'string','min:2', 'max:30'],
+            'director_nationality' => ['nullable', 'string', 'min:2', 'max:30'],
         ];
     }
 
@@ -39,7 +39,7 @@ class StoreDirectorRequest extends FormRequest
             'first_name.min' => 'Il nome deve contenere almeno :min caratteri.',
             'first_name.max' => 'Il nome può contenere al massimo :max caratteri.',
 
-            'last_name.required' => 'Il cognome è obbligatorio.',
+            'last_name.required' => 'Il cognome del regista è obbligatorio.',
             'last_name.min' => 'Il cognome deve contenere almeno :min caratteri.',
             'last_name.max' => 'Il cognome può contenere al massimo :max caratteri.',
 
