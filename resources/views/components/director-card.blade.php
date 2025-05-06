@@ -69,7 +69,13 @@
                 class="btn btn-outline-secondary rounded-0 custom-modify-btn my-3">Modifica
             </a>
             {{-- Per il DELETE non possiamo usare un link perchè i link chiamano sempre un metodo get, questo invece deve essere un metodo delete, allora lo facciamo tramite un form nascosto nel pulsante di conferma: --}}
-            <button type="button" id="delete" data-bs-toggle="modal" data-bs-target="#exampleModal">Elimina</button>
+            {{-- Sostituire:
+                data-bs-target="#exampleModal"
+                Con un bottone con ID dinamico con la seguente istruzione: 
+                data-bs-target="#modal-{{ $directorID }}" 
+                Cosicchè il modale basato sull'id del regista sia sempre diverso. Altrimenti ritorna sempre il primo elemento nella index --}}
+            <button type="button" id="delete" data-bs-toggle="modal"
+                data-bs-target="#modal-{{ $directorID }}">Elimina</button>
         </div>
         {{-- --------- End sezione Pulsanti modifica ed elimina --------- --}}
     </div>
@@ -78,12 +84,22 @@
 
 
 
-    <!-- MODALE RICHIAMATO DAL PULSANTE "Elimina" -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- MODALE CON ID DINAMICO RICHIAMATO DAL PULSANTE "Elimina" -->
+    {{-- Anche qui devo sostituire:
+    id="exampleModal"
+    e:
+    aria-labelledby="exampleModalLabel"
+    Con:
+    id="modal-{{ $directorID }}"
+    e:
+    aria-labelledby="exampleModalLabel-{{ $directorID }}" 
+    --}}
+    <div class="modal fade" id="modal-{{ $directorID }}" tabindex="-1"
+        aria-labelledby="exampleModalLabel-{{ $directorID }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Informazione</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel-{{ $directorID }}">Informazione</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

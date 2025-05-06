@@ -5,11 +5,11 @@
 @extends('layouts.movies')
 
 {{-- Restituisco il titolo della pagina con il metodo abbreviato: --}}
-@section('title', 'Aggiungi un regista')
+@section('title', 'Modifica ' . $director->last_name)
 
 {{-- Sezione della pagina personalizzata chiamata "content" nel layout: --}}
 @section('content')
-    {{-- @dump($movies) --}}
+    {{-- @dump($directors) --}}
 
     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà il jumbotron e nel caso, se ci troviamo nella pagina show dei film, anche l'immagine poster del film selezionato (<x-jumbotron> </x-jumbotron>): --}}
     <x-jumbotron>
@@ -17,15 +17,15 @@
 
     <div class="container-fluid mt-5 mb-3">
 
-        <h3>AGGIUNGI UN REGISTA</h3>
+        <h3>MODIFICA IL REGISTA</h3>
         <p>* I dati riportati con l'asterisco sono obbligatori</p>
         <hr class="mb-5" />
 
-        {{-- ------------------- Sezione form aggiungi un regista: ------------------- --}}
-        {{-- Passo con le props sia il la variabile del model (se necessario, in questo caso dato che sto creando un regista passo "null"), sia l'action che il metodo http, e anche le singole input type di cui ho bisogno. Infine passo anche il valore del testo del pulsante submit --}}
+        {{-- ------------------- Sezione form modifica un regista: ------------------- --}}
+        {{-- Passo con le props sia il la variabile del model (se necessario, in questo caso passo $director), sia l'action che il metodo http, e anche le singole input type di cui ho bisogno --}}
         <x-form-data
-        :model="null"
-        :action="route('directors.store')" method="POST"
+        :model="$director"
+        :action="route('directors.update', $director->id)" method="PUT"
         :showDirectorFirstName="true"
         :showDirectorLastName="true"
         :showDirectorBirthDate="true"

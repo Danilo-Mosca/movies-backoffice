@@ -94,11 +94,13 @@ resetButton.addEventListener('click', () => {
 const resetButtonDirector = document.getElementById('button-id-reset');
 resetButton.addEventListener('click', () => {
 
-const firstName = document.getElementById('first_name');
-const lastName = document.getElementById('last_name');
-const birthDate = document.getElementById('birth_date');
-firstName.value = "";
-lastName.value = "";
-birthDate.value = "";
+    const firstName = document.getElementById('first_name');
+    const lastName = document.getElementById('last_name');
+    const birthDate = document.getElementById('birth_date');
+    const nationality = document.getElementById('nationality');
+    firstName.value = "";
+    lastName.value = "";
+    birthDate.value = "";
+    nationality.value = "";
 });
 /* -------------------------------- Fine codice pulsante reset del form Create/Edit Director (registi): -------------------------------- */

@@ -136,7 +136,7 @@ class FilmController extends Controller
         $movie->release_year = $request['release_year'];
         $movie->duration = $request['duration'];
         $movie->rating = $request['rating'];
-        $movie->update();     //aggiorno il progetto nel database
+        $movie->update();     //aggiorno il film nel database
         }
          */
 
@@ -150,11 +150,11 @@ class FilmController extends Controller
         $movie->duration = $data['duration'];
         $movie->rating = $data['rating'] ?? null;       // o anche l'equivalente:   $movie->rating = $data['rating'];
         $movie->nationality = $data['nationality'];
-        $movie->update();     //aggiorno il progetto nel database
+        $movie->update();     //aggiorno il film nel database
 
 
         // Reindirizzo l'utente alla pagina show per vedere il film che ha modificato ($movie->id è equivalente a $movie))
-        return redirect()->route("movies.show", $movie);
+        return redirect()->route("movies.show", $movie)->with('success', 'Film modificato con successo');
     }
 
     /**
@@ -165,7 +165,7 @@ class FilmController extends Controller
         // dd($movie);
         $movie->delete();   // cancello il film
 
-        // Reindirizzo l'utente alla pagina index che restituisce tutti i $movie contenuti nella tabella $films. Oltre a reindirizzarli nella index, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
+        // Reindirizzo l'utente alla pagina index che restituisce tutti i $movie contenuti nella tabella films. Oltre a reindirizzarli nella index, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
         return redirect()->route('movies.index')->with('success', 'Film cancellato con successo');
     }
 }

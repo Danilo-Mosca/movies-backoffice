@@ -33,8 +33,13 @@
             <div class="d-flex flex-wrap justify-content-around pt-3 row-gap-3">
                 <button class="btn-modifica"><a href="{{ route('movies.edit', $slug) }}">Modifica</a></button>
                 {{-- Per il DELETE non possiamo usare un link perchè i link chiamano sempre un metodo get, questo invece deve essere un metodo delete, allora lo facciamo tramite un form nascosto nel pulsante di conferma: --}}
+                {{-- Sostituire:
+                    data-bs-target="#exampleModal"
+                    Con un bottone con ID dinamico con la seguente istruzione: 
+                    data-bs-target="#modal-{{ $slug }}" 
+                    Cosicchè il modale basato sullo slug del film sia sempre diverso. Altrimenti ritorna sempre il primo elemento nella index --}}
                 <button type="button" id="delete" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">Elimina</button>
+                    data-bs-target="#modal-{{ $slug }}">Elimina</button>
             </div>
             {{-- --------- End sezione Pulsanti modifica ed elimina --------- --}}
         </div>
@@ -43,8 +48,17 @@
 
 
 
-    <!-- MODALE RICHIAMATO DAL PULSANTE "Elimina" -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- MODALE CON ID DINAMICO RICHIAMATO DAL PULSANTE "Elimina" -->
+    {{-- Anche qui devo sostituire:
+    id="exampleModal"
+    e:
+    aria-labelledby="exampleModalLabel"
+    Con:
+    id="modal-{{ $slug }}"
+    e:
+    aria-labelledby="exampleModalLabel-{{ $slug }}" 
+    --}}
+    <div class="modal fade" id="modal-{{ $slug }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ $slug }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
