@@ -124,3 +124,19 @@ resetButton.addEventListener('click', () => {
     nationality.value = "";
 });
 /* -------------------------------- Fine codice pulsante reset del form Create/Edit Actor (attori): -------------------------------- */
+
+
+
+
+
+
+/* -------------------------------- Codice pulsante reset del form Create/Edit Actor (generi): -------------------------------- */
+const resetButtonGenre = document.getElementById('button-id-reset');
+resetButton.addEventListener('click', () => {
+
+    const name = document.getElementById('name');
+    const genreDescription = document.getElementById('genre_description');
+    name.value = "";
+    genreDescription.value = "";
+});
+/* -------------------------------- Fine codice pulsante reset del form Create/Edit Actor (generi): -------------------------------- */

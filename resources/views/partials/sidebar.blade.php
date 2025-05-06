@@ -87,10 +87,10 @@
             <!-- Sezione Attori -->
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block" id="menu-color">
-                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
                     <i class="fs-4 bi bi-camera-reels"></i> <span
-                        class="ms-1 d-none d-sm-inline dropdown-toggle Attori">Attori</span></a>
-                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                        class="ms-1 d-none d-sm-inline dropdown-toggle attori">Attori</span></a>
+                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                     <li class="w-100">
                         <a href="{{ route('actors.index') }}" class="nav-link px-0"> <span
                                 class="d-none d-sm-inline">Lista degli</span> attori</a>
@@ -104,7 +104,7 @@
 
             <!-- MOBILE Mostro questo <li> solo per i dispositivi mobili (va a sostituire quello di sopra in mobile) -->
             <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
-                <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile Attori px-sm-0 px-2" id="dropdown"
+                <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile attori px-sm-0 px-2" id="dropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fs-5 bi bi-camera-reels"></i><span class="ms-1 d-none d-sm-inline">Attori</span>
                 </a>
@@ -117,6 +117,40 @@
                 </ul>
             </li>
             <!-- Fine sezione Attori -->
+
+            <!-- Sezione Generi -->
+            <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
+            <li class="d-none d-sm-block" id="menu-color">
+                <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                    <i class="fs-4 bi bi-camera-reels"></i> <span
+                        class="ms-1 d-none d-sm-inline dropdown-toggle generi">Generi</span></a>
+                <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                    <li class="w-100">
+                        <a href="{{ route('genres.index') }}" class="nav-link px-0"> <span
+                                class="d-none d-sm-inline">Lista dei</span> generi</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('genres.create') }}" class="nav-link px-0"> <span
+                                class="d-none d-sm-inline">Aggiungi un</span> genere</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- MOBILE Mostro questo <li> solo per i dispositivi mobili (va a sostituire quello di sopra in mobile) -->
+            <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
+                <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile generi px-sm-0 px-2" id="dropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fs-5 bi bi-camera-reels"></i><span class="ms-1 d-none d-sm-inline">Generi</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
+                    <li><a class="dropdown-item" href="{{ route('genres.index') }}">Lista dei generi</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{{ route('genres.create') }}">Aggiungi un genere</a></li>
+                </ul>
+            </li>
+            <!-- Fine sezione Generi -->
 
             
             

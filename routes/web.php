@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\FilmController;
+use App\Http\Controllers\Admin\GenreController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,8 +62,7 @@ Route::resource('movies', FilmController::class)->middleware('auth', 'verified')
 Route::resource('directors', DirectorController::class)->middleware('auth', 'verified');
 // Rendo l'accesso a tutte le rotte di "actors" solo agli utenti registrati:
 Route::resource('actors', ActorController::class)->middleware('auth', 'verified');
-
-
-
+// Rendo l'accesso a tutte le rotte di "genres" solo agli utenti registrati:
+Route::resource('genres', GenreController::class)->middleware('auth', 'verified');
 
 require __DIR__ . '/auth.php';

@@ -14,7 +14,7 @@ class ActorController extends Controller
      */
     public function index()
     {
-        // Prendo tutti i registi:
+        // Prendo tutti gli attori:
         $actors = Actor::all();   // Uso il metodo statico all() dal Model Actor per restituire a $actors tutti i dati contenuti 
         return view('actors.index', compact('actors'));
     }

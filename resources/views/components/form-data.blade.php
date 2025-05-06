@@ -21,6 +21,9 @@
     'showActorLastName' => false,
     'showActorBirthDate' => false,
     'showActorNationality' => false,
+    // Props dei generi:
+    'showGenreName' => false,
+    'showGenreDescription' => false,
 ])
 
 {{-- ------------------- Sezione form: ------------------- --}}
@@ -229,7 +232,7 @@
         {{-- Verifico se $showDirectorBirthDate risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showDirectorBirthDate)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
-                <label for="birth_date">* Data di nascita del regista:</label>
+                <label for="birth_date">Data di nascita del regista:</label>
                 <input type="date" name="birth_date" id="birth_date" class="input-layout"
                     value="{{ old('birth_date', isset($model->birth_date) ? $model->birth_date : '') }}">
 
@@ -299,7 +302,7 @@
         {{-- Verifico se $showActorBirthDate risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showActorBirthDate)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
-                <label for="birth_date">* Data di nascita dell'attore:</label>
+                <label for="birth_date">Data di nascita dell'attore:</label>
                 <input type="date" name="birth_date" id="birth_date" class="input-layout"
                     value="{{ old('birth_date', isset($model->birth_date) ? $model->birth_date : '') }}">
 
@@ -327,6 +330,44 @@
         @endif
 
         {{-- ------------------------------------- FINE SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEGLI ATTORI: ------------------------------------- --}}
+
+
+
+
+
+        {{-- ------------------------------------- SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEI GENERI: ------------------------------------- --}}
+
+        {{-- Verifico se $showGenreName risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showGenreName)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="name">* Nome del nuovo genere:</label>
+                <input type="text" name="name" id="name" class="input-layout"
+                    placeholder="Inserisci il nome del nuovo genere"
+                    value="{{ old('name', isset($model->name) ? $model->name : '') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('name')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+
+        {{-- Verifico se $showGenreDescription risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showGenreDescription)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="genre_description">Aggiungi una descrizione:</label>
+                <textarea name="genre_description" id="genre_description" id="genre_description" rows="5" class="input-layout"
+                    placeholder="Inserisci la descrizione del film">{{ old('genre_description', isset($model->genre_description) ? $model->genre_description : '') }}</textarea>
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('genre_description')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+
+        {{-- ------------------------------------- FINE SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEI GENERI: ------------------------------------- --}}
 
 
 
