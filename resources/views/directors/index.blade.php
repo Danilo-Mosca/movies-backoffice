@@ -52,7 +52,7 @@
                         <x-slot:firstName>{{ $director->first_name }}</x-slot:fullName>
                         <x-slot:lastName>{{ $director->last_name }}</x-slot:lastName>
                         <x-slot:birthDate>{{ $director->birth_date }}</x-slot:birthDate>
-                        <x-slot:nationality>{{ $director->nationality }}</x-slot:nationality>
+                        <x-slot:nationality>{{ $director->director_nationality }}</x-slot:nationality>
                         <x-slot:directorID>{{ $director->id }}</x-slot:directorID>
                     </x-director-card>
                 </div>

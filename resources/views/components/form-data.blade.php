@@ -238,13 +238,13 @@
         {{-- Verifico se $showNationality risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showDirectorNationality)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
-                <label for="nationality">Nazionalità del regista:</label>
-                <input type="text" name="nationality" id="nationality" class="input-layout"
+                <label for="director_nationality">Nazionalità del regista:</label>
+                <input type="text" name="director_nationality" id="director_nationality" class="input-layout"
                     placeholder="Inserisci la nazionalità del film"
-                    value="{{ old('nationality', isset($model->nationality) ? $model->nationality : '') }}">
+                    value="{{ old('director_nationality', isset($model->director_nationality) ? $model->director_nationality : '') }}">
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
-                @error('nationality')
+                @error('director_nationality')
                     <div class="text-danger pt-2">{{ $message }}</div>
                 @enderror
             </div>

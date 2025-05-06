@@ -39,7 +39,7 @@ class DirectorController extends Controller
         $newDirector->first_name = $data['first_name'];
         $newDirector->last_name = $data['last_name'];
         $newDirector->birth_date = $data['birth_date'];
-        $newDirector->nationality = $data['nationality'];
+        $newDirector->director_nationality = $data['director_nationality'];
 
         $newDirector->save();    //salvo i nuovi dati nella tabella directors del database movies_db
 
@@ -83,7 +83,7 @@ class DirectorController extends Controller
         $director->first_name = $data['first_name'];
         $director->last_name = $data['last_name'];
         $director->birth_date = $data['birth_date'];
-        $director->nationality = $data['nationality'];
+        $director->director_nationality = $data['director_nationality'];
         
         $director->update();     //aggiorno il regista nel database
 

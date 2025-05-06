@@ -27,7 +27,7 @@ class StoreDirectorRequest extends FormRequest
             'first_name' => ['required', 'string', 'min:2','max:255'],
             'last_name' => ['required', 'string', 'min:2','max:255'],
             'birth_date' => ['nullable', 'date', 'before_or_equal:' . now()->subYears(18)->format('Y-m-d'), 'after:1900-01-01'],
-            'nationality' => ['nullable', 'string','min:2', 'max:30'],
+            'director_nationality' => ['nullable', 'string','min:2', 'max:30'],
         ];
     }
 
@@ -47,8 +47,8 @@ class StoreDirectorRequest extends FormRequest
             'birth_date.before_or_equal' => 'Il regista deve avere almeno 18 anni.',
             'birth_date.after' => 'La data di nascita non può essere precedente al 1901.',
 
-            'nationality.min' => 'La nazionalità deve contenere almeno :min caratteri.',
-            'nationality.max' => 'La nazionalità può contenere al massimo :max caratteri.',
+            'director_nationality.min' => 'La nazionalità deve contenere almeno :min caratteri.',
+            'director_nationality.max' => 'La nazionalità può contenere al massimo :max caratteri.',
         ];
     }
 }

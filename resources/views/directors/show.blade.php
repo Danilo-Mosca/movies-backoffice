@@ -93,13 +93,13 @@
                 <div class="mb-2 d-flex py-1 border-bottom">
                     <i class="fa-solid fa-earth-americas me-3" style="max-width: 20px;"></i>
                     <div class="fw-bold w-50">Nazionalità:</div>
-                    {{-- Prima controllo se il campo facoltativo nationality è stato inserito oppure risulta null: --}}
-                    @if ($director->nationality == null)
+                    {{-- Prima controllo se il campo facoltativo director_nationality è stato inserito oppure risulta null: --}}
+                    @if ($director->director_nationality == null)
                         {{-- Se è null allora stampo la stringa "Nazionalità non inserita" --}}
                         <div class="show-movies" style="color: #DB2B39; font-size: 20px; font-weight: 400;">Campo non inserito</div>
                         {{-- Altrimenti stampo il valore del campo: --}}
                     @else
-                        <div class="fw-bolder" style="color: #DB2B39;">{{ $director->nationality }}</div>
+                        <div class="fw-bolder" style="color: #DB2B39;">{{ $director->director_nationality }}</div>
                     @endif
                 </div>
             

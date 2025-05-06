@@ -21,7 +21,7 @@ class ActorsTableSeeder extends Seeder
             $newActor->first_name = $faker->firstName();
             $newActor->last_name = $faker->lastName();
             $newActor->birth_date = $faker->date('Y-m-d', '2015-01-01');   // questo genera una data casuale prima del 1/01/2015
-            $newActor->nationality = substr($faker->country(), 0, 30);  // Genera una nazione casuale che abbia un numero massimo di caratteri compreso tra 0 e 30
+            $newActor->actor_nationality = substr($faker->country(), 0, 30);  // Genera una nazione casuale che abbia un numero massimo di caratteri compreso tra 0 e 30
 
             $newActor->save();   //Salva il regista appena creato
         }

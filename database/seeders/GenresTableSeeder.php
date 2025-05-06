@@ -55,7 +55,7 @@ class GenresTableSeeder extends Seeder
             $newGenre = new Genre();
 
             $newGenre->name = $genres[$i];
-            $newGenre->description = $faker->text(250);  // Genera una stringa di testo casuale con massimo 250 caratteri
+            $newGenre->genre_description = $faker->text(250);  // Genera una stringa di testo casuale con massimo 250 caratteri
 
             $newGenre->save();   //Salva il genere appena creato
         }
