@@ -21,7 +21,7 @@ return new class extends Migration
             $table->tinyInteger('duration')->unsigned();    //creo una colonna di tipo tinyInteger senza segno che conterrò un numero compreso tra 0 e 255
             $table->tinyInteger('rating')->unsigned()->nullable();
             $table->string('poster')->nullable();
-            $table->string('nationality', 90)->nullable();
+            $table->string('nationality', 30)->nullable();      // campo con massimo 30 caratteri
             $table->integer('director_id')->unsigned()->nullable();
             $table->string('slug')->unique(); // slug unico
 

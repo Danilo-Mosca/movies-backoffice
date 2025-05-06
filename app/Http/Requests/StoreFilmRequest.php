@@ -31,7 +31,7 @@ class StoreFilmRequest extends FormRequest
             'release_year' => ['required', 'integer', 'min:1901', 'max:' . $currentYear],
             'duration' => ['required', 'integer', 'min:1', 'max:255'],
             'rating' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'nationality' => ['nullable', 'string', 'max:90'],
+            'nationality' => ['nullable', 'string', 'max:30'],
         ];
     }
 
@@ -60,7 +60,7 @@ class StoreFilmRequest extends FormRequest
             'rating.max' => 'Il voto massimo è 5.',
 
             'nationality.string' => 'La nazionalità deve essere una stringa.',
-            'nationality.max' => 'La nazionalità può contenere al massimo 90 caratteri.',
+            'nationality.max' => 'La nazionalità può contenere al massimo un valore di 30 caratteri.',
         ];
     }
 }

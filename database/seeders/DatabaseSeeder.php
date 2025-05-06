@@ -21,7 +21,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            FilmsTableSeeder::class
+            FilmsTableSeeder::class,
+            DirectorsTableSeeder::class,
+            ActorsTableSeeder::class,
+            GenresTableSeeder::class
         ]);
     }
 }

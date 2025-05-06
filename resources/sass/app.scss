@@ -88,12 +88,14 @@ button {
 // }
 
 /* Annullo il padding per i pulsanti che hanno al loro interno un tag <a> perchè poi lo imposto manualmente allo stesso tag */
-button.btn-modifica{
+button.btn-modifica {
     padding: 0 0;
 }
+
 button.btn-modifica:hover {
     padding: 0 0;
 }
+
 /* Fine annullo il padding per i pulsanti che hanno al loro interno un tag <a> perchè poi lo imposto manualmente allo stesso tag */
 
 button#delete {
@@ -115,38 +117,55 @@ button a:visited,
 button a:active {
     color: black;
     text-decoration: none;
-    padding: 10px 15px;         // imposto manualmente il padding ai pulsanti "button" che possiedono il tag <a>
+    padding: 10px 15px; // imposto manualmente il padding ai pulsanti "button" che possiedono il tag <a>
 }
 
 button a:hover {
     color: white;
-    padding: 10px 15px;         // imposto manualmente il padding anche per l'hover ai pulsanti "button" che possiedono il tag <a>
+    padding: 10px 15px; // imposto manualmente il padding anche per l'hover ai pulsanti "button" che possiedono il tag <a>
 }
 
+a.custom-modify-btn {
+    color: black;
+    border: 1px solid black;
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 600;
+    padding: 6px 15px;
+}
+
+a.custom-modify-btn:hover {
+    color: white;
+    background-color: black;
+}
 
 // Pulsante submit delete del modal:
-input[type="submit"], button.modal-delete{
-        color: var(--color-red-text-sidebar);
-        border: 1px solid black;
-        background-color: white;
-        text-transform: uppercase;
-        font-size: 16px !important;
-        font-weight: 600;
-        padding: 5px 15px;
+input[type="submit"],
+button.modal-delete {
+    color: var(--color-red-text-sidebar);
+    border: 1px solid black;
+    background-color: white;
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 600;
+    padding: 5px 15px;
 }
 
 
-input[type="submit"]:hover, button:hover.modal-delete{
-        color: white;
-        border: 1px solid var(--color-red-text-sidebar);
-        background-color: var(--color-red-text-sidebar);
-        text-transform: uppercase;
-        font-size: 16px !important;
-        font-weight: 600;
-        padding: 5px 15px;
+input[type="submit"]:hover,
+button:hover.modal-delete {
+    color: white;
+    border: 1px solid var(--color-red-text-sidebar);
+    background-color: var(--color-red-text-sidebar);
+    text-transform: uppercase;
+    font-size: 16px !important;
+    font-weight: 600;
+    padding: 5px 15px;
 }
+
 div.modal-body p {
     color: black;
     font-weight: 600z;
 }
+
 /* --------------------- Fine pulsanti modifica ed elimina : --------------------- */
