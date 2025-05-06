@@ -2,12 +2,6 @@
       In questo caso oltre ad importare il file "app.scss" c'è il CSS personalizzato generico --}}
 @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-
-
-
-
-
-
 <div class="card shadow-sm mb-4" style="">
     <div class="card-header bg-dark text-white">
         Dettagli Regista
@@ -17,35 +11,57 @@
         NOTA BENE: FACCIO LO STESSO ANCHE PER I CAMPI NOME E COGNOME --}}
         <h5 class="card-title mb-3">{{ strlen($fullName) > 50 ? substr($fullName, 0, 50) . '...' : $fullName }}</h5>
 
+
         <div class="mb-2 d-flex py-1 border-bottom">
             <div class="fw-bold w-50">Nome:</div>
             <div>{{ strlen($firstName) > 50 ? substr($firstName, 0, 50) . '...' : $firstName }}</div>
         </div>
+
 
         <div class="mb-2 d-flex py-1 border-bottom">
             <div class="fw-bold w-50">Cognome:</div>
             <div>{{ strlen($lastName) > 50 ? substr($lastName, 0, 50) . '...' : $lastName }}</div>
         </div>
 
+
         <div class="mb-2 d-flex py-1 border-bottom">
             <div class="fw-bold w-50">Data di nascita:</div>
 
-            {{-- Per avere i mesi in italiano, per impostare la localizzazione correttamente con setlocale() uso la classe Carbon che permette
+            @if ($birthDate == '' || $birthDate == null)
+                @php
+                    $dateFormatted = 'Data di nascita non inserita';
+                @endphp
+            @else
+                {{-- Per avere i mesi in italiano, per impostare la localizzazione correttamente con setlocale() uso la classe Carbon che permette
                                 di impostare la localizzazione italiana in maniera semplicissima come di seguito: --}}
-            @php
-                // Imposta la localizzazione italiana e tutto il resto:
-                $dateFormatted = \Carbon\Carbon::createFromFormat('Y-m-d', $birthDate)
-                    ->locale('it')
-                    ->translatedFormat('d F Y');
-            @endphp
+                @php
+                    // Imposta la localizzazione italiana e tutto il resto:
+                    $dateFormatted = \Carbon\Carbon::createFromFormat('Y-m-d', $birthDate)
+                        ->locale('it')
+                        ->translatedFormat('d F Y');
+                @endphp
+            @endif
 
             <div>{{ $dateFormatted }}</div>
         </div>
 
+
+        @if ($birthDate == '' || $birthDate == null)
+            @php
+                $nationality = 'Nazionalità non inserita';
+            @endphp
+        @endif
         <div class="mb-2 d-flex py-1 border-bottom">
             <div class="fw-bold w-50">Nazionalità:</div>
             <div>{{ $nationality }}</div>
         </div>
+
+
+        <div class="mb-2 d-flex py-3 border-bottom">
+            <a class="card-title fw-bolder" href="{{ route('directors.show', $directorID) }}">Visualizza scheda
+                anagrafica...</a>
+        </div>
+
 
         {{-- --------- Sezione Pulsanti modifica ed elimina --------- --}}
         <div class="mt-4 text-end">

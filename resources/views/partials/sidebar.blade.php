@@ -58,11 +58,11 @@
                         class="ms-1 d-none d-sm-inline dropdown-toggle registi">Registi</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{ route('movies.index') }}" class="nav-link px-0"> <span
+                        <a href="{{ route('directors.index') }}" class="nav-link px-0"> <span
                                 class="d-none d-sm-inline">Lista dei</span> registi</a>
                     </li>
                     <li>
-                        <a href="{{ route('movies.create') }}" class="nav-link px-0"> <span
+                        <a href="{{ route('directors.create') }}" class="nav-link px-0"> <span
                                 class="d-none d-sm-inline">Aggiungi un</span> regista</a>
                     </li>
                 </ul>
@@ -75,11 +75,11 @@
                     <i class="fs-5 bi bi-camera-reels"></i><span class="ms-1 d-none d-sm-inline">Registi</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
-                    <li><a class="dropdown-item" href="#">Lista dei registi</a></li>
+                    <li><a class="dropdown-item" href="{{ route('directors.index') }}">Lista dei registi</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Aggiungi un regista</a></li>
+                    <li><a class="dropdown-item" href="{{ route('directors.create') }}">Aggiungi un regista</a></li>
                 </ul>
             </li>
             <!-- Fine sezione Registi -->

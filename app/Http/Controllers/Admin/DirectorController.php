@@ -15,7 +15,7 @@ class DirectorController extends Controller
     {
         // Prendo tutti i registi:
         $directors = Director::all();   // Uso il metodo statico all() dal Model Director per restituire a $directors tutti i dati contenuti 
-return view('directors.index' , compact('directors'));
+        return view('directors.index', compact('directors'));
     }
 
     /**
@@ -37,9 +37,9 @@ return view('directors.index' , compact('directors'));
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Director $director)
     {
-        //
+        return view('directors.show', compact('director'));
     }
 
     /**
