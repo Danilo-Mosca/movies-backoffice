@@ -16,11 +16,13 @@
 
 
     {{-- ---------- Sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene inserito con successo ----------  --}}
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div class="mt-3 pt-3">
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+    </div>
     {{-- ---------- Fine sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene inserito con successo ----------  --}}
 
 
@@ -30,7 +32,7 @@
         <p>Scheda tecnica del film</p>
         <hr />
 
-        
+
         {{-- --------- Sezione Pulsanti modifica ed elimina --------- --}}
         <div class="d-flex flex-wrap justify-content-start pt-3 gap-3">
             <button class="btn-modifica"><a href="{{ route('movies.edit', $movie) }}">Modifica</a></button>

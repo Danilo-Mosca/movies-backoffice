@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDirectorRequest;
 use App\Models\Director;
 use Illuminate\Http\Request;
 
@@ -23,15 +24,28 @@ class DirectorController extends Controller
      */
     public function create()
     {
-        //
+        return view('directors.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDirectorRequest $request)
     {
-        //
+        $newDirector = new Director();
+        // Assegno alla variabile $data tutti i valori ricevuto dal form
+        $data = $request->validated();       //Assegno alla variabile $data i dati validati così se passano posso creare il nuovo film
+
+        $newDirector->first_name = $data['first_name'];
+        $newDirector->last_name = $data['last_name'];
+        $newDirector->birth_date = $data['birth_date'];
+        $newDirector->nationality = $data['nationality'];
+
+        $newDirector->save();    //salvo i nuovi dati nella tabella directors del database movies_db
+
+        // Reindirizzo l'utente alla pagina show per vedere il film che ha salvato ($newMovie->id è equivalente a $newMovie))
+        // Oltre a reindirizzarli nella show, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
+        return redirect()->route("directors.show", $newDirector)->with('success', 'Regista salvato con successo');
     }
 
     /**

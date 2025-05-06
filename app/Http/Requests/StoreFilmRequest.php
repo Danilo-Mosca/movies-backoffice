@@ -40,7 +40,7 @@ class StoreFilmRequest extends FormRequest
     {
         return [
             'title.required' => 'Il titolo è obbligatorio.',
-            'title.string' => 'Il titolo deve essere una stringa.',
+            'title.string' => 'Il titolo deve essere del testo.',
             'title.max' => 'Il titolo non può superare i 255 caratteri.',
 
             'description.required' => 'La descrizione è obbligatoria.',

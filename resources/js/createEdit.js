@@ -63,7 +63,7 @@ document.querySelectorAll('.star-rating input[type="radio"]').forEach(radio => {
     });
 });
 
-/* -------------------------------- Codice pulsante reset del form Create Film: -------------------------------- */
+/* -------------------------------- Codice pulsante reset del form Create/Edit Film: -------------------------------- */
 const resetButton = document.getElementById('button-id-reset');
 resetButton.addEventListener('click', () => {
     const title = document.getElementById('title');
@@ -83,4 +83,22 @@ resetButton.addEventListener('click', () => {
         radio.checked = false;
     });
 });
-/* -------------------------------- Fine codice pulsante reset del form Create Film: -------------------------------- */
+/* -------------------------------- Fine codice pulsante reset del form Create/Edit Film: -------------------------------- */
+
+
+
+
+
+
+/* -------------------------------- Codice pulsante reset del form Create/Edit Director (registi): -------------------------------- */
+const resetButtonDirector = document.getElementById('button-id-reset');
+resetButton.addEventListener('click', () => {
+
+const firstName = document.getElementById('first_name');
+const lastName = document.getElementById('last_name');
+const birthDate = document.getElementById('birth_date');
+firstName.value = "";
+lastName.value = "";
+birthDate.value = "";
+});
+/* -------------------------------- Fine codice pulsante reset del form Create/Edit Director (registi): -------------------------------- */
