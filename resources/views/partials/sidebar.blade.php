@@ -15,7 +15,7 @@
             id="menu">
             <li class="nav-item" id="menu-color">
                 <a href="{{ route('movies.index') }}" class="nav-link px-sm-0 px-2">
-                    <i class="fs-5 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
+                    <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
                 </a>
             </li>
 
@@ -84,7 +84,11 @@
             </li>
             <!-- Fine sezione Registi -->
 
-            <li id="menu-color">
+            
+            
+            
+            
+            {{-- <li id="menu-color">
                 <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-speedometer2"></i><span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
             </li>
@@ -101,6 +105,12 @@
                 <a href="#" class="nav-link px-sm-0 px-2">
                     <i class="fs-5 bi-people"></i><span class="ms-1 d-none d-sm-inline">Customers</span> </a>
             </li>
+         --}}
+        
+        
+        
+        
+        
         </ul>
 
         <div class="dropdown py-sm-4 mt-sm-auto ms-auto ms-sm-0 flex-shrink-1">
@@ -119,9 +129,7 @@
                 <span class="d-none d-sm-inline mx-1" id="menu-color">{{ $user->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
+                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile config</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
