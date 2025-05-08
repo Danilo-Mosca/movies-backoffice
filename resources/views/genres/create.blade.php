@@ -26,6 +26,7 @@
         :model="null"
         :action="route('genres.store')" method="POST"
         :showGenreName="true"
+        :showGenreColor="true"
         :showGenreDescription="true"
         buttonText="Salva"
         />

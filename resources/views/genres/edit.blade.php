@@ -27,6 +27,7 @@
         :model="$genre" 
         :action="route('genres.update', $genre->id)" method="PUT" 
         :showGenreName="true"
+        :showGenreColor="true"
         :showGenreDescription="true"
         buttonText="Salva"
         />

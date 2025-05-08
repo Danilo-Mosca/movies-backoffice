@@ -130,16 +130,18 @@ resetButton.addEventListener('click', () => {
 
 
 
-/* -------------------------------- Codice pulsante reset del form Create/Edit Actor (generi): -------------------------------- */
+/* -------------------------------- Codice pulsante reset del form Create/Edit Genre (generi): -------------------------------- */
 const resetButtonGenre = document.getElementById('button-id-reset');
 resetButton.addEventListener('click', () => {
 
     const name = document.getElementById('name');
     const genreDescription = document.getElementById('genre_description');
+    const genreColor = document.getElementById('color');
     name.value = "";
+    genreColor.value = "#e66465";       // se clicco su reset reimposto anche il colore del genere a quello di default, ovvero: #e66465
     genreDescription.value = "";
 });
-/* -------------------------------- Fine codice pulsante reset del form Create/Edit Actor (generi): -------------------------------- */
+/* -------------------------------- Fine codice pulsante reset del form Create/Edit Genre (generi): -------------------------------- */
 
 
 

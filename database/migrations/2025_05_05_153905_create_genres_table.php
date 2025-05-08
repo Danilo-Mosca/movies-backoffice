@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('name')->unique();               // nome del genere unico, perchè non possiamo ripetere lo stesso genere
+            $table->string('color', 7);     // colore esadecimale associato al genere (sei caratteri più il cancelletto)
             $table->longText('genre_description')->nullable();    // descrizione del genere che può essere anche vuota
 
             $table->timestamps();

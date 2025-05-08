@@ -48,6 +48,7 @@
                     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-genre-card> </x-genre-card>): --}}
                     <x-genre-card>
                         <x-slot:genreName>{{ $genre->name }}</x-slot:genreName>
+                        <x-slot:genreColor>{{ $genre->color }}</x-slot:genreColor>
                         <x-slot:genreDescription>{{ $genre->genre_description }}</x-slot:genreDescription>
                         <x-slot:genreID>{{ $genre->id }}</x-slot:genreID>
                     </x-genre-card>

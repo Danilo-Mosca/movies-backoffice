@@ -37,7 +37,10 @@ class GenreController extends Controller
         // Assegno alla variabile $data tutti i valori ricevuto dal form
         $data = $request->validated();       //Assegno alla variabile $data i dati validati così se passano posso creare il nuovo genere
 
+        // dd($data);  // controllo se ricevo tutti i dati dalla request
+        
         $newGenre->name = $data['name'];
+        $newGenre->color = $data['color'];
         $newGenre->genre_description = $data['genre_description'];
 
         $newGenre->save();    //salvo i nuovi dati nella tabella genres del database movies_db
@@ -79,7 +82,10 @@ class GenreController extends Controller
         // Prima prendiamo le richieste e le salviamo su un array letterale:
         $data = $request->validated(); // Meglio usare validated() invece di all(): $data = $request->all(); <---- anche questa è valida però con validated() ottieni solo i dati già filtrati e sicuri.
 
+        // dd($data);  // controllo se ricevo tutti i dati dalla request
+
         $genre->name = $data['name'];
+        $genre->color = $data['color'];
         $genre->genre_description = $data['genre_description'];
 
         $genre->update();     //aggiorno il regista nel database

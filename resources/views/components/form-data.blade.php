@@ -25,6 +25,7 @@
     'showActorNationality' => false,
     // Props dei generi:
     'showGenreName' => false,
+    'showGenreColor' => false,
     'showGenreDescription' => false,
 ])
 
@@ -362,6 +363,23 @@
                 @enderror
             </div>
         @endif
+
+
+        {{-- Input radio per il colore del genere --}}
+        {{-- Verifico se $showGenreColor risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showGenreColor)
+            <div class="form-control mb-3 d-flex align-items-center column-gap-3 input-wrapper">
+                <label for="color">* Scegli un colore da associare al genere:</label>
+                {{-- Se nella pagina create, quando si vuole creare un nuovo genre, non viene specificato nessun colore, allora quello di default sarà #e66465 ovvero un rosa pallido: --}}
+                <input type="color" name="color" id="color" value="{{ old('color', isset($model->color) ? $model->color : '#e66465') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('color')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input radio per il colore del genere --}}
 
 
         {{-- Verifico se $showGenreDescription risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}

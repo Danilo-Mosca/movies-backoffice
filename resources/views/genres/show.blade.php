@@ -54,16 +54,18 @@
 
 
                 <div class="mb-2 d-flex py-1 border-bottom">
-                    <i class="fa-solid fa-video me-3" style="max-width: 20px;"></i>
-                    <div class="fw-bold w-50">Genere:</div>
-                    <div class="fw-bolder" style="color: #DB2B39;">{{ $genre->name }}</div>
+                    <i class="fa-solid fa-video me-3" style="max-width: 20px; color: {{ $genre->color }};"></i>
+                    <div class="fw-bold w-50" style="color: {{ $genre->color }};">Genere:</div>
+                    <div class="fw-bolder" style="color: {{ $genre->color }}">{{ $genre->name }}</div>
                 </div>
 
 
                 <div class="mb-2 d-flex py-1 border-bottom">
                     <i class="fa-solid fa-file-video me-3" style="max-width: 18px;"></i>
                     <div class="fw-bold w-50">Descrizione:</div>
-                    <div class="fw-bolder" style="color: #DB2B39;">{{ $genre->genre_description }}</div>
+                    <div class="fw-bolder" style="color: #DB2B39;">
+                        {{ isset($genre->genre_description) == null ? 'Descrizione non inserita' : $genre->genre_description }}
+                    </div>
                 </div>
 
 

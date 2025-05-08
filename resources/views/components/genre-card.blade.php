@@ -11,7 +11,7 @@
 
         <div class="mb-2 d-flex py-3 border-bottom">
             <div class="fw-bold w-50">Genere:</div>
-            <div>{{ strlen($genreName) > 50 ? substr($genreName, 0, 50) . '...' : $genreName }}</div>
+            <div class="fw-bold" style="color: {{ $genreColor }}">{{ strlen($genreName) > 50 ? substr($genreName, 0, 50) . '...' : $genreName }}</div>
         </div>
 
 

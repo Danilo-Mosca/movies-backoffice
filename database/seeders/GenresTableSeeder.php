@@ -51,6 +51,17 @@ class GenresTableSeeder extends Seeder
             ]);
             */
 
+        foreach ($genres as $genre) {
+            $newGenre = new Genre();
+
+            $newGenre->name = $genre;
+            $newGenre->color = $faker->hexColor();      // faker ritorna un colore in esadecimale compreso di "#" cancelletto
+            $newGenre->genre_description = $faker->text(250);  // Genera una stringa di testo casuale con massimo 250 caratteri
+
+            $newGenre->save();   //Salva il genere appena creato
+        }
+
+        /* ALTERNATIVA CON IL FOR:
         for ($i = 0; $i < 13; $i++) {
             $newGenre = new Genre();
 
@@ -59,5 +70,6 @@ class GenresTableSeeder extends Seeder
 
             $newGenre->save();   //Salva il genere appena creato
         }
+        */
     }
 }

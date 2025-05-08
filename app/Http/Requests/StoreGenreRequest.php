@@ -26,6 +26,7 @@ class StoreGenreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:2', 'max:255', 'unique:genres,name'],
             'genre_description' => ['nullable', 'string', 'min:10'],
+            'color' => ['required'],
         ];
     }
 
@@ -40,6 +41,8 @@ class StoreGenreRequest extends FormRequest
             'name.unique' => 'Questo nome di genere è già stato utilizzato! Devi inserirne uno univoco.',
 
             'genre_description.min' => 'La descrizione del genere deve contenere almeno :min caratteri.',
+
+            'color.required' => 'Colore del genere richiesto',
         ];
     }
 }
