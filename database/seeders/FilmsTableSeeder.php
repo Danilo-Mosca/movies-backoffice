@@ -27,7 +27,7 @@ class FilmsTableSeeder extends Seeder
             $newFilm->rating = rand(1, 5);     // rand() genera un numero casuale compreso tra 1 e 5
             $newFilm->poster = 'https://loremflickr.com/640/480/movie?random=' . $faker->unique()->numberBetween(1, 10000);   // Genera un url ad una immagine in 640x480 pixel da loremflickr a sostituzione di placeholder.com che ha chiuso
             $newFilm->nationality = substr($faker->country(), 0, 30);  // Genera una nazione casuale che abbia un numero massimo di caratteri compreso tra 0 e 30
-            $newFilm->director_id = rand(1,24);    // rand() genera un numero casuale compreso tra 1 e 100
+            $newFilm->director_id = rand(1,24);    // rand() genera un numero casuale compreso tra 1 e 24 per associare ad ogni tabella un regista della tabella directors
 
             $newFilm->save();   //Salva il film appena creato
         }

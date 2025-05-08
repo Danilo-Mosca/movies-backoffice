@@ -8,6 +8,14 @@ use Illuminate\Support\Str;     // Importo la classe "Str" perchè la richiamo n
 
 class Film extends Model
 {
+    // collego il regista (se presente nella sua tabella) al film:
+    public function director()
+    {
+        return $this->belongsTo(Director::class);
+    }
+
+
+
     /* --------------------------------------------- INSERIMENTO SLUG --------------------------------------------- */
     // Metodo specifico di Laravel che usa lo slug al posto dell'id nelle rotte
     public function getRouteKeyName()

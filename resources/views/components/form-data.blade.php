@@ -1,5 +1,6 @@
 @props([
     'model' => null,
+    'modelDirectors',
     'action',
     'method' => 'POST',
     'buttonText' => 'Salva',
@@ -11,6 +12,7 @@
     'showDuration' => false,
     'showRating' => false,
     'showNationality' => false,
+    'showDirectors' => false,
     // Props della tabella directors:
     'showDirectorFirstName' => false,
     'showDirectorLastName' => false,
@@ -161,6 +163,7 @@
         {{-- Fine Input del poster... che per ora lascio da parte --}}
 
 
+        {{-- Input text per l'inserimento della nazionalità --}}
         {{-- Verifico se $showNationality risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showNationality)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
@@ -175,18 +178,26 @@
                 @enderror
             </div>
         @endif
+        {{-- Fine input text per l'inserimento della nazionalità --}}
 
 
         {{-- Input radio per il regista --}}
-        <div class="form-control mb-3 input-wrapper">
-            <label for="director_id">Seleziona il regista (se presente): Anche questa per ora lasciarla da
-                parte</label><br>
-            {{-- @foreach ($directors as $type)
-                        <input type="radio" id="director_id{{ $director }}" name="director_id"
-                            value="{{ $i }}">
-                        <label for="director_id{{ $director }}" title="{{ $director }} stelle">Nome regista</label>
-                    @endforeach --}}
-        </div>
+        {{-- Verifico se $showDirectors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showDirectors)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="director_id">Seleziona il regista (se presente):</label>
+                <select name="director_id" id="director_id" class="input-layout">
+
+                    <option value="null" selected>-- Nessun regista selezionato --</option>
+
+                    @foreach ($modelDirectors as $director)
+                        <option value="{{ $director->id }}"
+                            {{ old('director_id', isset($model->director_id) ? $model->director_id == $director->id ? 'selected' : '' :'') }}>
+                            {{ $director->getFullNameAttribute() }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endif
         {{-- Fine Input radio per il regista --}}
 
         {{-- ------------------------------------- SEZIONE DEL FORM PER L'AGGIUNTA E LA MODIFICA DEI FILM: ------------------------------------- --}}
@@ -357,8 +368,8 @@
         @if ($showGenreDescription)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
                 <label for="genre_description">Aggiungi una descrizione:</label>
-                <textarea name="genre_description" id="genre_description" id="genre_description" rows="5" class="input-layout"
-                    placeholder="Inserisci la descrizione del film">{{ old('genre_description', isset($model->genre_description) ? $model->genre_description : '') }}</textarea>
+                <textarea name="genre_description" id="genre_description" id="genre_description" rows="5"
+                    class="input-layout" placeholder="Inserisci la descrizione del film">{{ old('genre_description', isset($model->genre_description) ? $model->genre_description : '') }}</textarea>
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                 @error('genre_description')

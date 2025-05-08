@@ -118,7 +118,7 @@
 
                     {{-- Altrimenti stampo il valore del campo: --}}
                 @else
-                    <span class="show-movies">{{ $movie->director_id }}</span>
+                    <span class="show-movies" style="font-size: 22px; font-weight: 400;">{{ $movie->director->getFullNameAttribute() }}</span>
                 @endif
             </p>
 

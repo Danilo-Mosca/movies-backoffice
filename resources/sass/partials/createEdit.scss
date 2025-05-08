@@ -19,7 +19,8 @@ textarea.input-wrapper {
 }
 
 input.input-layout,
-textarea.input-layout {
+textarea.input-layout,
+select.input-layout {
     padding: 10px 12px;
     font-size: 18px;
     border-radius: 8px;
@@ -30,20 +31,30 @@ textarea.input-layout {
 
 // Colore al hover col mouse su tutte le input box:
 input.input-layout:hover,
-textarea.input-layout:hover {
+textarea.input-layout:hover,
+
+select.input-layout:hover {
     border-color: var(--color-red-text-sidebar);
 }
 
 // Ombre e colori al focus su tutte le imput box:
 input.input-layout:focus,
-textarea.input-layout:focus {
+textarea.input-layout:focus,
+
+select.input-layout:focus {
     border-color: var(--color-red-text-sidebar);
     box-shadow: 0 0 8px rgba(0, 95, 204, 0.3);
     outline: none; // bordo no
 }
 
+// Cambio il colore di sfondo alla select che compare nella selezione del regista:
+select.input-layout option {
+    background-color: #F8FAFC;
+}
+
 // Pulsante submit:
-input[type="submit"], button {
+input[type="submit"],
+button {
     color: black;
     border: 2px solid black;
     background-color: white;
@@ -52,7 +63,8 @@ input[type="submit"], button {
     padding: 10px 30px;
 }
 
-input[type="submit"]:hover, button:hover {
+input[type="submit"]:hover,
+button:hover {
     color: white;
     border: 2px solid black;
     background-color: black;

@@ -1,4 +1,4 @@
-/* VECCHIO CODICE, USATO PRIMA DELLA VALIDAZIONE E DEI CONTROLLI DEL FORM CON LARAVEL
+/* VECCHIO CODICE, USATO PRIMA DELLA VALIDAZIONE E DEI CONTROLLI DEL FORM CON LARAVEL */
 // Quando la pagina carica(DOMContentLoaded), JavaScript imposta il max dell'input sull'anno corrente(es. 2025).
 // Se un utente scrive manualmente un valore superiore(tipo "3000"), glielo corregge subito e lo porta a 2025.
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-*/
+
 
 // Impostazioni al caricamento del DOMContentLoaded per la input number della durata del film:
 document.addEventListener('DOMContentLoaded', function () {
@@ -140,3 +140,33 @@ resetButton.addEventListener('click', () => {
     genreDescription.value = "";
 });
 /* -------------------------------- Fine codice pulsante reset del form Create/Edit Actor (generi): -------------------------------- */
+
+
+
+
+
+
+/* ----------- Codice della select per la selezione del regista dal form Create/Edit Movies (Creazione/modifica di un film): ----------- */
+document.addEventListener('DOMContentLoaded', function () {
+    const select = document.getElementById('director_id');
+
+    select.addEventListener('change', function () {
+        // Se viene selezionata una option nella select:
+        if (this.value) {
+            // Allora cambia il colore di sfondo e del testo
+            this.style.backgroundColor = '#d46770ba';   // Rosso quasi trasparente
+            this.style.color = 'black';
+        } else {
+            // ALtrimenti se seleziono il campo di default: -- Nessun regista selezionato -- riporto il colore di sfondo e del testo all'impostazione iniziale del non selezionato:
+            this.style.backgroundColor = '#F8FAFC'; // Grigio chiaro
+            this.style.color = 'black';
+        }
+    });
+
+    // Impostazioni dello stile iniziale al caricamento della pagina
+    if (!select.value) {
+        select.style.backgroundColor = 'white';
+        select.style.color = 'black';
+    }
+});
+/* ----------- Fine codice della select per la selezione del regista dal form Create/Edit Movies (Creazione/modifica di un film): ----------- */

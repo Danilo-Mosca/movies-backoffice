@@ -24,12 +24,14 @@
         {{-- Passo con le props sia il la variabile del model (se necessario, in questo caso dato che sto creando un film passo "null"), sia l'action che il metodo http, e anche le singole input type di cui ho bisogno. Infine passo anche il valore del testo del pulsante submit --}}
         <x-form-data
         :model="null"
+        :modelDirectors="$directors"
         :action="route('movies.store')" method="POST"
         :showTitle="true"
         :showDescription="true"
         :showReleaseYear="true"
         :showDuration="true"
         :showRating="true"
+        :showDirectors="true"
         :showNationality="true"
         buttonText="Salva"
         />

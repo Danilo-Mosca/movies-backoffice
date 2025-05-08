@@ -24,7 +24,7 @@ class StoreFilmRequest extends FormRequest
     public function rules(): array
     {
         $currentYear = now()->year; // Definisco la variabile $currentYear
-        
+
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
@@ -32,6 +32,7 @@ class StoreFilmRequest extends FormRequest
             'duration' => ['required', 'integer', 'min:1', 'max:255'],
             'rating' => ['nullable', 'integer', 'min:1', 'max:5'],
             'nationality' => ['nullable', 'string', 'max:30'],
+            'director_id' => ['nullable'],
         ];
     }
 
@@ -61,6 +62,8 @@ class StoreFilmRequest extends FormRequest
 
             'nationality.string' => 'La nazionalità deve essere una stringa.',
             'nationality.max' => 'La nazionalità può contenere al massimo un valore di 30 caratteri.',
+
+            'director_id.nullable' => 'Il regista non è stato selezionato.',
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFilmRequest;
+use App\Models\Director;
 use App\Models\Film;
 use Illuminate\Http\Request;
 
@@ -25,10 +26,11 @@ class FilmController extends Controller
      */
     public function create()
     {
-        // Recupero tutti i registi dalla sua tabella:
-        // $director = Director::all();
+        // Recupero tutti i registi dalla suo model:
+        $directors = Director::all();
+        // dd($directors);
 
-        return view('movies.create');
+        return view('movies.create', compact('directors'));
         // Potevo scriverlo anche così:
         // return view('movies/create', ['director' => $director]);
     }
@@ -38,6 +40,7 @@ class FilmController extends Controller
      */
     public function store(StoreFilmRequest $request)
     {
+        // dd($request->all());
         // dd($request);
         $newMovie = new Film();
         /*
@@ -61,17 +64,17 @@ class FilmController extends Controller
         $newMovie->description = $data['description'];
         $newMovie->release_year = $data['release_year'];
         $newMovie->duration = $data['duration'];
+        // $newMovie->poster = $data['poster'];         PER ORA NON UTILIZZARE
         $newMovie->rating = $data['rating'] ?? null;    // Se $data['rating'] esiste, cioè l'ho inserito nel form allora gli assegno un valore, altrimenti gli assegno null.
+        $newMovie->nationality = $data['nationality'];
+        // Gestisco il caso del regista (se non selezionato assegno al corrispettivo campo "null" altrimenti gli assegno il valore selezionato):
+        $newMovie->director_id = $data['director_id'] === 'null' ? null : $data['director_id'];
 
 
         /* ALTERNATIVA A: $newMovie->rating = $data['rating'] ?? null;
         $newMovie->rating = $request->input('rating');  // in questo modo se non ricevo un valore dal form me lo inizializza direttamente a null
         */
 
-
-        // $newMovie->poster = $data['poster'];         PER ORA NON UTILIZZARE
-        $newMovie->nationality = $data['nationality'];
-        // $newMovie->director_id = $data['director_id'];   PER ORA NON UTILIZZARE
 
         $newMovie->save();      //salvo i nuovi dati nella tabella films del database movies_db
 
@@ -87,6 +90,12 @@ class FilmController extends Controller
      */
     public function show(Film $movie)
     {
+
+        // Grazie ad eloquent così in questo modo stampo la proprietà directors:
+        // dd($movie->director);
+        // Oppure richiamo il metodo getFullNameAttribute() che restituisce nome e cognome insieme:
+        // dd($movie->director->getFullNameAttribute());
+
 
         // Se ho come argomento la stringa dello slug: public function show(string $slug)
         // Allora posso ricavare quel singolo elemento con i seguenti modi:
@@ -113,7 +122,12 @@ class FilmController extends Controller
         // $movie = Film::where("slug", $slug)->get();
         // dd($movie);
 
-        return view("movies.edit", compact('movie'));
+        
+        // Recupero tutti i registi dalla suo model:
+        $directors = Director::all();
+        // dd($directors);
+
+        return view("movies.edit", compact('movie', 'directors'));
         // Se invece non avessi voluto usare la funzione compact avrei dovuto passare i parametri così:
         // return view('movies.edit', ['movie' => $movie]);
     }
@@ -149,10 +163,14 @@ class FilmController extends Controller
         $movie->release_year = $data['release_year'];
         $movie->duration = $data['duration'];
         $movie->rating = $data['rating'] ?? null;       // o anche l'equivalente:   $movie->rating = $data['rating'];
+        // $movie->poster = $data['poster'];         PER ORA NON UTILIZZARE
         $movie->nationality = $data['nationality'];
+        // Gestisco il caso del regista (se non selezionato assegno al corrispettivo campo "null" altrimenti gli assegno il valore selezionato):
+        $movie->director_id = $data['director_id'] === 'null' ? null : $data['director_id'];
+
         $movie->update();     //aggiorno il film nel database
 
-
+        
         // Reindirizzo l'utente alla pagina show per vedere il film che ha modificato ($movie->id è equivalente a $movie))
         return redirect()->route("movies.show", $movie)->with('success', 'Film modificato con successo');
     }

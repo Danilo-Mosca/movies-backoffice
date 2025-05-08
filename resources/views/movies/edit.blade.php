@@ -27,6 +27,7 @@
         {{-- Passo con le props sia il la variabile del model (se necessario, in questo caso passo $movie), sia l'action che il metodo http, e anche le singole input type di cui ho bisogno --}}
         <x-form-data
         :model="$movie"
+        :modelDirectors="$directors"
         :action="route('movies.update', $movie->slug)" method="PUT"
         :showTitle="true"
         :showDescription="true"
@@ -34,6 +35,7 @@
         :showDuration="true"
         :showRating="true"
         :showNationality="true"
+        :showDirectors="true"
         buttonText="Salva"
         />
         {{-- ------------------- Fine sezione form aggiungi un film: ------------------- --}}
