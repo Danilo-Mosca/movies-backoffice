@@ -88,7 +88,7 @@
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block" id="menu-color">
                 <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                    <i class="fs-4 bi bi-camera-reels"></i> <span
+                    <i class="fs-4 bi bi-person-video2"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle attori">Attori</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                     <li class="w-100">
@@ -106,7 +106,7 @@
             <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile attori px-sm-0 px-2" id="dropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fs-5 bi bi-camera-reels"></i><span class="ms-1 d-none d-sm-inline">Attori</span>
+                    <i class="fs-5 bi bi-person-video2"></i><span class="ms-1 d-none d-sm-inline">Attori</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="{{ route('actors.index') }}">Lista degli attori</a></li>
@@ -122,7 +122,7 @@
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block" id="menu-color">
                 <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                    <i class="fs-4 bi bi-camera-reels"></i> <span
+                    <i class="fs-4 bi bi-tags"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle generi">Generi</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                     <li class="w-100">
@@ -140,7 +140,7 @@
             <li class="dropdown d-block d-sm-none" id="menu-color-mobile">
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile generi px-sm-0 px-2" id="dropdown"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fs-5 bi bi-camera-reels"></i><span class="ms-1 d-none d-sm-inline">Generi</span>
+                    <i class="fs-5 bi bi-tags"></i><span class="ms-1 d-none d-sm-inline">Generi</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="{{ route('genres.index') }}">Lista dei generi</a></li>
