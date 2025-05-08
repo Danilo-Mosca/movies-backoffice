@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             DirectorsTableSeeder::class,
-            FilmsTableSeeder::class,
             ActorsTableSeeder::class,
-            GenresTableSeeder::class
+            GenresTableSeeder::class,
+            FilmsTableSeeder::class
         ]);
     }
 }

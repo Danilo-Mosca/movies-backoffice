@@ -14,6 +14,19 @@ class Film extends Model
         return $this->belongsTo(Director::class);
     }
 
+    // collego la tabella genres con la tabella films con una relazione many to many:
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
+
+    // collego la tabella actors con la tabella films con una relazione many to many:
+    public function actors()
+    {
+        return $this->belongsToMany(Actor::class);
+    }
+
+
 
 
     /* --------------------------------------------- INSERIMENTO SLUG --------------------------------------------- */
