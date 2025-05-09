@@ -1,6 +1,8 @@
 @props([
     'model' => null,
     'modelDirectors',
+    'modelGenres',
+    'modelActors',
     'action',
     'method' => 'POST',
     'buttonText' => 'Salva',
@@ -8,8 +10,12 @@
     // Props della tabella films:
     'showTitle' => false,
     'showDescription' => false,
+    'showGenres' => false,
+    'showUpdateGenres' => false,
     'showReleaseYear' => false,
     'showDuration' => false,
+    'showActors' => false,
+    'showUpdateActors' => false,
     'showRating' => false,
     'showNationality' => false,
     'showDirectors' => false,
@@ -88,6 +94,7 @@
             </div>
         @endif
 
+        {{-- Input textarea descrizione film --}}
         {{-- Verifico se $showDescription risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showDescription)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
@@ -101,6 +108,67 @@
                 @enderror
             </div>
         @endif
+        {{-- Fine input textarea descrizione film --}}
+
+
+
+
+
+        {{-- ------------------------------------------ SEZIONE INSERIMENTO E MODIFICA GENERI ------------------------------------------ --}}
+        {{-- Input checkbox aggiungi attori film --}}
+        {{-- Verifico se $showActors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showActors)
+            <div class="form-control">
+                <label class="mb-3">Seleziona il/i generi per il film (se presente nella lista):</label>
+                <div class=" mb-3 d-flex flex-wrap input-layout">
+                    @foreach ($modelGenres as $genre)
+                        <div class="me-3">
+                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
+                                id="genre-{{ $genre->id }}">
+                            <label for="genre-{{ $genre->id }}">{{ $genre->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('genres')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input checkbox aggiungi attori film --}}
+
+
+        {{-- Input checkbox modifica attori film --}}
+        {{-- Verifico se $showUpdateActors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showUpdateActors)
+            <div class="form-control">
+                <label class="mb-3">Seleziona il/i generi per il film (se presente nella lista):</label>
+                <div class=" mb-3 d-flex flex-wrap input-layout">
+                    @foreach ($modelGenres as $genre)
+                        <div class="me-3">
+                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
+                                id="genre-{{ $genre->id }}"
+                                {{ $model->genres->contains($genre->id) ? 'checked' : '' }}>
+                            {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
+                            <label for="genre-{{ $genre->id }}">{{ $genre->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('genres')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input checkbox modifica attori film --}}
+        {{-- ------------------------------------------ FINE SEZIONE INSERIMENTO E MODIFICA GENERI ------------------------------------------ --}}
+        
+
+
+
+
 
         {{-- Input number anno di rilascio film --}}
         {{-- Verifico se $showReleaseYear risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
@@ -136,6 +204,65 @@
             </div>
         @endif
         {{-- Fine input number durata film --}}
+
+
+
+
+
+        {{-- ------------------------------------------ SEZIONE INSERIMENTO E MODIFICA ATTORI ------------------------------------------ --}}
+        {{-- Input checkbox aggiungi genere film --}}
+        {{-- Verifico se $showGenres risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showGenres)
+            <div class="form-control">
+                <label class="mb-3">Selezioni gli attori presenti nel film (se il lista):</label>
+                <div class=" mb-3 d-flex flex-wrap input-layout">
+                    @foreach ($modelActors as $actor)
+                        <div class="me-3">
+                            <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
+                                id="actor-{{ $actor->id }}">
+                            <label for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('actors')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input checkbox aggiungi genere film --}}
+
+
+        {{-- Input checkbox modifica genere film --}}
+        {{-- Verifico se $showUpdateGenres risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showUpdateGenres)
+            <div class="form-control">
+                <label class="mb-3">Selezioni gli attori presenti nel film (se il lista):</label>
+                <div class=" mb-3 d-flex flex-wrap input-layout">
+                    @foreach ($modelActors as $actor)
+                        <div class="me-3">
+                            <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
+                                id="actor-{{ $actor->id }}"
+                                {{ $model->actors->contains($actor->id) ? 'checked' : '' }}>
+                            {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
+                            <label for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('actors')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input checkbox modifica genere film --}}
+        {{-- ------------------------------------------FINE SEZIONE INSERIMENTO E MODIFICA ATTORI ------------------------------------------ --}}
+
+
+
+        
 
 
         {{-- Input radio per i rating --}}
@@ -193,7 +320,7 @@
 
                     @foreach ($modelDirectors as $director)
                         <option value="{{ $director->id }}"
-                            {{ old('director_id', isset($model->director_id) ? $model->director_id == $director->id ? 'selected' : '' :'') }}>
+                            {{ old('director_id', isset($model->director_id) ? ($model->director_id == $director->id ? 'selected' : '') : '') }}>
                             {{ $director->getFullNameAttribute() }}</option>
                     @endforeach
                 </select>
@@ -371,7 +498,8 @@
             <div class="form-control mb-3 d-flex align-items-center column-gap-3 input-wrapper">
                 <label for="color">* Scegli un colore da associare al genere:</label>
                 {{-- Se nella pagina create, quando si vuole creare un nuovo genre, non viene specificato nessun colore, allora quello di default sarà #e66465 ovvero un rosa pallido: --}}
-                <input type="color" name="color" id="color" value="{{ old('color', isset($model->color) ? $model->color : '#e66465') }}">
+                <input type="color" name="color" id="color"
+                    value="{{ old('color', isset($model->color) ? $model->color : '#e66465') }}">
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                 @error('color')

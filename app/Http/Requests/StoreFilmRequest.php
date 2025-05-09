@@ -33,6 +33,14 @@ class StoreFilmRequest extends FormRequest
             'rating' => ['nullable', 'integer', 'min:1', 'max:5'],
             'nationality' => ['nullable', 'string', 'max:30'],
             'director_id' => ['nullable'],
+
+            // Generi opzionali
+            'genres' => ['nullable', 'array'],  // il campo 'array' specifica che se il campo genres è presente, deve essere necessariamente un array e non altro (es. stringa, oggetto o altro), altrimenti restituirà errore
+            'genres.*' => ['exists:genres,id'], // regola applicata a ciascun elemento dell’array genres[] (il simbolo * è un wildcard): Controlla che ogni elemento dell’array genres sia un valore che esiste nella colonna id della tabella genres. (Se l'id non esiste es. 'genres' => [1, 2, 99] se l’ID 99 non esiste nella tabella genres, Laravel lancerà un errore di validazione specifico per il genres con indice 2)
+
+            // Attori opzionali
+            'actors' => ['nullable', 'array'],  // come sopra
+            'actors.*' => ['exists:actors,id'], // come sopra
         ];
     }
 
@@ -64,6 +72,12 @@ class StoreFilmRequest extends FormRequest
             'nationality.max' => 'La nazionalità può contenere al massimo un valore di 30 caratteri.',
 
             'director_id.nullable' => 'Il regista non è stato selezionato.',
+
+            'genres.array' => 'Il formato dei generi non è valido.',
+            'genres.*.exists' => 'Uno dei generi selezionati non è valido.',
+
+            'actors.array' => 'Il formato degli attori non è valido.',
+            'actors.*.exists' => 'Uno degli attori selezionati non è valido.',
         ];
     }
 }

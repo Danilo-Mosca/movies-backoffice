@@ -101,6 +101,11 @@ button.btn-modifica:hover {
 button#delete {
     color: var(--color-red-text-sidebar);
 }
+button#delete:hover {
+    background-color: var(--color-red-text-sidebar);
+    color: white;
+    border-color: var(--color-red-text-sidebar);
+}
 
 button:hover {
     color: white;

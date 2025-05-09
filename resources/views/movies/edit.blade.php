@@ -28,14 +28,18 @@
         <x-form-data
         :model="$movie"
         :modelDirectors="$directors"
+        :modelGenres="$genres"
+        :modelActors="$actors"
         :action="route('movies.update', $movie->slug)" method="PUT"
         :showTitle="true"
         :showDescription="true"
+        :showUpdateGenres="true"
         :showReleaseYear="true"
         :showDuration="true"
+        :showUpdateActors="true"
         :showRating="true"
-        :showNationality="true"
         :showDirectors="true"
+        :showNationality="true"
         buttonText="Salva"
         />
         {{-- ------------------- Fine sezione form aggiungi un film: ------------------- --}}

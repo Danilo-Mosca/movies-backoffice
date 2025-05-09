@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFilmRequest;
+use App\Models\Actor;
 use App\Models\Director;
 use App\Models\Film;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
@@ -29,8 +31,12 @@ class FilmController extends Controller
         // Recupero tutti i registi dalla suo model:
         $directors = Director::all();
         // dd($directors);
+        // prendo i generi
+        $genres = Genre::all();
+        // prendo gli attori
+        $actors = Actor::all();
 
-        return view('movies.create', compact('directors'));
+        return view('movies.create', compact('directors', 'genres', 'actors'));
         // Potevo scriverlo anche così:
         // return view('movies/create', ['director' => $director]);
     }
@@ -80,6 +86,22 @@ class FilmController extends Controller
 
         /* DOPO AVER SALVATO IL PROGETTO, E SOLTANTO DOPO PERCHE' A NOI CI SERVE IL DATO DEL FILM SALVATO */
 
+        // PRIMA CONTROLLO SE E' STATO EFFETTIVAMENTE PASSATO QUALCHE VALORE DALLA TABELLA GENRES E CHE QUINDI L'ARRAY ESSITA:
+        // Avrei potuto inserire anche la seguente condizione: if (isset($data['genres']))
+        if ($request->has('genres')) {
+            // se l'array esiste, e quindi stiamo ricevendo i generi, salvo i dati nella tabella Ponte che ha relazione molti a molti tra le tabelle films e genres:
+            $newMovie->genres()->attach($data['genres']);   //richiamo il metodo genres() creato nel Model di Project che crea la relazione molti a molti e con il metodo attach() gli passo l'array dei genres ricevuti dalla request
+        }
+        // COME SOPRA PRIMA CONTROLLO SE E' STATO EFFETTIVAMENTE PASSATO QUALCHE VALORE DALLA TABELLA ACTORS E CHE QUINDI L'ARRAY ESSITA:
+        // Avrei potuto inserire anche la seguente condizione: if (isset($data['actors']))
+        if ($request->has('actors')) {
+            $newMovie->actors()->attach($data['actors']);
+        }
+
+
+
+
+
         // Reindirizzo l'utente alla pagina show per vedere il film che ha salvato ($newMovie->id è equivalente a $newMovie))
         // Oltre a reindirizzarli nella show, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
         return redirect()->route("movies.show", $newMovie)->with('success', 'Film salvato con successo');
@@ -122,12 +144,16 @@ class FilmController extends Controller
         // $movie = Film::where("slug", $slug)->get();
         // dd($movie);
 
-        
+
         // Recupero tutti i registi dalla suo model:
         $directors = Director::all();
         // dd($directors);
+        // prendo i generi
+        $genres = Genre::all();
+        // prendo gli attori
+        $actors = Actor::all();
 
-        return view("movies.edit", compact('movie', 'directors'));
+        return view("movies.edit", compact('movie', 'directors', 'genres', 'actors'));
         // Se invece non avessi voluto usare la funzione compact avrei dovuto passare i parametri così:
         // return view('movies.edit', ['movie' => $movie]);
     }
@@ -170,7 +196,7 @@ class FilmController extends Controller
 
         $movie->update();     //aggiorno il film nel database
 
-        
+
         // Reindirizzo l'utente alla pagina show per vedere il film che ha modificato ($movie->id è equivalente a $movie))
         return redirect()->route("movies.show", $movie)->with('success', 'Film modificato con successo');
     }
