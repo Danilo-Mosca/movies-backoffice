@@ -128,6 +128,13 @@ class FilmController extends Controller
         // $movie = Film::where('slug', $slug)->first();        // ma in questo caso non verrebbe lanciato l'errore 404 se non lo trova
 
         // dd($movie);
+
+
+
+
+        // dd($movie->genres);     //mostro i generi per quel film
+        // dd($movie->actors);     //mostro gli attori per quel film
+
         // Passo il film alla view movies.show:
         return view('movies.show', compact('movie'));
     }

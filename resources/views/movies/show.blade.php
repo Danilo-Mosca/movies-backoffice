@@ -51,86 +51,203 @@
             </h3>
 
             {{-- Con i tag {!! !!} al posto dei {{ }} inietto codice HTML non-escapato. Usando {!! !!} sto dicendo a Laravel: "Fidati di questo contenuto, non filtrarlo" .Soluzione valida ma poco sicura: --}}
-            <p class="pb-3">
-                <i class="fa-regular fa-calendar-days" style="color: black;"></i>
-                {!! '<strong style="font-size: 22px; color: black;">Anno di uscita: </strong>' .
-                    '<span class="show-movies">' .
-                    $movie->release_year .
-                    '</span>' !!}
-            </p>
+            <div class="pb-3 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-regular fa-calendar-days" style="color: black;"></i>
+                    <span style="font-size: 22px; font-weight: 400; color: black;">Anno di uscita:</span>
+                </div>
 
-            <p class="pb-3">
-                <i class="fa-solid fa-clock" style="color: #000000;"></i>
-                <span style="font-size: 22px; font-weight: 400; color: black;">Durata:</span>
-                <span class="show-movies">{{ $movie->duration }}</span>
-            </p>
+                <div class="col-12 col-lg-9">
+                    <span class="show-movies"
+                        style="color: #DB2B39; font-size: 22px; font-weight: 400;">{{ $movie->release_year }}</span>
+                </div>
+            </div>
+
+
+            <div class="pb-4 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-solid fa-clock" style="color: #000000;"></i>
+                    <span style="font-size: 22px; font-weight: 400; color: black;">Durata:</span>
+                </div>
+
+                <div class="col-12 col-lg-9">
+                    <span class="show-movies"
+                        style="color: #DB2B39; font-size: 22px; font-weight: 400;">{{ $movie->duration }}</span>
+                </div>
+            </div>
+
+
+            {{-- Sezione genere del film --}}
+            <div class="pb-4 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-solid fa-location-dot" style="color: black;"></i>
+                    <span style="font-size: 22px; font-weight: 400; color: black;">Genere:</span>
+                </div>
+
+                <div class="col-12 col-lg-9">
+                    {{-- Prima controllo se il campo facoltativo genres è stato inserito oppure risulta vuoto: 
+                PER FARE QUESTO USO IL forelse() che è un ciclo che se è vuoto, cioè non contiene nessun elemento allora mi restituisce un valore nell'@empty altrimenti me lo esegue normalmente con le istruzioni al suo interno: --}}
+                    @forelse ($movie->genres as $genre)
+                        <span class="badge me-2 mb-2"
+                            style="font-size: 22px; font-weight: 400; color: black; background-color: {{ $genre->color }}">{{ $genre->name }}</span>
+                        {{-- Potevo inserirlo anche così: {{ $genre['color'] }} e {{ $genre['name'] }} --}}
+
+                        {{-- Se l'array risulta vuoto allora stampo il seguente messaggio: --}}
+                    @empty
+                        <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">&nbsp;Genere
+                            non
+                            inserito</span>
+                    @endforelse
+                    {{-- Al posto del @forelse avrei potuto inserire tutto il blocco nella seguente condizione:
+                @if (count($movie->genres) > 0)
+                    @foreach    ... istruzioni da eseguire .... @endforeach
+                @endif --}}
+                </div>
+            </div>
+            {{-- Fine sezione genere del film --}}
+
 
             {{-- Sezione stelle per voto inserito --}}
-            <div class="pb-4" style="font-size: 22px; font-weight: 400; color: black;">
-                <i class="fa-solid fa-star" style="font-size: 20px;"></i> Voto:
+            <div class="pb-4 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-solid fa-star" style="font-size: 20px;"></i>
+                    <span class="show-movies" style="font-size: 22px; font-weight: 400; color: black;">Voto:</span>
+                </div>
 
-                {{-- Prima controllo se il campo facoltativo rating è stato inserito oppure risulta null: --}}
-                @if ($movie->rating == null)
-                    {{-- Se è null allora stampo la stringa "campo non inserito" --}}
-                    <span class="show-movies" style="color: #DB2B39;">Campo non inserito</span>
+                <div class="col-12 col-lg-9">
+                    {{-- Prima controllo se il campo facoltativo rating è stato inserito oppure risulta null: --}}
+                    @if ($movie->rating == null)
+                        {{-- Se è null allora stampo la stringa "campo non inserito" --}}
+                        <span class="show-movies" style="color: #DB2B39;">Campo non inserito</span>
 
-                    {{-- Altrimenti stampo le stelle con il voto: --}}
-                @else
-                    <!-- Ciclo che controlla il voto inserito e stampa a schermo le stelle piene, mezze o vuote in base ad esso -->
-                    @for ($i = 1; $i <= 5; $i++)
-                        @if ($movie->rating >= $i)
-                            <i class="fas fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella piena -->
-                        @elseif ($movie->rating >= $i - 0.5)
-                            <i class="fas fa-star-half-alt no-space-rating" style="color: #DB2B39;"></i>
-                            <!-- Mezza stella -->
-                        @else
-                            <i class="far fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella vuota -->
-                        @endif
-                    @endfor
-                    <span class="ms-2" style="color: #DB2B39;">({{ $movie->rating }})</span>
-                @endif
+                        {{-- Altrimenti stampo le stelle con il voto: --}}
+                    @else
+                        <!-- Ciclo che controlla il voto inserito e stampa a schermo le stelle piene, mezze o vuote in base ad esso -->
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($movie->rating >= $i)
+                                <i class="fas fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella piena -->
+                            @elseif ($movie->rating >= $i - 0.5)
+                                <i class="fas fa-star-half-alt no-space-rating" style="color: #DB2B39;"></i>
+                                <!-- Mezza stella -->
+                            @else
+                                <i class="far fa-star no-space-rating" style="color: #DB2B39;"></i> <!-- Stella vuota -->
+                            @endif
+                        @endfor
+                        <span class="ms-2 show-movies" style="color: #DB2B39;">({{ $movie->rating }})</span>
+                    @endif
+                </div>
             </div>
             {{-- Fine sezione stelle per voto inserito --}}
 
-            <p class="pb-3">
-                <i class="fa-solid fa-location-dot" style="color: black;"></i>
-                <span style="font-size: 22px; font-weight: 400; color: black;">Nazionalità:</span>
-                {{-- Prima controllo se il campo facoltativo nationality è stato inserito oppure risulta null: --}}
-                @if ($movie->nationality == null)
-                    {{-- Se è null allora stampo la stringa "Nazionalità non inserita" --}}
-                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Nazionalità non
-                        inserita</span>
+            <div class="pb-3 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-solid fa-location-dot" style="color: black;"></i>
+                    <span style="font-size: 22px; font-weight: 400; color: black;">Nazionalità:</span>
+                </div>
 
-                    {{-- Altrimenti stampo il valore del campo: --}}
-                @else
-                    <span class="show-movies" style="font-size: 22px; font-weight: 400;">{{ $movie->nationality }}</span>
-                @endif
-            </p>
+                <div class="col-12 col-lg-9">
+                    {{-- Prima controllo se il campo facoltativo nationality è stato inserito oppure risulta null: --}}
+                    @if ($movie->nationality == null)
+                        {{-- Se è null allora stampo la stringa "Nazionalità non inserita" --}}
+                        <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Nazionalità non
+                            inserita</span>
 
-            <p class="pb-3">
-                <i class="fa-solid fa-video" style="color: black;"></i>
-                <span style="font-size: 22px; font-weight: 400; color: black;">Regista:</span>
-                {{-- Prima controllo se il campo facoltativo director_id (regista) è stato inserito oppure risulta null: --}}
-                @if ($movie->director_id == null)
-                    {{-- Se è null allora stampo la stringa "Regista non inserito" --}}
-                    <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Regista non
-                        inserito</span>
+                        {{-- Altrimenti stampo il valore del campo: --}}
+                    @else
+                        <span class="show-movies"
+                            style="font-size: 22px; font-weight: 400;">{{ $movie->nationality }}</span>
+                    @endif
+                </div>
+            </div>
 
-                    {{-- Altrimenti stampo il valore del campo: --}}
-                @else
-                    <span class="show-movies" style="font-size: 22px; font-weight: 400;">{{ $movie->director->getFullNameAttribute() }}</span>
-                @endif
-            </p>
+            <div class="pb-3 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-solid fa-video" style="color: black;"></i>
+                    <span style="font-size: 22px; font-weight: 400; color: black;">Regista:</span>
+                </div>
 
-            <h3><i class="fa-solid fa-pencil"></i> Descrizione:</h3>
-            <p>{{ $movie->description }}</p>
+                <div class="col-12 col-lg-9">
+                    {{-- Prima controllo se il campo facoltativo director_id (regista) è stato inserito oppure risulta null: --}}
+                    @if ($movie->director_id == null)
+                        {{-- Se è null allora stampo la stringa "Regista non inserito" --}}
+                        <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Regista non
+                            inserito</span>
+
+                        {{-- Altrimenti stampo il valore del campo: --}}
+                    @else
+                        <span class="show-movies"
+                            style="font-size: 22px; font-weight: 400;">{{ $movie->director->getFullNameAttribute() }}</span>
+                    @endif
+                </div>
+            </div>
+
+
+            {{-- Sezione attori presenti nel film --}}
+            <div class="pb-2 row">
+                <div class="col-12 col-lg-3">
+                    <i class="fa-solid fa-location-dot" style="color: black;"></i>
+                    <span style="font-size: 22px; font-weight: 400; color: black;">Attori:</span>
+                </div>
+
+                <div class="col-12 col-lg-9">
+                    {{-- Prima controllo se il campo facoltativo actors è stato inserito oppure risulta vuoto: 
+                    PER FARE QUESTO USO IL forelse() che è un ciclo che se è vuoto, cioè non contiene nessun elemento allora mi restituisce un valore nell'@empty altrimenti me lo esegue normalmente con le istruzioni al suo interno: --}}
+                    @php
+                        $i = 0;
+                    @endphp
+                    @forelse ($movie->actors as $actor)
+                        @php
+                            $i++;
+                        @endphp
+
+                        @if (count($movie->actors) > $i)
+                            <span class="show-movies"
+                                style="font-size: 22px; font-weight: 400;">{{ $actor->getFullNameAttribute() }} -</span>
+                            {{-- Potevo inserirlo anche così: {{ $actor['color'] }} e {{ $actor['name'] }} --}}
+                        @else
+                            <span class="show-movies"
+                                style="font-size: 22px; font-weight: 400;">{{ $actor->getFullNameAttribute() }}</span>
+                            {{-- Potevo inserirlo anche così: {{ $actor['color'] }} e {{ $actor['name'] }} --}}
+                        @endif
+
+
+                        {{-- Se l'array risulta vuoto allora stampo il seguente messaggio: --}}
+                    @empty
+                        <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Attori non
+                            inseriti</span>
+                    @endforelse
+                    {{-- Al posto del @forelse avrei potuto inserire tutto il blocco nella seguente condizione:
+                    @if (count($movie->actors) > 0)
+                    @foreach    ... istruzioni da eseguire .... @endforeach
+                    @endif --}}
+                </div>
+            </div>
+            {{-- Fine sezione attori presenti nel film --}}
+
+
+            <div style="font-size: 22px; font-weight: 400; color: black;"><i class="fa-solid fa-pencil"></i> Descrizione:
+            </div>
+            {{-- Prima controllo se il campo facoltativo description è stato inserito oppure risulta null: --}}
+            @if ($movie->director_id == null)
+                {{-- Se è null allora stampo la stringa "Descrizione non inserita" --}}
+                <span class="show-movies" style="color: #DB2B39; font-size: 22px; font-weight: 400;">Descrizione non
+                    inserita</span>
+                {{-- Altrimenti stampo il valore del campo: --}}
+            @else
+                <p>{{ $movie->description }}</p>
+            @endif
+
+
 
             <hr class="mt-5" />
         </div>
-        {{-- ------------------- Fine sezione dettagli del film: ------------------- --}}
+
+        <hr class="mt-5" />
+    </div>
+    {{-- ------------------- Fine sezione dettagli del film: ------------------- --}}
 
 
-        <p class="d-flex justify-content-center"><i class="fa fa-film" style="font-size: 20px; color: black;"></i></p>
+    <p class="d-flex justify-content-center"><i class="fa fa-film" style="font-size: 20px; color: black;"></i></p>
     </div>
 
 @endsection

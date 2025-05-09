@@ -60,10 +60,12 @@
                 </div>
 
 
-                <div class="mb-2 d-flex py-1 border-bottom">
-                    <i class="fa-solid fa-file-video me-3" style="max-width: 18px;"></i>
-                    <div class="fw-bold w-50">Descrizione:</div>
-                    <div class="fw-bolder" style="color: #DB2B39;">
+                <div class="mb-2 py-1 border-bottom row">
+                    <div class="col-12 col-lg-3">
+                        <i class="fa-solid fa-file-video me-3" style="max-width: 18px;"></i>
+                        <span class="fw-bold w-50">Descrizione:&nbsp;</span>
+                    </div>
+                    <div class="fw-bolder col-12 col-lg-9" style="color: #DB2B39;">
                         {{ isset($genre->genre_description) == null ? 'Descrizione non inserita' : $genre->genre_description }}
                     </div>
                 </div>
