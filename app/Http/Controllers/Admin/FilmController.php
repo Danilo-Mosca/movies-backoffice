@@ -204,6 +204,34 @@ class FilmController extends Controller
         $movie->update();     //aggiorno il film nel database
 
 
+
+
+        /* COME PER IL CREATE NELLO STORE, DOPO AVER AGGIORNATO IL PROGETTO, E SOLTANTO DOPO PERCHE' A NOI CI SERVE IL DATO DEL FILM SALVATO */
+
+        // SINCRONIZZIAMO I GENERI DELLA TABELLA PIVOT:
+        // PRIMA CONTROLLO SE E' STATO EFFETTIVAMENTE PASSATO QUALCHE VALORE DALLA TABELLA GENRES E CHE QUINDI L'ARRAY ESSITA:
+        // Avrei potuto inserire anche la seguente condizione: if (isset($data['genres']))
+        if ($request->has('genres')) {
+            // se l'array esiste, e quindi stiamo ricevendo i generi, allora sincornizziamo i genres della tabella pivot:
+            $movie->genres()->sync($data['genres']);
+        }else {
+            // se non riceviamo dei valori di genres, allora eliminiamo tutti quelli collegati al movie attuale dalla tabella ponte con il metodo detach():
+            $movie->genres()->detach();
+        }
+        // SINCRONIZZIAMO GLI ATTORI DELLA TABELLA PIVOT:
+        // COME SOPRA PRIMA CONTROLLO SE E' STATO EFFETTIVAMENTE PASSATO QUALCHE VALORE DALLA TABELLA ACTORS E CHE QUINDI L'ARRAY ESSITA:
+        // Avrei potuto inserire anche la seguente condizione: if (isset($data['actors']))
+        if ($request->has('actors')) {
+            $movie->actors()->sync($data['actors']);
+        } else {
+            // se non riceviamo dei valori di actors, allora eliminiamo tutti quelli collegati al movie attuale dalla tabella ponte con il metodo detach():
+            $movie->actors()->detach();
+        }
+
+
+
+
+
         // Reindirizzo l'utente alla pagina show per vedere il film che ha modificato ($movie->id è equivalente a $movie))
         return redirect()->route("movies.show", $movie)->with('success', 'Film modificato con successo');
     }
@@ -214,7 +242,17 @@ class FilmController extends Controller
     public function destroy(Film $movie)
     {
         // dd($movie);
-        $movie->delete();   // cancello il film
+
+        //PRIMA DI TUTTO eliminiamo tutte i GENRE (se presenti) collegati al film attuale (che vogliamo eliminare) dalla tabella ponte, in caso contrario riceveremmo un errore e non riusciremmo a cancellare il record, perchè ha le key associate alla tabella ponte "film_genre" e ho bisogno di eliminare prima quelle con il metodo detach():
+        $movie->genres()->detach();    // eliminiamo tutti i valori di genres dalla tabella ponte collegati al film da eliminare
+        //COME SOPRA: PRIMA DI TUTTO eliminiamo tutte gli ACTOR (se presenti) collegati al film attuale (che vogliamo eliminare) dalla tabella ponte, in caso contrario riceveremmo un errore e non riusciremmo a cancellare il record, perchè ha le key associate alla tabella ponte "actor_film" e ho bisogno di eliminare prima quelle con il metodo detach():
+        $movie->actors()->detach();    // eliminiamo tutti i valori di actors dalla tabella ponte collegati al film da eliminare
+        
+        
+        
+        
+        
+        $movie->delete();   // infine, una volta cancellati i generi e gli attori associati al film (sempre se ne ho qualcuno associato) cancello il film
 
         // Reindirizzo l'utente alla pagina index che restituisce tutti i $movie contenuti nella tabella films. Oltre a reindirizzarli nella index, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato
         return redirect()->route('movies.index')->with('success', 'Film cancellato con successo');
