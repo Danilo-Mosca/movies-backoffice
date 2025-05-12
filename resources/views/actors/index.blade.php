@@ -31,7 +31,7 @@
 
     {{-- ---------- Sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene cancellato con successo ----------  --}}
     @if (session('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-3">
             {{ session('success') }}
         </div>
     @endif

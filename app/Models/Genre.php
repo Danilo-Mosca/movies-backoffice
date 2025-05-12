@@ -11,4 +11,13 @@ class Genre extends Model
     {
         return $this->belongsToMany(Film::class);
     }
+
+
+
+    // Scope per il filtro di ricerca
+    public function scopeFiltra($query, $filtri)
+    {
+        return $query
+            ->when($filtri['name'] ?? null, fn($q, $val) => $q->where('name', 'like', "%$val%"));
+    }
 }

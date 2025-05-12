@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FilterFilmRequest;
 use App\Http\Requests\StoreFilmRequest;
 use App\Models\Actor;
 use App\Models\Director;
@@ -15,10 +16,13 @@ class FilmController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(FilterFilmRequest $request)
     {
         // Prendo tutti i film:
-        $movies = Film::all();
+        // $movies = Film::all();              // invece di questa istruzione che prende tutti i film e li stampa insieme
+        // $movies = Film::paginate(12);     // uso questa istruzione che visualizza una paginazione con 12 elementi per volta
+        // Ma non basta solo l'istruzione di sopra, devo richiamare per forza lo scope "scopeFiltra" del model Film per poter filtrare i risultati se clicco sul pulsante di ricerca:
+        $movies = Film::filtra($request->validated())->paginate(12);
 
         return view('movies.index', compact('movies'));    // Uso il metodo statico all() dal Model Film per restituire a $movies tutti i dati contenuti nella tabella films del database movies_db
     }
@@ -214,7 +218,7 @@ class FilmController extends Controller
         if ($request->has('genres')) {
             // se l'array esiste, e quindi stiamo ricevendo i generi, allora sincornizziamo i genres della tabella pivot:
             $movie->genres()->sync($data['genres']);
-        }else {
+        } else {
             // se non riceviamo dei valori di genres, allora eliminiamo tutti quelli collegati al movie attuale dalla tabella ponte con il metodo detach():
             $movie->genres()->detach();
         }
@@ -247,11 +251,11 @@ class FilmController extends Controller
         $movie->genres()->detach();    // eliminiamo tutti i valori di genres dalla tabella ponte collegati al film da eliminare
         //COME SOPRA: PRIMA DI TUTTO eliminiamo tutte gli ACTOR (se presenti) collegati al film attuale (che vogliamo eliminare) dalla tabella ponte, in caso contrario riceveremmo un errore e non riusciremmo a cancellare il record, perchè ha le key associate alla tabella ponte "actor_film" e ho bisogno di eliminare prima quelle con il metodo detach():
         $movie->actors()->detach();    // eliminiamo tutti i valori di actors dalla tabella ponte collegati al film da eliminare
-        
-        
-        
-        
-        
+
+
+
+
+
         $movie->delete();   // infine, una volta cancellati i generi e gli attori associati al film (sempre se ne ho qualcuno associato) cancello il film
 
         // Reindirizzo l'utente alla pagina index che restituisce tutti i $movie contenuti nella tabella films. Oltre a reindirizzarli nella index, tramite il metodo width() passo anche un dato alla sessione temporanea di tipo "success" con un messaggio "flash" specificato

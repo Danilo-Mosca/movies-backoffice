@@ -28,6 +28,16 @@ class Film extends Model
 
 
 
+    // Scope per il filtro di ricerca
+    public function scopeFiltra($query, $filtri)
+    {
+        return $query
+            ->when($filtri['title'] ?? null, fn($q, $val) => $q->where('title', 'like', "%$val%"));
+    }
+
+
+
+
 
     /* --------------------------------------------- INSERIMENTO SLUG --------------------------------------------- */
     // Metodo specifico di Laravel che usa lo slug al posto dell'id nelle rotte

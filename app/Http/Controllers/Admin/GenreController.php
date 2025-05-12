@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FilterGenreRequest;
 use App\Http\Requests\StoreGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
 use App\Models\Genre;
@@ -13,10 +14,14 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(FilterGenreRequest $request)
     {
         // Prendo tutti i generi:
-        $genres = Genre::all();   // Uso il metodo statico all() dal Model Genre per restituire a $geners tutti i dati contenuti 
+        // $genres = Genre::all();   // Uso il metodo statico all() dal Model Genre per restituire a $geners tutti i dati contenuti
+
+        // Al posto dell'istruzione di sopra, che restitutisce tutti i generi devo richiamare per forza lo scope "scopeFiltra" del model Genre per poter filtrare i risultati se clicco sul pulsante di ricerca:
+        $genres = Genre::filtra($request->validated())->paginate(12);
+
         return view('genres.index', compact('genres'));
     }
 
