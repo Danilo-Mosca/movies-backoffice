@@ -199,6 +199,13 @@ div.modal-body p {
 
 
 /* --------------------- LAYOUT PULSANTI DELLA PAGINAZIONE --------------------- */
+
+// Nascondo il testo di showing di default che imposta in automatico Bootstrap 5:
+p.small.text-muted {
+    display: none;
+}
+
+// Gap per desktop tra i container della paginazione
 .pagination {
     gap: 6px;
 }
@@ -240,6 +247,24 @@ div.modal-body p {
     border-color: #dee2e6;
     cursor: not-allowed;
     font-size: 18px;
+}
+
+// Media query per ridurre il gap, il padding e il margin del container e del testo delle paginazioni per i dispositivi tablet:
+@media (max-width: 1200px) {
+    .pagination {
+        gap: 0;
+    }
+
+    // Margine tra le icone numerate della paginazione:
+    .page-item {
+        margin: 0 0;
+        font-weight: 300; // grassetto del testo   
+    }
+
+    // Riduco i margini tra i quadratini e i numeri di paginazione in esso contenuti:
+    a.page-link {
+        padding: 6 8px;
+    }
 }
 
 // Media query per ridurre il font-size del testo per i dispositivi mobili:

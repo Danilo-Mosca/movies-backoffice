@@ -84,12 +84,11 @@
     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
         <div class="text-muted mb-2 mb-md-0">
             {{-- Qui va il testo di riepilogo --}}
-            Mostrati da {{ $directors->firstItem() }} a {{ $directors->lastItem() }} di {{ $directors->total() }} risultati
+            Mostrati da <strong>{{ $directors->firstItem() }}</strong> a <strong>{{ $directors->lastItem() }}</strong> di <strong>{{ $directors->total() }}</strong> risultati
         </div>
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
         {{ $directors->links('pagination::bootstrap-5') }}
-    </div>
     </div>
     {{-- FINE PAGINAZIONE --}}
 
