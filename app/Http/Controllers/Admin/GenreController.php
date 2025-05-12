@@ -14,6 +14,8 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    // Importo la request personalizzata FilterGenreRequest (mi serve per i filtri di ricerca) che ho creato e la passo come argomento:
     public function index(FilterGenreRequest $request)
     {
         // Prendo tutti i generi:
@@ -43,7 +45,7 @@ class GenreController extends Controller
         $data = $request->validated();       //Assegno alla variabile $data i dati validati così se passano posso creare il nuovo genere
 
         // dd($data);  // controllo se ricevo tutti i dati dalla request
-        
+
         $newGenre->name = $data['name'];
         $newGenre->color = $data['color'];
         $newGenre->genre_description = $data['genre_description'];

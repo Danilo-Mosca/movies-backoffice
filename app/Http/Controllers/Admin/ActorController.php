@@ -12,10 +12,33 @@ class ActorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    // Passo come argomento l'oggetto di tipo Request (mi serve per i filtri di ricerca), che rappresenta l'intera richiesta HTTP (inclusi i parametri GET del form)
+    public function index(Request $request)
     {
         // Prendo tutti gli attori:
-        $actors = Actor::all();   // Uso il metodo statico all() dal Model Actor per restituire a $actors tutti i dati contenuti 
+        // $actors = Actor::all();   // Uso il metodo statico all() dal Model Actor per restituire a $actors tutti i dati contenuti
+
+        /* Al posto dell'istruzione di sopra, che restitutisce tutti i gli attori devo inserire il seguente codice per poter filtrare i risultati se clicco sul pulsante di ricerca */
+
+        // Creo un oggetto query builder per il model Actor, che permette di costruire dinamicamente una query SQL:
+        $query = Actor::query();    // È equivalente a fare: SELECT * FROM actors
+        // ma permette la possibilità di aggiungere condizioni in base all'input dell'utente, prima di eseguire la query.
+        
+        // Se l'utente ha compilato il campo first_name, viene aggiunta una clausola WHERE alla query:
+        // Con filled() verifico che il campo non siano vuoto '' o null, così posso filtrare anche solo per nome o solo per cognome o restituire tutti i valori non filtrati
+        if ($request->filled('first_name')) {
+            $query->where('first_name', 'like', '%' . $request->first_name . '%');
+        }
+        // Come sopra per first_name, viene aggiunta un'altra condizione WHERE, che si accumula alla precedente:
+        if ($request->filled('last_name')) {
+            $query->where('last_name', 'like', '%' . $request->last_name . '%');
+        }
+
+        // Paginazione: 12 attori per pagina, con parametri preservati (->appends)
+        // Laravel si occupa in automatico di calcolare la pagina corrente (usando ?page=2, ?page=3, ecc.). appends($request->all()) serve a mantenere i filtri nella paginazione: Quando clicco su "pagina 2", Laravel aggiunge anche first_name=... e last_name=... all'URL della pagina successiva
+        $actors = $query->paginate(12)->appends($request->all());
+
         return view('actors.index', compact('actors'));
     }
 

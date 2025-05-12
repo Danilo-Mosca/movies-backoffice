@@ -16,6 +16,8 @@ class FilmController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    // Importo la request personalizzata FilterFilmRequest (mi serve per i filtri di ricerca) che ho creato e la passo come argomento:
     public function index(FilterFilmRequest $request)
     {
         // Prendo tutti i film:

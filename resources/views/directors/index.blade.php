@@ -27,6 +27,18 @@
     <hr />
 
 
+    <!-- Form filtro di ricerca -->
+    <form method="GET" action="{{ route('directors.index') }}">
+        <div class="d-flex flex-wrap row gap-3 ms-2 me-2">
+            <input class="col-12 col-md-2 col-lg-3 filter-form" type="text" name="first_name" placeholder="Nome"
+                value="{{ request('first_name') }}">
+            <input class="col-12 col-md-2 col-lg-3 filter-form" type="text" name="last_name" placeholder="Cognome"
+                value="{{ request('last_name') }}">
+            <button class="col-12 col-md-2" type="submit">Ricerca</button>
+            <button class="col-12 col-md-2" id="delete"><a href="{{ route('directors.index') }}">Reset</a></button>
+        </div>
+    </form>
+    <!-- Fine form filtro di ricerca -->
 
 
     {{-- ---------- Sessione temporanea che mostra una notifica, un alert con un messaggio di successo nel caso in cui un film viene cancellato con successo ----------  --}}
@@ -59,16 +71,28 @@
             @endforeach
         </div>
 
+        @if ($directors->isEmpty())
+            <div class="alert alert-warning mt-3">
+                Nessun regista trovato con i valori di ricerca inseriti.
+            </div>
+        @endif
+
     </div>
 
+    {{-- PAGINAZIONE --}}
+    {{-- Paginazione Bootstrap 5 --}}
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+        <div class="text-muted mb-2 mb-md-0">
+            {{-- Qui va il testo di riepilogo --}}
+            Mostrati da {{ $directors->firstItem() }} a {{ $directors->lastItem() }} di {{ $directors->total() }} risultati
+        </div>
+    </div>
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+        {{ $directors->links('pagination::bootstrap-5') }}
+    </div>
+    </div>
+    {{-- FINE PAGINAZIONE --}}
 
-
-    {{-- </div>
-        </main> --}}
-    {{-- <footer class="row bg-light py-4 mt-auto">
-            <div class="col"> Bottom footer content here... </div>
-        </footer>
-    </div> --}}
 @endsection
 
 </html>

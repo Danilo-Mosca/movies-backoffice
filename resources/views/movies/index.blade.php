@@ -32,6 +32,7 @@
             <input class="col-12 col-md-4 filter-form" type="text" name="title" placeholder="Nome del film"
                 value="{{ request('title') }}">
             <button class="col-12 col-md-3" type="submit">Ricerca</button>
+            <button class="col-12 col-md-2" id="delete"><a href="{{ route('movies.index') }}">Reset</a></button>
         </div>
     </form>
     <!-- Fine form filtro di ricerca -->
@@ -67,6 +68,13 @@
                 </div>
             @endforeach
         </div>
+
+        {{-- Output se non viene trovato nessun risultato corrispondente al filtro di ricerca: --}}
+        @if ($movies->isEmpty())
+            <div class="alert alert-warning mt-3">
+                Nessun film trovato con il termine di ricerca inserito.
+            </div>
+        @endif
 
     </div>
 
