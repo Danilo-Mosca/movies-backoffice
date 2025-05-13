@@ -227,7 +227,7 @@ p.small.text-muted {
 
 // Personalizzazione CSS pulsanti paginazione all'hover con il mouse:
 .page-item .page-link:hover {
-    background-color: #e6767f;
+    background-color: var(--color-red-text-sidebar);
     color: white;
     text-decoration: none;
 }
