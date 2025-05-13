@@ -71,7 +71,7 @@ class FilmController extends Controller
 
         // Assegno alla variabile $data tutti i valori ricevuto dal form
         $data = $request->validated();       //Assegno alla variabile $data i dati validati così se passano posso creare il nuovo film
-        // dd($data);
+        dd($data);
         $newMovie->title = $data['title'];
         $newMovie->description = $data['description'];
         $newMovie->release_year = $data['release_year'];

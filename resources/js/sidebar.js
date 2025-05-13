@@ -38,6 +38,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Evento per la sezione ATTORI del menu della sidebar:
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.dropdown-toggle.attori');
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('rotated');     // uso il metodo toggle che attiva e disattiva la classe .rotated
+    });
+});
+// Evento per la sezione ATTORI del menu della sidebar in MOBILE:
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.dropdown-toggle-mobile.attori');
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('rotated');     // uso il metodo toggle che attiva e disattiva la classe .rotated
+    });
+});
+
+// Evento per la sezione GENERI del menu della sidebar:
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.dropdown-toggle.generi');
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('rotated');     // uso il metodo toggle che attiva e disattiva la classe .rotated
+    });
+});
+// Evento per la sezione GENERI del menu della sidebar in MOBILE:
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.dropdown-toggle-mobile.generi');
+
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('rotated');     // uso il metodo toggle che attiva e disattiva la classe .rotated
+    });
+});
+
 
 // Evento per la sezione amministratore (in basso) della sidebar:
 document.addEventListener('DOMContentLoaded', () => {

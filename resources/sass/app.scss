@@ -197,6 +197,8 @@ div.modal-body p {
     outline: none; // bordo no
 }
 
+/* --------------------- FINE CSS PULSANTI FORM DI RICERCA --------------------- */
+
 
 /* --------------------- LAYOUT PULSANTI DELLA PAGINAZIONE --------------------- */
 
@@ -276,6 +278,60 @@ p.small.text-muted {
     .page-item.disabled .page-link {
         font-size: 14.4;
     }
+}
+
+/* --------------------- FINE LAYOUT PULSANTI DELLA PAGINAZIONE --------------------- */
+
+
+/* --------------------- LAYOUT PULSANTI DELLA PAGINAZIONE --------------------- */
+
+// CSS per il pulsante Home attivo:
+a.nav-link.px-sm-0.px-2.active {
+    background-color: transparent;
+    color: white !important;
+}
+
+// Css per il pulsante Home in hover:
+a.nav-link.px-sm-0.px-2:hover {
+    background-color: transparent;
+    color: white !important;
+    font-weight: 500;
+}
+
+// CSS per gli altri elementi del menu quando "attivi":
+a.nav-link.px-0.active {
+    background-color: transparent;
+    color: white !important;
+    font-weight: 500;
+}
+
+// CSS per gli altri elementi del menu quando in "hover":
+a.nav-link.px-0:hover {
+    background-color: transparent;
+    color: white !important;
+    font-weight: 500;
+}
+
+// CSS che cambia il colore all'icona della freccia quando è selezionato quell'elemento del menu:
+.dropdown-toggle.rotated::after {
+    color: white;
+}
+
+// CSS personalizzato per le icone della sidebar in visualizzazione mobile:
+i.fs-5.bi.bi-film.active::before {
+    color: white;
+}
+
+i.fs-5.bi.bi-camera-reels.active::before {
+    color: white;
+}
+
+i.fs-5.bi.bi-person-video2.active::before {
+    color: white;
+}
+
+i.fs-5.bi.bi-tags.active::before {
+    color: white;
 }
 
 /* --------------------- FINE LAYOUT PULSANTI DELLA PAGINAZIONE --------------------- */

@@ -33,6 +33,7 @@
         :action="route('movies.update', $movie->slug)" method="PUT"
         :showTitle="true"
         :showDescription="true"
+        :showImage="true"
         :showUpdateGenres="true"
         :showReleaseYear="true"
         :showDuration="true"

@@ -10,6 +10,7 @@
     // Props della tabella films:
     'showTitle' => false,
     'showDescription' => false,
+    'showImage' => false,
     'showGenres' => false,
     'showUpdateGenres' => false,
     'showReleaseYear' => false,
@@ -53,7 +54,10 @@
 
 
 
-    <form action="{{ $action }}" method="POST" novalidate>
+    <form action="{{ $action }}" method="POST"
+    {{-- Se la variabile $showImage non è false, allora sono nella create/edit di film e quindi per caricare l'immagine devo aggiungere l'enctype: --}}
+    @if ($showImage) enctype="multipart/form-data" @endif
+    novalidate>
         {{-- Inserisco il token che verifica che la chiamata avviene tramite un form del sito: --}}
         @csrf
 
@@ -94,6 +98,7 @@
             </div>
         @endif
 
+
         {{-- Input textarea descrizione film --}}
         {{-- Verifico se $showDescription risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showDescription)
@@ -109,6 +114,23 @@
             </div>
         @endif
         {{-- Fine input textarea descrizione film --}}
+
+
+        {{-- Input file del film --}}
+        {{-- Verifico se $showImage risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showImage)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper">
+                <label for="poster">Inserisci un'immagine:</label>
+                <input type="file" name="poster" id="poster" class="input-layout"
+                    value="{{ old('poster', isset($model->poster) ? $model->poster : '') }}">
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('poster')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input file del film --}}
 
 
 
@@ -164,7 +186,7 @@
         @endif
         {{-- Fine input checkbox modifica attori film --}}
         {{-- ------------------------------------------ FINE SEZIONE INSERIMENTO E MODIFICA GENERI ------------------------------------------ --}}
-        
+
 
 
 
@@ -262,7 +284,7 @@
 
 
 
-        
+
 
 
         {{-- Input radio per i rating --}}

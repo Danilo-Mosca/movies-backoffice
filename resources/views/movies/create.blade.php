@@ -30,6 +30,7 @@
         :action="route('movies.store')" method="POST"
         :showTitle="true"
         :showDescription="true"
+        :showImage="true"
         :showGenres="true"
         :showReleaseYear="true"
         :showDuration="true"
