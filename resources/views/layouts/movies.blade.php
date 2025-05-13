@@ -45,13 +45,16 @@
                     {{-- ------------------ End visualizzo l'header qui SOLO PER I DISPOSITIVI MOBILI escludo i tablet e pc: -------------- --}}
 
                     <div class="col pt-4">
+                        {{-- Includo il contenuto personalizzato per ogni pagina: --}}
                         @yield('content')
+
+                        {{-- Includo il "partials" footer con la barra di navigazione: --}}
+                        @include('partials.footer')
                     </div>
                 </main>
 
-                {{-- Includo il "partials" footer con la barra di navigazione: --}}
-                @include('partials.footer')
             </div>
+            
         </div>
     </div>
 

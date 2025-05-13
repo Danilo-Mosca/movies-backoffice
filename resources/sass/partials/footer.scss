@@ -1,0 +1,20 @@
+footer {
+    background-color: var(--color-footer);
+    color: white;
+}
+
+.footer-title {
+    text-transform: uppercase;
+}
+
+.social-icon-footer:hover {
+    color: var(--color-red-text-sidebar);
+    cursor: pointer;
+}
+
+.footer-image {
+    height: 76px;
+    width: 80px;
+    display: block;
+    object-fit: cover;
+}
