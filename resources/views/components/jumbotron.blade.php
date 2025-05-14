@@ -47,10 +47,17 @@
                 // Con l'istruzione di seguite: Vite::asset('percorso...') importo l'immagine affinché Blade la processi
                 $image = Vite::asset('resources/img/poster-placeholder.webp'); // Assegno l'immagine placeholder di default nel caso questa risulti vuota
             @endphp
+            {{-- E poi stampo la <section> con l'immagine placeholder: --}}
+            <section class="overlay-image-container">
+                <img src="{{ $image }}" alt="{{ $title }}" class="overlay-img">
+            </section>
+        
+        @else
+            {{-- Altrimenti se l'immagine non è vuota o nulla stampo la <section> con questa all'interno: --}}
+            <section class="overlay-image-container">
+                <img src="{{ asset('storage/' . $image) }}" alt="{{ $title }}" class="overlay-img">
+            </section>
         @endif
-        <section class="overlay-image-container">
-            <img src="{{ $image }}" alt="{{ $title }}" class="overlay-img">
-        </section>
     @endif
 
 </div>

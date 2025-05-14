@@ -14,11 +14,19 @@
                 // Con l'istruzione di seguite: Vite::asset('percorso...') importo l'immagine affinché Blade la processi
                 $image = Vite::asset('resources/img/poster-placeholder.webp'); // Assegno l'immagine placeholder di default nel caso questa risulti vuota
             @endphp
+        {{-- CODICE DA INSERIRE:
+        @else
+            <a href="{{ route('movies.show', $slug) }}"><img src="{{ asset('storage/' . $image) }}" class="card-img-top"
+                    alt="{{ $title }}"></a> 
+        FINE CODICE DA INSERIRE --}}
         @endif
-        {{-- ----------------------------- Fine controllo inserimento immagine ----------------------------- --}}
-
+        
+        {{-- CODICE DA TOGLIERE: --}}
         <a href="{{ route('movies.show', $slug) }}"><img src="{{ $image }}" class="card-img-top"
-                alt="{{ $title }}"></a>
+            alt="{{ $title }}"></a>
+        {{-- FINE CODICE DA TOGLIERE: --}}
+            {{-- ----------------------------- Fine controllo inserimento immagine ----------------------------- --}}
+            
         <div class="card-body">
             {{-- Il metodo strtoupper() restituisce tutti i caratteri convertiti in uppercase (maiuscolo): --}}
             @php
@@ -58,7 +66,8 @@
     e:
     aria-labelledby="exampleModalLabel-{{ $slug }}" 
     --}}
-    <div class="modal fade" id="modal-{{ $slug }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ $slug }}" aria-hidden="true">
+    <div class="modal fade" id="modal-{{ $slug }}" tabindex="-1"
+        aria-labelledby="exampleModalLabel-{{ $slug }}" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">

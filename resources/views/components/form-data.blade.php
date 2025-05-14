@@ -54,10 +54,8 @@
 
 
 
-    <form action="{{ $action }}" method="POST"
-    {{-- Se la variabile $showImage non è false, allora sono nella create/edit di film e quindi per caricare l'immagine devo aggiungere l'enctype: --}}
-    @if ($showImage) enctype="multipart/form-data" @endif
-    novalidate>
+    <form action="{{ $action }}" method="POST" {{-- Se la variabile $showImage non è false, allora sono nella create/edit di film e quindi per caricare l'immagine devo aggiungere l'enctype: --}}
+        @if ($showImage) enctype="multipart/form-data" @endif novalidate>
         {{-- Inserisco il token che verifica che la chiamata avviene tramite un form del sito: --}}
         @csrf
 
@@ -137,9 +135,9 @@
 
 
         {{-- ------------------------------------------ SEZIONE INSERIMENTO E MODIFICA GENERI ------------------------------------------ --}}
-        {{-- Input checkbox aggiungi attori film --}}
-        {{-- Verifico se $showActors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
-        @if ($showActors)
+        {{-- Input checkbox aggiungi i generi del film --}}
+        {{-- Verifico se $showGenres risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showGenres)
             <div class="form-control">
                 <label class="mb-3">Seleziona il/i generi per il film (se presente nella lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
@@ -158,12 +156,12 @@
                 @enderror
             </div>
         @endif
-        {{-- Fine input checkbox aggiungi attori film --}}
+        {{-- Fine input checkbox aggiungi i generi del film --}}
 
 
-        {{-- Input checkbox modifica attori film --}}
-        {{-- Verifico se $showUpdateActors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
-        @if ($showUpdateActors)
+        {{-- Input checkbox modifica i generi del film --}}
+        {{-- Verifico se $showUpdateGenres risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showUpdateGenres)
             <div class="form-control">
                 <label class="mb-3">Seleziona il/i generi per il film (se presente nella lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
@@ -171,7 +169,10 @@
                         <div class="me-3">
                             <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
                                 id="genre-{{ $genre->id }}"
-                                {{ $model->genres->contains($genre->id) ? 'checked' : '' }}>
+                                {{ in_array( $genre->id, old('genres', $model->genres->pluck('id')->toArray()) ) ? 'checked' : '' }}>
+                                {{-- La riga di sopra a sostituzione della seguente:
+                                {{ $model->genres->contains($genre->id) ? 'checked' : '' }}> --}}
+                            
                             {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
                             <label for="genre-{{ $genre->id }}">{{ $genre->name }}</label>
                         </div>
@@ -184,7 +185,7 @@
                 @enderror
             </div>
         @endif
-        {{-- Fine input checkbox modifica attori film --}}
+        {{-- Fine input checkbox modifica i generi del film --}}
         {{-- ------------------------------------------ FINE SEZIONE INSERIMENTO E MODIFICA GENERI ------------------------------------------ --}}
 
 
@@ -232,9 +233,9 @@
 
 
         {{-- ------------------------------------------ SEZIONE INSERIMENTO E MODIFICA ATTORI ------------------------------------------ --}}
-        {{-- Input checkbox aggiungi genere film --}}
-        {{-- Verifico se $showGenres risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
-        @if ($showGenres)
+        {{-- Input checkbox aggiungi attori al film --}}
+        {{-- Verifico se $showActors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showActors)
             <div class="form-control">
                 <label class="mb-3">Selezioni gli attori presenti nel film (se il lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
@@ -253,12 +254,12 @@
                 @enderror
             </div>
         @endif
-        {{-- Fine input checkbox aggiungi genere film --}}
+        {{-- Fine input checkbox aggiungi attori al film --}}
 
 
-        {{-- Input checkbox modifica genere film --}}
-        {{-- Verifico se $showUpdateGenres risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
-        @if ($showUpdateGenres)
+        {{-- Input checkbox modifica attori al film --}}
+        {{-- Verifico se $showUpdateActors risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showUpdateActors)
             <div class="form-control">
                 <label class="mb-3">Selezioni gli attori presenti nel film (se il lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
@@ -266,7 +267,10 @@
                         <div class="me-3">
                             <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
                                 id="actor-{{ $actor->id }}"
-                                {{ $model->actors->contains($actor->id) ? 'checked' : '' }}>
+                                {{ in_array( $actor->id, old('actors', $model->actors->pluck('id')->toArray()) ) ? 'checked' : '' }}>
+                                {{-- La riga di sopra a sostituzione della seguente:
+                                {{-- {{ $model->actors->contains($actor->id) ? 'checked' : '' }}> --}}
+                            
                             {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
                             <label for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
                         </div>
@@ -279,7 +283,7 @@
                 @enderror
             </div>
         @endif
-        {{-- Fine input checkbox modifica genere film --}}
+        {{-- Fine input checkbox modifica attori al film --}}
         {{-- ------------------------------------------FINE SEZIONE INSERIMENTO E MODIFICA ATTORI ------------------------------------------ --}}
 
 

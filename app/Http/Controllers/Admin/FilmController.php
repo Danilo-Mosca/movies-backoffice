@@ -10,6 +10,7 @@ use App\Models\Director;
 use App\Models\Film;
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;     // importo la facades contenente la classe Storage per poter fare l'upload dell'immagine
 
 class FilmController extends Controller
 {
@@ -71,22 +72,27 @@ class FilmController extends Controller
 
         // Assegno alla variabile $data tutti i valori ricevuto dal form
         $data = $request->validated();       //Assegno alla variabile $data i dati validati così se passano posso creare il nuovo film
-        dd($data);
+        // dd($data);
         $newMovie->title = $data['title'];
         $newMovie->description = $data['description'];
         $newMovie->release_year = $data['release_year'];
         $newMovie->duration = $data['duration'];
         // $newMovie->poster = $data['poster'];         PER ORA NON UTILIZZARE
         $newMovie->rating = $data['rating'] ?? null;    // Se $data['rating'] esiste, cioè l'ho inserito nel form allora gli assegno un valore, altrimenti gli assegno null.
-        $newMovie->nationality = $data['nationality'];
-        // Gestisco il caso del regista (se non selezionato assegno al corrispettivo campo "null" altrimenti gli assegno il valore selezionato):
-        $newMovie->director_id = $data['director_id'] === 'null' ? null : $data['director_id'];
-
-
         /* ALTERNATIVA A: $newMovie->rating = $data['rating'] ?? null;
         $newMovie->rating = $request->input('rating');  // in questo modo se non ricevo un valore dal form me lo inizializza direttamente a null
         */
 
+        $newMovie->nationality = $data['nationality'];
+        // Gestisco il caso del regista (se non selezionato assegno al corrispettivo campo "null" altrimenti gli assegno il valore selezionato):
+        $newMovie->director_id = $data['director_id'] === 'null' ? null : $data['director_id'];
+
+        // controllo se l'utente ha richiesto l'upload di un'immagine:
+        if(array_key_exists("poster", $data)){
+            // carichiamo l'immagine nel nostro storage:
+            $img_url = Storage::putFile('films', $data['poster']);
+            $newMovie->poster = $img_url;       //assegno il path al campo 'poster' della tabella films
+        }
 
         $newMovie->save();      //salvo i nuovi dati nella tabella films del database movies_db
 
