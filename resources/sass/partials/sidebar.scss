@@ -37,6 +37,39 @@ a.dropdown-item:active {
     background-color: var(--color-red-text-sidebar);
 }
 
+/* -------------------- Configurazione del colore sul pulsante con incluso il form per il logout: -------------------- */
+.dropdown-logout:active,
+button.dropdown-logout.active,
+button.dropdown-logout:active {
+    color: var(--bs-dropdown-link-active-color);
+    text-decoration: none;
+    background-color: var(--color-red-text-sidebar);
+    text-transform: none;
+}
+
+button.dropdown-logout {
+    color: var(--bs-dropdown-link-active-color);
+    background-color: #343A40;
+    border: none;
+    text-transform: none;
+}
+
+button.dropdown-logout:hover {
+    background-color: #52575C;
+    border: none;
+    text-transform: none;
+}
+
+button#form-logout {
+    width: 100%;
+    text-align: left;
+    font-size: 14.4px!important;
+}
+button#form-logout:active{
+    background-color: var(--color-red-text-sidebar);
+}
+/* -------------------- Fine configurazione del colore sul pulsante con incluso il form per il logout: -------------------- */
+
 /* ---------------------------- CONFIGURAZIONE ANIMAZIONE DI ROTAZIONE PER LA FRECCETTA DELLA SIDEBAR, SIA QUELLA DEL MENU' (SIA IN DESKTOP CHE MOBILE) CHE QUELLA DEL MENU UTENTE CONNESSO ---------------------------- */
 
 // Classe di default con la rotazione a zero gradi (PER VISUALIZZAZIONE DESKTOP):
@@ -44,7 +77,7 @@ a.dropdown-item:active {
     display: inline-block;
     transition: transform 0.3s ease;
     transform: rotate(0deg);
-    vertical-align: 0.1em !important;    // allineo la freccia verticalmente in maniera più
+    vertical-align: 0.1em !important; // allineo la freccia verticalmente in maniera più
 }
 
 // Classe che si attiva al click sull'icona freccia e ruota di 180 gradi (PER VISUALIZZAZIONE DESKTOP):
@@ -58,7 +91,7 @@ a.dropdown-item:active {
     display: inline-block;
     transition: transform 0.3s ease;
     transform: rotate(0deg);
-    vertical-align: 0.235em !important;    // allineo la freccia verticalmente in maniera più
+    vertical-align: 0.235em !important; // allineo la freccia verticalmente in maniera più
 }
 
 // Classe che si attiva al click sull'icona freccia e ruota di 180 gradi (PER VISUALIZZAZIONE MOBILE):

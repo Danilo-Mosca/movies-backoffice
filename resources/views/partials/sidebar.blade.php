@@ -26,8 +26,7 @@
             <!-- Sezione Film -->
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block mb-3" id="menu-color">
-                <a href="#submenu1" data-bs-toggle="collapse" 
-                    {{-- se la rotta in cui siamo attualmente è "movies.index" o "movies.create" allora attiviamo la classe 'active' --}}
+                <a href="#submenu1" data-bs-toggle="collapse" {{-- se la rotta in cui siamo attualmente è "movies.index" o "movies.create" allora attiviamo la classe 'active' --}}
                     class="nav-link px-0 align-middle {{ Route::is('movies.index', 'movies.create') ? 'active' : '' }}">
                     <i class="fs-4 bi bi-film"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle film">Film</span></a>
@@ -50,7 +49,9 @@
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile film px-sm-0 px-2"
                     id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     {{-- Anche in mobile se la rotta in cui siamo attualmente è "movies.index" o "movies.create" allora attiviamo la classe 'active' --}}
-                    <i class="fs-5 bi bi-film {{ Route::is('movies.index', 'movies.create') ? 'active' : '' }}"></i><span class="ms-1 d-none d-sm-inline">Film</span>
+                    <i
+                        class="fs-5 bi bi-film {{ Route::is('movies.index', 'movies.create') ? 'active' : '' }}"></i><span
+                        class="ms-1 d-none d-sm-inline">Film</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="{{ route('movies.index') }}">Lista dei film</a></li>
@@ -63,16 +64,19 @@
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block mb-3" id="menu-color">
                 {{-- se la rotta in cui siamo attualmente è "directors.index" o "directors.create" allora attiviamo la classe 'active' --}}
-                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle {{ request()->routeIs('directors.index', 'directors.create') ? 'active' : '' }}">
+                <a href="#submenu2" data-bs-toggle="collapse"
+                    class="nav-link px-0 align-middle {{ request()->routeIs('directors.index', 'directors.create') ? 'active' : '' }}">
                     <i class="fs-4 bi bi-camera-reels"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle registi">Registi</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{ route('directors.index') }}" class="nav-link px-0 {{ request()->routeIs('directors.index') ? 'active' : '' }}"> <span
+                        <a href="{{ route('directors.index') }}"
+                            class="nav-link px-0 {{ request()->routeIs('directors.index') ? 'active' : '' }}"> <span
                                 class="d-none d-sm-inline">Lista dei</span> registi</a>
                     </li>
                     <li>
-                        <a href="{{ route('directors.create') }}" class="nav-link px-0 {{ request()->routeIs('directors.create') ? 'active' : '' }}"> <span
+                        <a href="{{ route('directors.create') }}"
+                            class="nav-link px-0 {{ request()->routeIs('directors.create') ? 'active' : '' }}"> <span
                                 class="d-none d-sm-inline">Aggiungi un</span> regista</a>
                     </li>
                 </ul>
@@ -83,7 +87,9 @@
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile registi px-sm-0 px-2"
                     id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     {{-- Anche in mobile se la rotta in cui siamo attualmente è "directors.index" o "directors.create" allora attiviamo la classe 'active' --}}
-                    <i class="fs-5 bi bi-camera-reels {{ Route::is('directors.index', 'directors.create') ? 'active' : '' }}"></i><span class="ms-1 d-none d-sm-inline">Registi</span>
+                    <i
+                        class="fs-5 bi bi-camera-reels {{ Route::is('directors.index', 'directors.create') ? 'active' : '' }}"></i><span
+                        class="ms-1 d-none d-sm-inline">Registi</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="{{ route('directors.index') }}">Lista dei registi</a></li>
@@ -99,16 +105,19 @@
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block mb-3" id="menu-color">
                 {{-- se la rotta in cui siamo attualmente è "actors.index" o "actors.create" allora attiviamo la classe 'active' --}}
-                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle {{ request()->routeIs('actors.index', 'actors.create') ? 'active' : '' }}">
+                <a href="#submenu3" data-bs-toggle="collapse"
+                    class="nav-link px-0 align-middle {{ request()->routeIs('actors.index', 'actors.create') ? 'active' : '' }}">
                     <i class="fs-4 bi bi-person-video2"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle attori">Attori</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{ route('actors.index') }}" class="nav-link px-0 {{ request()->routeIs('actors.index') ? 'active' : '' }}"> <span
+                        <a href="{{ route('actors.index') }}"
+                            class="nav-link px-0 {{ request()->routeIs('actors.index') ? 'active' : '' }}"> <span
                                 class="d-none d-sm-inline">Lista degli</span> attori</a>
                     </li>
                     <li>
-                        <a href="{{ route('actors.create') }}" class="nav-link px-0 {{ request()->routeIs('actors.create') ? 'active' : '' }}"> <span
+                        <a href="{{ route('actors.create') }}"
+                            class="nav-link px-0 {{ request()->routeIs('actors.create') ? 'active' : '' }}"> <span
                                 class="d-none d-sm-inline">Aggiungi un</span> attore</a>
                     </li>
                 </ul>
@@ -119,7 +128,9 @@
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile attori px-sm-0 px-2"
                     id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     {{-- Anche in mobile se la rotta in cui siamo attualmente è "actors.index" o "actors.create" allora attiviamo la classe 'active' --}}
-                    <i class="fs-5 bi bi-person-video2 {{ Route::is('actors.index', 'actors.create') ? 'active' : '' }}"></i><span class="ms-1 d-none d-sm-inline">Attori</span>
+                    <i
+                        class="fs-5 bi bi-person-video2 {{ Route::is('actors.index', 'actors.create') ? 'active' : '' }}"></i><span
+                        class="ms-1 d-none d-sm-inline">Attori</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="{{ route('actors.index') }}">Lista degli attori</a></li>
@@ -135,16 +146,19 @@
             <!-- DESKTOP Nascondo questo <li> della sidebar solo per i dispositivi mobile -->
             <li class="d-none d-sm-block mb-3" id="menu-color">
                 {{-- se la rotta in cui siamo attualmente è "genres.index" o "genres.create" allora attiviamo la classe 'active' --}}
-                <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle {{ request()->routeIs('genres.index', 'genres.create') ? 'active' : '' }}">
+                <a href="#submenu4" data-bs-toggle="collapse"
+                    class="nav-link px-0 align-middle {{ request()->routeIs('genres.index', 'genres.create') ? 'active' : '' }}">
                     <i class="fs-4 bi bi-tags"></i> <span
                         class="ms-1 d-none d-sm-inline dropdown-toggle generi">Generi</span></a>
                 <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{ route('genres.index') }}" class="nav-link px-0 {{ request()->routeIs('genres.index') ? 'active' : '' }}"> <span
+                        <a href="{{ route('genres.index') }}"
+                            class="nav-link px-0 {{ request()->routeIs('genres.index') ? 'active' : '' }}"> <span
                                 class="d-none d-sm-inline">Lista dei</span> generi</a>
                     </li>
                     <li>
-                        <a href="{{ route('genres.create') }}" class="nav-link px-0 {{ request()->routeIs('genres.create') ? 'active' : '' }}"> <span
+                        <a href="{{ route('genres.create') }}"
+                            class="nav-link px-0 {{ request()->routeIs('genres.create') ? 'active' : '' }}"> <span
                                 class="d-none d-sm-inline">Aggiungi un</span> genere</a>
                     </li>
                 </ul>
@@ -155,7 +169,9 @@
                 <a href="#" class="nav-link dropdown-toggle dropdown-toggle-mobile generi px-sm-0 px-2"
                     id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     {{-- Anche in mobile se la rotta in cui siamo attualmente è "genres.index" o "genres.create" allora attiviamo la classe 'active' --}}
-                    <i class="fs-5 bi bi-tags {{ Route::is('genres.index', 'genres.create') ? 'active' : '' }}"></i><span class="ms-1 d-none d-sm-inline">Generi</span>
+                    <i
+                        class="fs-5 bi bi-tags {{ Route::is('genres.index', 'genres.create') ? 'active' : '' }}"></i><span
+                        class="ms-1 d-none d-sm-inline">Generi</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
                     <li><a class="dropdown-item" href="{{ route('genres.index') }}">Lista dei generi</a></li>
@@ -216,7 +232,15 @@
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                {{-- <li><a class="dropdown-item" href="#">Sign out</a></li> --}}
+                {{-- --------------------- Pulsante per il logout: --------------------- --}}
+                <li class="dropdown-logout">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="dropdown-logout" id="form-logout">Sign out</button>
+                    </form>
+                </li>
+                {{-- --------------------- Fine pulsante per il logout: --------------------- --}}
             </ul>
         </div>
     </div>

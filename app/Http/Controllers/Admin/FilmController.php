@@ -216,7 +216,7 @@ class FilmController extends Controller
 
 
 
-        // controllo se l'utente ha inserito una nuova immagine e quindi richiesto l'upload della nuova immagine:
+        // controllo se l'utente ha inserito una nuova immagine per quel film e quindi richiesto l'upload della nuova immagine:
         if (array_key_exists("poster", $data)) {
             // prima elimino l'immagine precedente se presente (se $movie->poster non è null):
             if ($movie->poster) {
@@ -279,7 +279,7 @@ class FilmController extends Controller
 
 
         
-        // Se il post ha l'immagine collegata, la elimino:
+        // Controllo se il film che sto per cancellare ha l'immagine collegata, la elimino:
         if ($movie->poster) {
             Storage::delete($movie->poster);
         }
