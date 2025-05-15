@@ -11,6 +11,8 @@
     'showTitle' => false,
     'showDescription' => false,
     'showImage' => false,
+    'showUpdateImage' => false,
+    'showEnctypeImage' => false,
     'showGenres' => false,
     'showUpdateGenres' => false,
     'showReleaseYear' => false,
@@ -55,7 +57,7 @@
 
 
     <form action="{{ $action }}" method="POST" {{-- Se la variabile $showImage non è false, allora sono nella create/edit di film e quindi per caricare l'immagine devo aggiungere l'enctype: --}}
-        @if ($showImage) enctype="multipart/form-data" @endif novalidate>
+        @if ($showEnctypeImage) enctype="multipart/form-data" @endif novalidate>
         {{-- Inserisco il token che verifica che la chiamata avviene tramite un form del sito: --}}
         @csrf
 
@@ -114,13 +116,12 @@
         {{-- Fine input textarea descrizione film --}}
 
 
-        {{-- Input file del film --}}
+        {{-- Input file, upload immagine nella create del film --}}
         {{-- Verifico se $showImage risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
         @if ($showImage)
             <div class="form-control mb-3 d-flex flex-column input-wrapper">
                 <label for="poster">Inserisci un'immagine:</label>
-                <input type="file" name="poster" id="poster" class="input-layout"
-                    value="{{ old('poster', isset($model->poster) ? $model->poster : '') }}">
+                <input type="file" name="poster" id="poster" class="input-layout">
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
                 @error('poster')
@@ -128,7 +129,31 @@
                 @enderror
             </div>
         @endif
-        {{-- Fine input file del film --}}
+        {{-- Fine input file, upload immagine nella create del film --}}
+
+
+        {{-- Input file, upload immagine nell'update del film --}}
+        {{-- Verifico se $showUpdateImage risulta "true", cioè se è stato passato dalla view allora stampo a schermo la input type specifica: --}}
+        @if ($showUpdateImage)
+            <div class="form-control mb-3 d-flex flex-column input-wrapper p-3">
+                <label for="poster">Modifica l'immagine:</label>
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <input type="file" name="poster" id="poster" class="input-layout">
+                    {{-- Se l'immagine esiste già (ad esempio nell'edit del film) allora visualizzo la sua miniatura: --}}
+                    @if ($model->poster)
+                        <div>
+                            <img src="{{ asset('storage/' . $model->poster) }}" alt="{{ $model->title }}" class="img-fluid w-25">
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
+                @error('poster')
+                    <div class="text-danger pt-2">{{ $message }}</div>
+                @enderror
+            </div>
+        @endif
+        {{-- Fine input file, upload immagine nell'update del film --}}
 
 
 
@@ -169,10 +194,10 @@
                         <div class="me-3">
                             <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
                                 id="genre-{{ $genre->id }}"
-                                {{ in_array( $genre->id, old('genres', $model->genres->pluck('id')->toArray()) ) ? 'checked' : '' }}>
-                                {{-- La riga di sopra a sostituzione della seguente:
+                                {{ in_array($genre->id, old('genres', $model->genres->pluck('id')->toArray())) ? 'checked' : '' }}>
+                            {{-- La riga di sopra a sostituzione della seguente:
                                 {{ $model->genres->contains($genre->id) ? 'checked' : '' }}> --}}
-                            
+
                             {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
                             <label for="genre-{{ $genre->id }}">{{ $genre->name }}</label>
                         </div>
@@ -267,10 +292,10 @@
                         <div class="me-3">
                             <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
                                 id="actor-{{ $actor->id }}"
-                                {{ in_array( $actor->id, old('actors', $model->actors->pluck('id')->toArray()) ) ? 'checked' : '' }}>
-                                {{-- La riga di sopra a sostituzione della seguente:
+                                {{ in_array($actor->id, old('actors', $model->actors->pluck('id')->toArray())) ? 'checked' : '' }}>
+                            {{-- La riga di sopra a sostituzione della seguente:
                                 {{-- {{ $model->actors->contains($actor->id) ? 'checked' : '' }}> --}}
-                            
+
                             {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
                             <label for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
                         </div>
@@ -298,7 +323,8 @@
                 <label for="star">Inserisci un voto:</label><br>
                 <div class="star-rating mt-3 mb-3">
                     @for ($i = 5; $i >= 1; $i--)
-                        <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}"
+                        <input type="radio" id="star{{ $i }}" name="rating"
+                            value="{{ $i }}"
                             {{ old('rating', isset($model->rating) ? $model->rating : '') == $i ? 'checked' : '' }}
                             data-stato-selezionato="false">
                         <label for="star{{ $i }}" title="{{ $i }} stelle"

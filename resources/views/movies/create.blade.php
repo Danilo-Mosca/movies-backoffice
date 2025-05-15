@@ -31,6 +31,7 @@
         :showTitle="true"
         :showDescription="true"
         :showImage="true"
+        :showEnctypeImage="true"
         :showGenres="true"
         :showReleaseYear="true"
         :showDuration="true"

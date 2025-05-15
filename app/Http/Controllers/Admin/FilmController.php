@@ -87,8 +87,8 @@ class FilmController extends Controller
         // Gestisco il caso del regista (se non selezionato assegno al corrispettivo campo "null" altrimenti gli assegno il valore selezionato):
         $newMovie->director_id = $data['director_id'] === 'null' ? null : $data['director_id'];
 
-        // controllo se l'utente ha richiesto l'upload di un'immagine:
-        if(array_key_exists("poster", $data)){
+        // controllo se l'utente ha inserito un'immagine e quindi richiesto l'upload di una immagine:
+        if (array_key_exists("poster", $data)) {
             // carichiamo l'immagine nel nostro storage:
             $img_url = Storage::putFile('films', $data['poster']);
             $newMovie->poster = $img_url;       //assegno il path al campo 'poster' della tabella films
@@ -213,6 +213,22 @@ class FilmController extends Controller
         // Gestisco il caso del regista (se non selezionato assegno al corrispettivo campo "null" altrimenti gli assegno il valore selezionato):
         $movie->director_id = $data['director_id'] === 'null' ? null : $data['director_id'];
 
+
+
+
+        // controllo se l'utente ha inserito una nuova immagine e quindi richiesto l'upload della nuova immagine:
+        if (array_key_exists("poster", $data)) {
+            // prima elimino l'immagine precedente se presente (se $movie->poster non è null):
+            if ($movie->poster) {
+                Storage::delete($movie->poster);
+            }
+            // Poi carico la nuova immagine nel nostro storage:
+            $img_url = Storage::putFile('films', $data['poster']);
+            // Aggiorno il database:
+            $movie->poster = $img_url;       //assegno il path al campo 'poster' della tabella films
+        }
+
+        // successivamente salvo i nuovi dati nella tabella
         $movie->update();     //aggiorno il film nel database
 
 
@@ -243,7 +259,6 @@ class FilmController extends Controller
 
 
 
-
         // Reindirizzo l'utente alla pagina show per vedere il film che ha modificato ($movie->id è equivalente a $movie))
         return redirect()->route("movies.show", $movie)->with('success', 'Film modificato con successo');
     }
@@ -259,6 +274,15 @@ class FilmController extends Controller
         $movie->genres()->detach();    // eliminiamo tutti i valori di genres dalla tabella ponte collegati al film da eliminare
         //COME SOPRA: PRIMA DI TUTTO eliminiamo tutte gli ACTOR (se presenti) collegati al film attuale (che vogliamo eliminare) dalla tabella ponte, in caso contrario riceveremmo un errore e non riusciremmo a cancellare il record, perchè ha le key associate alla tabella ponte "actor_film" e ho bisogno di eliminare prima quelle con il metodo detach():
         $movie->actors()->detach();    // eliminiamo tutti i valori di actors dalla tabella ponte collegati al film da eliminare
+
+
+
+
+        
+        // Se il post ha l'immagine collegata, la elimino:
+        if ($movie->poster) {
+            Storage::delete($movie->poster);
+        }
 
 
 

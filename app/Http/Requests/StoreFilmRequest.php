@@ -75,7 +75,7 @@ class StoreFilmRequest extends FormRequest
             'director_id.nullable' => 'Il regista non è stato selezionato.',
 
             'poster.image' => 'Il file caricato deve essere un\'immagine.',
-            'poster.max' => 'L\'immagine non può superare i 2MB.',
+            'poster.max' => 'L\'immagine non può superare i 10MB.',
 
             'genres.array' => 'Il formato dei generi non è valido.',
             'genres.*.exists' => 'Uno dei generi selezionati non è valido.',
