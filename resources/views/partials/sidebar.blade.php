@@ -225,7 +225,7 @@
                     $user = Auth::user();
                 @endphp
 
-                <span class="d-none d-sm-inline mx-1" id="menu-color">{{ $user->name }}</span>
+                <span class="d-none d-sm-inline mx-1" id="menu-color">Ciao, <strong>{{ $user->name }}</strong></span>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                 <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile config</a></li>
