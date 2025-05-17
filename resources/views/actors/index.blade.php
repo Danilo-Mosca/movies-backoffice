@@ -6,16 +6,6 @@
     Tutti gli attori
 @endsection
 
-{{-- --------------------------------------------------------------------------------------------------------------- --}}
-@php
-
-    // dd(config('comics'));   // prelevo le informazioni dal file di configurazione "comics.php.php"
-
-    // Salvo l'array letterale contenente i comics (dal file di configurazione "comics.php" nella directory: config/comics.php) in una variabile cards
-// $cards = config('comics');
-@endphp
-{{-- --------------------------------------------------------------------------------------------------------------- --}}
-
 {{-- Sezione della pagina personalizzata chiamata "content" nel layout: --}}
 @section('content')
     {{-- @dump($movies) --}}
@@ -53,7 +43,11 @@
 
     <div class="container-fluid mt-5 mb-3">
 
-        <div class="row g-3"> <!-- Spazio tra le card dei registi -->
+        <div class="row g-3"> <!-- Spazio tra le card degli attori -->
+
+            {{-- Contatore registi totali o ricercati: --}}
+            <div><p class="film-counter">Attori mostrati: <span class="number-film-counter">{{ $actors->total() }}</span></p></div>
+
             @foreach ($actors as $actor)
                 <div class="col-xl-4 col-lg-4 col-md-6 col-12">
                     <!-- 3 colonne per riga su desktop ≥ 1200px, 3 per riga su desktop ≥ 992px, 2 su tablet, 1 su mobile -->

@@ -336,3 +336,17 @@ i.fs-5.bi.bi-tags.active::before {
 }
 
 /* --------------------- FINE LAYOUT PULSANTI DELLA PAGINAZIONE --------------------- */
+
+/* --------------------- CLASSI DEL CONTATORE DEI FILM, REGISTI, ATTORI, GENERI --------------------- */
+
+.film-counter {
+    color: #1C1C1C;
+    font-weight: 500;
+}
+
+.number-film-counter {
+    color: var(--color-red-text-sidebar);
+    font-weight:600;
+}
+
+/* --------------------- FINE CLASSI DEL CONTATORE DEI FILM, REGISTI, ATTORI, GENERI --------------------- */

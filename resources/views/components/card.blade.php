@@ -14,18 +14,19 @@
                 // Con l'istruzione di seguite: Vite::asset('percorso...') importo l'immagine affinché Blade la processi
                 $image = Vite::asset('resources/img/poster-placeholder.webp'); // Assegno l'immagine placeholder di default nel caso questa risulti vuota
             @endphp
-        {{-- CODICE DA INSERIRE:
+        {{-- CODICE DA INSERIRE APPENA AGGIUNGO DATI REALI NEL DATABASE AL POSTO DEI FAKER PHP: --}}
         @else
             <a href="{{ route('movies.show', $slug) }}"><img src="{{ asset('storage/' . $image) }}" class="card-img-top"
                     alt="{{ $title }}"></a> 
-        FINE CODICE DA INSERIRE --}}
+        {{-- FINE CODICE DA INSERIRE AGGIUNGO DATI REALI NEL DATABASE AL POSTO DEI FAKER PHP --}}
         @endif
         
-        {{-- CODICE DA TOGLIERE: --}}
-        <a href="{{ route('movies.show', $slug) }}"><img src="{{ $image }}" class="card-img-top"
-            alt="{{ $title }}"></a>
-        {{-- FINE CODICE DA TOGLIERE: --}}
-            {{-- ----------------------------- Fine controllo inserimento immagine ----------------------------- --}}
+        {{-- CODICE DA TOGLIERE QUANDO SOSTITUIRO' I DATI FAKER PHP DAL DATABASE E INSERIRO' I DATI REALI: --}}
+        {{-- <a href="{{ route('movies.show', $slug) }}"><img src="{{ $image }}" class="card-img-top"
+            alt="{{ $title }}"></a> --}}
+        {{-- FINE CODICE DA TOGLIERE QUANDO SOSTITUIRO' I DATI FAKER PHP DAL DATABASE E INSERIRO' I DATI REALI --}}
+            
+        {{-- ----------------------------- Fine controllo inserimento immagine ----------------------------- --}}
             
         <div class="card-body">
             {{-- Il metodo strtoupper() restituisce tutti i caratteri convertiti in uppercase (maiuscolo): --}}
