@@ -47,7 +47,7 @@
             <div><p class="film-counter">Film mostrati: <span class="number-film-counter">{{ $movies->total() }}</span></p></div>
         
             @foreach ($movies as $movie)
-                <div class="col-xl-2 col-lg-3 col-md-4 col-12">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-12">
                     <!-- 6 colonne per riga su desktop ≥ 1200px, 4 per riga su desktop ≥ 992px, 3 su tablet, 1 su mobile -->
 
                     {{-- Inserendo i tag <x-nome_componente>...</x-nome_componente> inserisco un componente, in questo caso inserisco il componente card che conterrà i film (<x-card> </x-card>): --}}

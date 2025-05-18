@@ -12,7 +12,7 @@
 .card-img-top {
     border-radius: 0px;
     width: 100%;
-    height: 200px;
+    height: 500px;
     /* Altezza fissa per uniformare le immagini */
     object-fit: cover;
     /* Garantisce che l'immagine copra tutta la zona senza distorsioni */
@@ -38,11 +38,11 @@
 }
 
 h5.card-title {
-    height: 75px;
+    height: 45px;
 }
 
 h5.card-title:hover {
-    height: 75px;
+    height: 45px;
     font-weight: 670;
     // transform: scale(1.05);
     // transition: transform 0.3s ease;
@@ -77,41 +77,51 @@ h4.card-title:hover {
 /* ---------------------------- Media query per ridurre l'altezza della sezione del titolo della card per i dispositivi sotto i 1400px ... px ------------------------ */
 @media (max-width: 1400px) {
     h5.card-title {
-        height: 80px;
+        height: 45px;
     }
 
     h5.card-title:hover {
-        height: 80px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .card-img-top {
+        height: 300px;
     }
 }
 
 @media (max-width: 992px) {
     h5.card-title {
-        height: 78px;
+        height: 45px;
+    }
+
+    .card-img-top {
+        height: 200px;
     }
 
     h5.card-title:hover {
-        height: 78px;
+        height: 45px;
     }
 }
 
 @media (max-width: 768px) {
     h5.card-title {
-        height: 70px;
+        height: 42px;
     }
 
     h5.card-title:hover {
-        height: 70px;
+        height: 42px;
     }
 }
 
 @media (max-width: 576px) {
     h5.card-title {
-        height: 45px;
+        height: 30px;
     }
 
     h5.card-title:hover {
-        height: 45px;
+        height: 30px;
     }
 }
 

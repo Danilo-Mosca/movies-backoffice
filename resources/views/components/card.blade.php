@@ -31,10 +31,10 @@
         <div class="card-body">
             {{-- Il metodo strtoupper() restituisce tutti i caratteri convertiti in uppercase (maiuscolo): --}}
             @php
-                $titolo = substr(strtoupper($title), 0, 70); // Il metodo substr() restituisce una parte di una stringa, in questo caso restituisce la la stringa dal carattere 0 di partenza fino al carattere 69
+                $titolo = substr(strtoupper($title), 0, 52); // Il metodo substr() restituisce una parte di una stringa, in questo caso restituisce la la stringa dal carattere 0 di partenza fino al carattere 51
             @endphp
-            {{-- Controllo con un operatore ternario se $titolo contiene 70 caratteri, cioè il numero massimo, in questo caso aggiungo i puntini sospensivi, altrimenti stampo solo la stringa contenuta nella variabile --}}
-            <h5 class="card-title pb-2">{{ strlen($titolo) == 70 ? $titolo . '...' : $titolo }}</h5>
+            {{-- Controllo con un operatore ternario se $titolo contiene 52 caratteri, cioè il numero massimo, in questo caso aggiungo i puntini sospensivi, altrimenti stampo solo la stringa contenuta nella variabile --}}
+            <h5 class="card-title pb-2">{{ strlen($titolo) == 52 ? $titolo . '...' : $titolo }}</h5>
             <h4 class="card-title p-3"><a class="card-title" href="{{ route('movies.show', $slug) }}">Visualizza...</a>
             </h4>
 
