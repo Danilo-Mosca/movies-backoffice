@@ -45,6 +45,7 @@
     {{-- Messaggio di errore per tutti i campi se il controllo non ha portato a validazione: --}}
     @if ($errors->any())
         <div class="alert alert-danger">
+            <p style="color: #58151C;"><strong>Sono presenti degli errori:</strong></p>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
