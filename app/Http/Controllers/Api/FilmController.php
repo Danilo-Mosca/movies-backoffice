@@ -15,7 +15,8 @@ class FilmController extends Controller
         // $data = Film::all();    // così mostrerò soltanto tutti i film, senza gli attori, i generi e il regista associati
 
         // Così prendo tutti i film e mostro i relativi generi, il regista e gli attori associati:
-        $data = Film::with('genres', 'director', 'actors')->get();
+        // $data = Film::with('genres', 'director', 'actors')->get();       //senza paginazione: con il metodo ->get();
+        $data = Film::with('genres', 'director', 'actors')->paginate(12);   //con paginazione con il metodo paginate(numero_paginazione);
         
         return response()->json([
             'success' => true,
