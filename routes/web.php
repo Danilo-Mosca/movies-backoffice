@@ -36,7 +36,9 @@ Route::middleware('auth', 'verified')
     });
 
 
-
+// Route::get('/home', function () {
+//     return "Pagina di riepilogo home";          //creare la pagina http://127.0.0.1:8000/home
+// })->middleware(['auth', 'verified'])->name('home');
 
 
 // Rotte CRUD del FilnController:
