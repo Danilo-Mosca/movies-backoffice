@@ -14,6 +14,8 @@
                 // Con l'istruzione di seguite: Vite::asset('percorso...') importo l'immagine affinché Blade la processi
                 $image = Vite::asset('resources/img/poster-placeholder.webp'); // Assegno l'immagine placeholder di default nel caso questa risulti vuota
             @endphp
+            <a href="{{ route('movies.show', $slug) }}"><img src="{{ $image }}" class="card-img-top"
+                alt="{{ $title }}"></a>
         {{-- CODICE DA INSERIRE APPENA AGGIUNGO DATI REALI NEL DATABASE AL POSTO DEI FAKER PHP: --}}
         @else
             <a href="{{ route('movies.show', $slug) }}"><img src="{{ asset('storage/' . $image) }}" class="card-img-top"
