@@ -91,7 +91,7 @@ class FilmController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $movie,
+            'movie' => $movie,
         ]);
     }
 }
