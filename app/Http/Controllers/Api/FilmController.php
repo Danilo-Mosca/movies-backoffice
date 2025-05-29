@@ -12,7 +12,7 @@ class FilmController extends Controller
     public function index(Request $request)
     {
         // Recupero dei parametri dalla query string
-        $query = $request->query('query');  // recupero i dati passati nella ricerca del parametro 'query' da ?query=xxx
+        $title = $request->query('title');  // recupero i dati passati nella ricerca del parametro 'title' da ?title=xxx
         $genre     = $request->query('genre');
         $director  = $request->query('director');
         $actor     = $request->query('actor');
@@ -23,8 +23,8 @@ class FilmController extends Controller
         // Verifico se ci sono corrispondenze tra la query di ricerca passata nella request del front con i valori presenti nel database:
 
         // Filtro per titolo del film
-        if ($query) {
-            $filmsQuery->where('title', 'like', '%' . $query . '%');    // Se il titolo corrisponde lo assegno alla variabile $filmsQuery
+        if ($title) {
+            $filmsQuery->where('title', 'like', '%' . $title . '%');    // Se il titolo corrisponde lo assegno alla variabile $filmsQuery
         }
 
         // Filtro per nome del genere (relazione many-to-many)
