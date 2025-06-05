@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DirectorController;
 use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\Admin\GenreController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,9 +37,11 @@ Route::middleware('auth', 'verified')
     });
 
 
-// Route::get('/home', function () {
-//     return "Pagina di riepilogo home";          //creare la pagina http://127.0.0.1:8000/home
-// })->middleware(['auth', 'verified'])->name('home');
+/* Rotta per la Homepage non appena si fa il login: si viene reindirizzati alla pagina "home.blade.php" presente nella directory: 
+resources->views->home.blade.php. 
+PER REINDIRIZZARE AL LOGIN NELLA PAGINA IN QUESTIONE BISOGNA MODIFICARE IL FILE "AuthenticatedSessionController.php" presente nella directory: \app\Http\Controllers\Auth\AuthenticatedSessionController.php
+Il controller per la homepage è il file "HomeController.php" che contiene solo un metodo, ovvero "index" */
+Route::resource('/home', HomeController::class)->middleware('auth', 'verified');
 
 
 // Rotte CRUD del FilnController:

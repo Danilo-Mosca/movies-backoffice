@@ -34,8 +34,8 @@
                 {{-- ----------------- End Visualizzo l'header qui SOLO PER I DISPOSITIVI DESKTOP E TABLET, escludo i dispositivi mobili: ---------------- --}}
 
 
-
-                <main class="row">
+                {{-- La classe di Bootstrap "flex-grow-1" su <main> fa sì che cresca e spinga il footer in basso --}}
+                <main class="row flex-grow-1">
 
                     {{-- ---------------- Visualizzo l'header qui SOLO PER I DISPOSITIVI MOBILI escludo i tablet e pc: ---------------- --}}
                     <div class="d-block d-sm-none">
@@ -47,14 +47,14 @@
                     <div class="col pt-4">
                         {{-- Includo il contenuto personalizzato per ogni pagina: --}}
                         @yield('content')
-
-                        {{-- Includo il "partials" footer con la barra di navigazione: --}}
-                        @include('partials.footer')
                     </div>
+                    
+                    {{-- Includo il "partials" footer con la barra di navigazione: --}}
+                    @include('partials.footer')
                 </main>
 
             </div>
-            
+
         </div>
     </div>
 

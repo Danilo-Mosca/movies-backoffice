@@ -7,7 +7,7 @@
 
 <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-dark d-flex sticky-top">
     <div class="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-white">
-        <a href="{{ route('movies.index') }}"
+        <a href="{{ route('home.index') }}"
             class="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-5">M<span class="d-none d-sm-inline">ovies</span></span>
         </a>
@@ -16,9 +16,9 @@
             <li class="nav-item mb-md-3 mb-lg-3 mb-xl-3 mb-xxl-3" id="menu-color">
                 {{-- Per rendere dinamica la classe active sui pulsanti del menu è possibile utilizzare l'helper:
                 Route::is() o request()->routeIs() direttamente dentro i tag blade. Ecco l'esempio: --}}
-                <a href="{{ route('movies.index') }}"
-                    class="nav-link px-sm-0 px-2 {{ request()->routeIs('movies.index') ? 'active' : '' }}">
-                    {{-- Nell'esempio verifico se la rotta in cui siamo attualmente è "movies.index" o no, in caso lo sia allora con l'operatore ternario visualizzo la classe active, altrimenti la nascondo. L'esempio di sopra può essere fatto anche richiamando il metodo statico is() nella classe "facade" Route, come di seguito: Route::is('projects.index') ? 'active' : '' }} --}}
+                <a href="{{ route('home.index') }}"
+                    class="nav-link px-sm-0 px-2 {{ request()->routeIs('home.index') ? 'active' : '' }}">
+                    {{-- Nell'esempio verifico se la rotta in cui siamo attualmente è "home.index" o no, in caso lo sia allora con l'operatore ternario visualizzo la classe active, altrimenti la nascondo. L'esempio di sopra può essere fatto anche richiamando il metodo statico is() nella classe "facade" Route, come di seguito: Route::is('projects.index') ? 'active' : '' }} --}}
                     <i class="fs-4 bi-house"></i><span class="ms-1 d-none d-sm-inline">Home</span>
                 </a>
             </li>

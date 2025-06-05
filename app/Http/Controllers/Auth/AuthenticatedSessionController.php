@@ -31,8 +31,8 @@ class AuthenticatedSessionController extends Controller
         // Invece di reindirizzare alla dashboard non appena effettuo il login con successo:
         // return redirect()->intended(route('dashboard', absolute: false));
 
-        // Reindirizzo alla pagina principale di movies:
-        return redirect()->intended(route('movies.index', absolute: false));
+        // Reindirizzo alla view della pagina "home" e al suo metodo "index" presente nel controller "HomeController.php":
+        return redirect()->intended(route('home.index', absolute: false));
     }
 
     /**
