@@ -55,8 +55,8 @@ class FilmController extends Controller
             $filmsQuery->whereYear('release_year', $year);
         }
 
-        // Infine imposto la paginazione con il metodo paginate(numero_paginazione) per la visualizzazione di 12 film per pagina:
-        $data = $filmsQuery->paginate(12);
+        // Infine imposto la paginazione con il metodo paginate(numero_paginazione) per la visualizzazione di 12 film per pagina inviandoli in ordine alfabetico per titolo con il metodo orderBy('title','asc'):
+        $data = $filmsQuery->orderBy('title','asc')->paginate(12);
 
         return response()->json([
             'success' => true,
