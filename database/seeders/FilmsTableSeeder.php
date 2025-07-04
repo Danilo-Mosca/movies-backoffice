@@ -17,7 +17,7 @@ class FilmsTableSeeder extends Seeder
         $films = config('films');
 
         foreach ($films as $filmData) {
-            // Estrai attori e generi separatamente
+            // Estrai attori e generi separatamente. Esempio: se in una certa riga di $filmData esiste il campo 'actors' allora con il null coalescing operator (??) alla variabile $actors viene assegnato tutto il contenuto del campo 'actors', altrimenti ad $actors viene assegnato un array vuoto [], con zero elementi. Questo evita errori "Undefined index: genres" garantendo che  $actors e $genres siano sempre definiti come array, anche vuoti se non ci sono dati.
             $actors = $filmData['actors'] ?? [];
             $genres = $filmData['genres'] ?? [];
 
