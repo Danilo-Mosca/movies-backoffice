@@ -24,7 +24,9 @@
         14 => 'resources/img/jumbotron/jumbotron-cinema-15.webp',
     ];
     // Genero un numero randomico e lo assegno alla variabile $randomIndex per far si che venga visualizzata ogni volta un'immagine casuale tra quelle disponibili. Infatti con l'istruzione: $jumbotronImage[$randomIndex] verrà visualizzata ogni volta un immagine casuale generata dal metodo rand()
-    $randomIndex = rand(0, 14);
+    // dd(count($jumbotronImage));
+    // $randomIndex = rand(0, 14);     //numero inserito manualmente
+    $randomIndex = rand(0, count($jumbotronImage) - 1); //numero inserito dinamicamente in base alla lunghezza dell'array -1
 @endphp
 
 <div>
@@ -51,7 +53,6 @@
             <section class="overlay-image-container">
                 <img src="{{ $image }}" alt="{{ $title }}" class="overlay-img">
             </section>
-        
         @else
             {{-- Altrimenti se l'immagine non è vuota o nulla stampo la <section> con questa all'interno: --}}
             <section class="overlay-image-container">
