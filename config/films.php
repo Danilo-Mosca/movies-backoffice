@@ -144,7 +144,7 @@ return [
         'id' => 11,
         'title' => 'Gladiatore',
         'description' => 'Un generale romano diventa gladiatore per vendicare la morte della sua famiglia e combattere contro la corruzione dell’impero.',
-        'director_id' => 11,
+        'director_id' => 5,
         'actors' => [16, 17, 18],
         'genres' => [8, 1], // Storico, Drammatico
         'poster' => 'gladiatore.jpg',
@@ -186,7 +186,7 @@ return [
         'id' => 14,
         'title' => 'Il Cavaliere Oscuro',
         'description' => 'Batman affronta il caos portato dal Joker nella Gotham City, mettendo in gioco la sua stessa anima.',
-        'director_id' => 14,
+        'director_id' => 2,
         'actors' => [24, 25, 26],
         'genres' => [6, 1, 3], // Crime, Drammatico, Thriller
         'poster' => 'il-cavaliere-oscuro.jpg',
@@ -312,7 +312,7 @@ return [
         'id' => 23,
         'title' => 'Whiplash',
         'description' => 'Un giovane batterista jazz lotta per raggiungere la perfezione sotto la guida di un insegnante esigente e crudele.',
-        'director_id' => 22,
+        'director_id' => 19,
         'actors' => [46, 47],
         'genres' => [2, 1], // Azione (per intensità), Drammatico
         'poster' => 'whiplash.jpg',

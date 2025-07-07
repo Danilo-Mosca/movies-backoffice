@@ -143,7 +143,8 @@
                     {{-- Se l'immagine esiste già (ad esempio nell'edit del film) allora visualizzo la sua miniatura: --}}
                     @if ($model->poster)
                         <div>
-                            <img src="{{ asset('storage/' . $model->poster) }}" alt="{{ $model->title }}" class="img-fluid w-25">
+                            <img src="{{ asset('storage/' . $model->poster) }}" alt="{{ $model->title }}"
+                                class="img-fluid w-25">
                         </div>
                     @endif
                 </div>
@@ -167,13 +168,17 @@
             <div class="form-control">
                 <label class="mb-3">Seleziona il/i generi per il film (se presente nella lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
-                    @foreach ($modelGenres as $genre)
-                        <div class="me-3">
-                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
-                                id="genre-{{ $genre->id }}">
-                            <label for="genre-{{ $genre->id }}">{{ $genre->name }}</label>
-                        </div>
-                    @endforeach
+                    <div class="row">
+                        @foreach ($modelGenres as $genre)
+                            <div class="col-6 col-md-4 col-lg-2 mb-3">
+                                <div class="d-flex me-3">
+                                    <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
+                                        id="genre-{{ $genre->id }}">
+                                    <label for="genre-{{ $genre->id }}" class="ms-2">{{ $genre->name }}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
@@ -191,18 +196,22 @@
             <div class="form-control">
                 <label class="mb-3">Seleziona il/i generi per il film (se presente nella lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
-                    @foreach ($modelGenres as $genre)
-                        <div class="me-3">
-                            <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
-                                id="genre-{{ $genre->id }}"
-                                {{ in_array($genre->id, old('genres', $model->genres->pluck('id')->toArray())) ? 'checked' : '' }}>
-                            {{-- La riga di sopra a sostituzione della seguente:
+                    <div class="row">
+                        @foreach ($modelGenres as $genre)
+                            <div class="col-6 col-md-4 col-lg-2 mb-3">
+                                <div class="d-flex me-3">
+                                    <input type="checkbox" name="genres[]" value="{{ $genre->id }}"
+                                        id="genre-{{ $genre->id }}"
+                                        {{ in_array($genre->id, old('genres', $model->genres->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                    {{-- La riga di sopra a sostituzione della seguente:
                                 {{ $model->genres->contains($genre->id) ? 'checked' : '' }}> --}}
 
-                            {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
-                            <label for="genre-{{ $genre->id }}">{{ $genre->name }}</label>
-                        </div>
-                    @endforeach
+                                    {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
+                                    <label for="genre-{{ $genre->id }}" class="ms-2">{{ $genre->name }}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
@@ -265,13 +274,18 @@
             <div class="form-control">
                 <label class="mb-3">Selezioni gli attori presenti nel film (se il lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
-                    @foreach ($modelActors as $actor)
-                        <div class="me-3">
-                            <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
-                                id="actor-{{ $actor->id }}">
-                            <label for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
-                        </div>
-                    @endforeach
+                    <div class="row">
+                        @foreach ($modelActors as $actor)
+                            <div class="col-6 col-md-4 col-lg-3 mb-3">
+                                <div class="d-flex me-3">
+                                    <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
+                                        id="actor-{{ $actor->id }}">
+                                    <label class="ms-2"
+                                        for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}
@@ -289,18 +303,23 @@
             <div class="form-control">
                 <label class="mb-3">Selezioni gli attori presenti nel film (se il lista):</label>
                 <div class=" mb-3 d-flex flex-wrap input-layout">
-                    @foreach ($modelActors as $actor)
-                        <div class="me-3">
-                            <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
-                                id="actor-{{ $actor->id }}"
-                                {{ in_array($actor->id, old('actors', $model->actors->pluck('id')->toArray())) ? 'checked' : '' }}>
-                            {{-- La riga di sopra a sostituzione della seguente:
+                    <div class="row">
+                        @foreach ($modelActors as $actor)
+                            <div class="col-6 col-md-4 col-lg-3 mb-3">
+                                <div class="d-flex me-3">
+                                    <input type="checkbox" name="actors[]" value="{{ $actor->id }}"
+                                        id="actor-{{ $actor->id }}"
+                                        {{ in_array($actor->id, old('actors', $model->actors->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                    {{-- La riga di sopra a sostituzione della seguente:
                                 {{-- {{ $model->actors->contains($actor->id) ? 'checked' : '' }}> --}}
 
-                            {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
-                            <label for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
-                        </div>
-                    @endforeach
+                                    {{-- Nella riga di sopra verifico con l'operatore ternario se quel valore è presente, se così lo spunto come checked: --}}
+                                    <label class="ms-2"
+                                        for="actor-{{ $actor->id }}">{{ $actor->getFullNameAttribute() }}</label>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 {{-- Messaggio di errore per quel campo se il controllo non ha portato a validazione: --}}

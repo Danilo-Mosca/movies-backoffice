@@ -21,8 +21,8 @@ class GenreController extends Controller
         // Prendo tutti i generi:
         // $genres = Genre::all();   // Uso il metodo statico all() dal Model Genre per restituire a $geners tutti i dati contenuti
 
-        // Al posto dell'istruzione di sopra, che restitutisce tutti i generi devo richiamare per forza lo scope "scopeFiltra" del model Genre per poter filtrare i risultati se clicco sul pulsante di ricerca:
-        $genres = Genre::filtra($request->validated())->paginate(12);
+        // Al posto dell'istruzione di sopra, che restitutisce tutti i generi devo richiamare per forza lo scope personalizzato "scopeFiltra" del model Genre (lo scope personalizzato va richiamato senza la parola scope. Es: il metodo nel model "Genre" si chiama scopeFiltra() ma qui va richiamato senza scope, quindi solo con filtra()) per poter filtrare i risultati se clicco sul pulsante di ricerca (inoltre ritorno i generi in ordine alfabetico per nome con l'istruzione: sortBy('last_name'); ):
+        $genres = Genre::filtra($request->validated())->orderBy('name', 'asc')->paginate(12);
 
         return view('genres.index', compact('genres'));
     }

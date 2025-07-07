@@ -35,6 +35,9 @@ class DirectorController extends Controller
             $query->where('last_name', 'like', '%' . $request->last_name . '%');
         }
 
+        // Ordina i registi per cognome (last_name) in ordine alfabetico
+        $query->orderBy('last_name', 'asc');
+
         // Paginazione: 12 registi per pagina, con parametri preservati (->appends)
         // Laravel si occupa in automatico di calcolare la pagina corrente (usando ?page=2, ?page=3, ecc.). appends($request->all()) serve a mantenere i filtri nella paginazione: Quando clicco su "pagina 2", Laravel aggiunge anche first_name=... e last_name=... all'URL della pagina successiva
         $directors = $query->paginate(12)->appends($request->all());

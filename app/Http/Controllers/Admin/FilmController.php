@@ -24,8 +24,8 @@ class FilmController extends Controller
         // Prendo tutti i film:
         // $movies = Film::all();              // invece di questa istruzione che prende tutti i film e li stampa insieme
         // $movies = Film::paginate(12);     // uso questa istruzione che visualizza una paginazione con 12 elementi per volta
-        // Ma non basta solo l'istruzione di sopra, devo richiamare per forza lo scope "scopeFiltra" del model Film per poter filtrare i risultati se clicco sul pulsante di ricerca:
-        $movies = Film::filtra($request->validated())->paginate(12);
+        // Ma non basta solo l'istruzione di sopra, devo richiamare per forza lo scope "scopeFiltra" del model Film (lo scope personalizzato va richiamato senza la parola scope. Es: il metodo nel model "Film" si chiama scopeFiltra() ma qui va richiamato senza scope, quindi solo con filtra() per poter filtrare i risultati se clicco sul pulsante di ricerca (inoltre ritorno i film in ordine alfabetico per titolo con l'istruzione: orderBy('title', 'asc') ):
+        $movies = Film::filtra($request->validated())->orderBy('title', 'asc')->paginate(12);
 
         return view('movies.index', compact('movies'));    // Uso il metodo statico all() dal Model Film per restituire a $movies tutti i dati contenuti nella tabella films del database movies_db
     }
@@ -35,13 +35,12 @@ class FilmController extends Controller
      */
     public function create()
     {
-        // Recupero tutti i registi dalla suo model:
-        $directors = Director::all();
-        // dd($directors);
-        // prendo i generi
-        $genres = Genre::all();
-        // prendo gli attori
-        $actors = Actor::all();
+        // Recupero tutti i registi dalla suo model e li ordino alfabeticamente per cognome:
+        $directors = Director::all()->sortBy('last_name');
+        // prendo i generi e li ordino alfabeticamente per nome del genere
+        $genres = Genre::all()->sortBy('name');;
+        // prendo gli attori e li ordino alfabeticamente per cognome
+        $actors = Actor::all()->sortBy('last_name');
 
         return view('movies.create', compact('directors', 'genres', 'actors'));
         // Potevo scriverlo anche così:
@@ -164,13 +163,13 @@ class FilmController extends Controller
         // dd($movie);
 
 
-        // Recupero tutti i registi dalla suo model:
-        $directors = Director::all();
+        // Recupero tutti i registi dalla suo model e li ordino alfabeticamente per cognome:
+        $directors = Director::all()->sortBy('last_name');;
         // dd($directors);
-        // prendo i generi
-        $genres = Genre::all();
-        // prendo gli attori
-        $actors = Actor::all();
+        // prendo i generi e li ordino alfabeticamente per nome del genere
+        $genres = Genre::all()->sortBy('name');;
+        // prendo gli attori e li ordino alfabeticamente per cognome
+        $actors = Actor::all()->sortBy('last_name');
 
         return view("movies.edit", compact('movie', 'directors', 'genres', 'actors'));
         // Se invece non avessi voluto usare la funzione compact avrei dovuto passare i parametri così:
@@ -278,7 +277,7 @@ class FilmController extends Controller
 
 
 
-        
+
         // Controllo se il film che sto per cancellare ha l'immagine collegata, la elimino:
         if ($movie->poster) {
             Storage::delete($movie->poster);

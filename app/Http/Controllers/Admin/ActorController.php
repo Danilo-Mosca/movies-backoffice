@@ -24,7 +24,7 @@ class ActorController extends Controller
         // Creo un oggetto query builder per il model Actor, che permette di costruire dinamicamente una query SQL:
         $query = Actor::query();    // È equivalente a fare: SELECT * FROM actors
         // ma permette la possibilità di aggiungere condizioni in base all'input dell'utente, prima di eseguire la query.
-        
+
         // Se l'utente ha compilato il campo first_name, viene aggiunta una clausola WHERE alla query:
         // Con filled() verifico che il campo non siano vuoto '' o null, così posso filtrare anche solo per nome o solo per cognome o restituire tutti i valori non filtrati
         if ($request->filled('first_name')) {
@@ -34,6 +34,9 @@ class ActorController extends Controller
         if ($request->filled('last_name')) {
             $query->where('last_name', 'like', '%' . $request->last_name . '%');
         }
+
+        // Ordina gli attori per cognome (last_name) in ordine alfabetico
+        $query->orderBy('last_name', 'asc');
 
         // Paginazione: 12 attori per pagina, con parametri preservati (->appends)
         // Laravel si occupa in automatico di calcolare la pagina corrente (usando ?page=2, ?page=3, ecc.). appends($request->all()) serve a mantenere i filtri nella paginazione: Quando clicco su "pagina 2", Laravel aggiunge anche first_name=... e last_name=... all'URL della pagina successiva
