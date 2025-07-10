@@ -605,6 +605,7 @@
             {{-- Oppure:
                     <button>Salva</button> --}}
 
+            {{-- Pulsante che resetta i campi di inserimento --}}
             <button class="mt-3 mx-3" id="button-id-reset">RESET</button>
         </div>
     </form>

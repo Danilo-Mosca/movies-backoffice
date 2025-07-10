@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FilterGenreRequest;
 use App\Http\Requests\StoreGenreRequest;
 use App\Http\Requests\UpdateGenreRequest;
 use App\Models\Genre;
@@ -15,14 +14,27 @@ class GenreController extends Controller
      * Display a listing of the resource.
      */
 
-    // Importo la request personalizzata FilterGenreRequest (mi serve per i filtri di ricerca) che ho creato e la passo come argomento:
-    public function index(FilterGenreRequest $request)
+    public function index(Request $request)
     {
         // Prendo tutti i generi:
         // $genres = Genre::all();   // Uso il metodo statico all() dal Model Genre per restituire a $geners tutti i dati contenuti
 
-        // Al posto dell'istruzione di sopra, che restitutisce tutti i generi devo richiamare per forza lo scope personalizzato "scopeFiltra" del model Genre (lo scope personalizzato va richiamato senza la parola scope. Es: il metodo nel model "Genre" si chiama scopeFiltra() ma qui va richiamato senza scope, quindi solo con filtra()) per poter filtrare i risultati se clicco sul pulsante di ricerca (inoltre ritorno i generi in ordine alfabetico per nome con l'istruzione: sortBy('last_name'); ):
-        $genres = Genre::filtra($request->validated())->orderBy('name', 'asc')->paginate(12);
+        // Creo un oggetto query builder per il model Genre, che permette di costruire dinamicamente una query SQL:
+        $query = Genre::query();    // È equivalente a fare: SELECT * FROM genres
+        // ma permette la possibilità di aggiungere condizioni in base all'input dell'utente, prima di eseguire la query.
+
+        // Se l'utente ha compilato il campo name del filtro di ricerca per i generi, viene aggiunta una clausola WHERE alla query:
+        // Con filled() verifico che il campo non siano vuoto '' o null.
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        // Ordina i generi per nome (name) in ordine alfabetico
+        $query->orderBy('name', 'asc');
+
+        // Paginazione: 12 generi per pagina, con parametri preservati (->appends)
+        // Laravel si occupa in automatico di calcolare la pagina corrente (usando ?page=2, ?page=3, ecc.). appends($request->all()) serve a mantenere i filtri nella paginazione: Quando clicco su "pagina 2", Laravel aggiunge anche name=... all'URL della pagina successiva
+        $genres = $query->paginate(12)->appends($request->all());
 
         return view('genres.index', compact('genres'));
     }

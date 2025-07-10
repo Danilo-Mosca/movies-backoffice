@@ -82,6 +82,7 @@
         </div>
     </div>
     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-4">
+        {{-- Mostro il link di navigazione --}}
         {{ $directors->links('pagination::bootstrap-5') }}
     </div>
     {{-- FINE PAGINAZIONE --}}

@@ -28,15 +28,6 @@ class Film extends Model
 
 
 
-    // Scope per il filtro di ricerca
-    public function scopeFiltra($query, $filtri)
-    {
-        return $query
-            ->when($filtri['title'] ?? null, fn($q, $val) => $q->where('title', 'like', "%$val%"));
-    }
-
-
-
 
 
     /* --------------------------------------------- INSERIMENTO SLUG --------------------------------------------- */
@@ -49,6 +40,7 @@ class Film extends Model
     // Metodo booted() specifico di Laravel genera automaticamente lo slug dal titolo, quindi non devo preoccuparmi di aggiungerlo al seeder, 
     protected static function booted()
     {
+        // Quando creo un nuovo film dico di intercettare l'evento "creating" con eloquent e prima di salvare il nuovo film nel DB eseguo questa funzione anonima:
         static::creating(function ($film) {
             // $film->slug = Str::slug($film->title);      // Vecchia soluzione che non controlla se esistono slug univoci
 
@@ -61,11 +53,11 @@ class Film extends Model
     se ho lo slug "matrix", creerà automaticamente lo slug "matrix-1", "matrix-2" ecc */
     private function generateUniqueSlug($title)
     {
-        $slug = Str::slug($title);
+        $slug = Str::slug($title);  // creo uno slug dal titolo
         $originalSlug = $slug;
         $counter = 1;
 
-        // Cicla finchè non trova uno slug esistente:
+        // Cicla se trova uno slug esistente: restituisce true ogni volta che ne trova uno, al termine restituirà false ed uscirà dal ciclo
         while (self::where('slug', $slug)->exists()) {
             $slug = $originalSlug . '-' . $counter;
             $counter++;

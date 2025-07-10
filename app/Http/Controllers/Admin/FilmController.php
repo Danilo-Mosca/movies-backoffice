@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FilterFilmRequest;
 use App\Http\Requests\StoreFilmRequest;
 use App\Models\Actor;
 use App\Models\Director;
@@ -18,14 +17,28 @@ class FilmController extends Controller
      * Display a listing of the resource.
      */
 
-    // Importo la request personalizzata FilterFilmRequest (mi serve per i filtri di ricerca) che ho creato e la passo come argomento:
-    public function index(FilterFilmRequest $request)
+    public function index(Request $request)
     {
         // Prendo tutti i film:
         // $movies = Film::all();              // invece di questa istruzione che prende tutti i film e li stampa insieme
         // $movies = Film::paginate(12);     // uso questa istruzione che visualizza una paginazione con 12 elementi per volta
-        // Ma non basta solo l'istruzione di sopra, devo richiamare per forza lo scope "scopeFiltra" del model Film (lo scope personalizzato va richiamato senza la parola scope. Es: il metodo nel model "Film" si chiama scopeFiltra() ma qui va richiamato senza scope, quindi solo con filtra() per poter filtrare i risultati se clicco sul pulsante di ricerca (inoltre ritorno i film in ordine alfabetico per titolo con l'istruzione: orderBy('title', 'asc') ):
-        $movies = Film::filtra($request->validated())->orderBy('title', 'asc')->paginate(12);
+
+        // Creo un oggetto query builder per il model Film, che permette di costruire dinamicamente una query SQL:
+        $query = Film::query();    // È equivalente a fare: SELECT * FROM films
+        // ma permette la possibilità di aggiungere condizioni in base all'input dell'utente, prima di eseguire la query.
+
+        // Se l'utente ha compilato il campo title, viene aggiunta una clausola WHERE alla query:
+        // Con filled() verifico che il campo non siano vuoto '' o null.
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        // Ordina i film per titolo (title) in ordine alfabetico
+        $query->orderBy('title', 'asc');
+
+        // Paginazione: 12 film per pagina, con parametri preservati (->appends)
+        // Laravel si occupa in automatico di calcolare la pagina corrente (usando ?page=2, ?page=3, ecc.). appends($request->all()) serve a mantenere i filtri nella paginazione: Quando clicco su "pagina 2", Laravel aggiunge anche title=... all'URL della pagina successiva
+        $movies = $query->paginate(12)->appends($request->all());
 
         return view('movies.index', compact('movies'));    // Uso il metodo statico all() dal Model Film per restituire a $movies tutti i dati contenuti nella tabella films del database movies_db
     }
